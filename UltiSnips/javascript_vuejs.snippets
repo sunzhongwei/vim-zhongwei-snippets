@@ -1,0 +1,22 @@
+snippet input "Description" b
+var value = this.${1:model} && this.$1.trim();
+if (!value) {
+	return;
+}
+endsnippet
+
+snippet vue "init" b
+new Vue({
+	el: "#${1:id}",
+	
+	data: {
+	},
+
+	created: function() {
+		// the created hook is called after the instance is created
+	},
+
+	methods: {
+	}
+})
+endsnippet

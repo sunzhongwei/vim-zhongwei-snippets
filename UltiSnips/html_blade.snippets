@@ -1,0 +1,57 @@
+snippet include "include template" b
+@include("${1:template_name}")
+endsnippet
+
+snippet extends "extends template" b
+@extends("${1:template_name}")
+endsnippet
+
+snippet yield "yield section" b
+@yield("${1:section}")
+endsnippet
+
+snippet section "section block" b
+@section("${1:section}")
+@endsection
+endsnippet
+
+snippet section_s "section short/simple" b
+@section("${1:section}", ${2:content})
+endsnippet
+
+snippet section_p "section with parent" b
+@section("${1:section}")
+@@parent
+<p>This is appended to the master sidebar.</p>
+@endsection
+endsnippet
+
+snippet unescape "unescape HTML" b
+{!! $${2:var} !!}
+endsnippet
+
+snippet default "variable with default value" b
+{{ $${1:var} or '${2:default}' }}
+endsnippet
+
+snippet foreach "loop list" b
+@foreach ($$1s as $${1:item})
+@endforeach
+endsnippet
+
+snippet js "js" b
+<script type="text/javascript" src="{{ URL::asset('js/${1:filename}.js') }}"></script>
+endsnippet
+
+snippet css "css" b
+<link rel="stylesheet" href="{{ URL::asset('css/${1:filename}.css') }}" />
+endsnippet
+
+snippet date "get date from datetime" b
+$datetime->format('Y-m-d');
+endsnippet
+
+snippet csrf "The csrf_field helper function generates the csrf HTML" b
+{{ csrf_field() }}
+endsnippet
+
