@@ -16,8 +16,17 @@ snippet date "get date from datetime" b
 $datetime->format('Y-m-d');
 endsnippet
 
-snippet this "Description" b
-$this->${1:SOMETHING};
+## this 用于类的实例，而 self 用于类
+snippet this "this" 
+$this->${1:SOMETHING}
+endsnippet
+
+snippet self "Description"
+self::${1:SOMETHING}
+endsnippet
+
+snippet len "length" i
+count($${1:VAR})
 endsnippet
 
 snippet array "array"
