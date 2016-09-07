@@ -275,7 +275,7 @@ Route::post('/task', function (Request $request) {
 });
 endsnippet
 
-snippet cm "controller method" b
+snippet func "controller method" b
 public function ${1:method}(Request $request, $${2:param}) {
 	$this->validate($request, [
 		'title' => 'required|unique:posts|max:255',
