@@ -39,6 +39,18 @@ snippet foreach "loop list" b
 @endforeach
 endsnippet
 
+snippet if "Description" b
+@if (${1:CONDITION})
+	${2:// TODO}	
+@else
+	${3:// TODO}	
+@endif
+endsnippet
+
+snippet { "Description" 
+{{ $${1:VAR} }}
+endsnippet
+
 snippet js "js" b
 <script type="text/javascript" src="{{ URL::asset('js/${1:filename}.js') }}"></script>
 endsnippet

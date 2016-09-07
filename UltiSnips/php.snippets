@@ -1,6 +1,10 @@
 ## Snippets from SnipMate, taken from
 ## https://github.com/scrooloose/snipmate-snippets.git
 
+snippet slice "Description" 
+mb_substr(${1:STRING}, 0, ${2:LENGTH})
+endsnippet
+
 snippet random_item "random item" b
 $items = [i1, i2, i3];
 $items[array_rand($items)];
@@ -25,8 +29,12 @@ snippet self "Description"
 self::${1:SOMETHING}
 endsnippet
 
-snippet len "length" i
+snippet len "length of array" i
 count($${1:VAR})
+endsnippet
+
+snippet strlen "length of string" i 
+mb_strlen($${1:STRING})
 endsnippet
 
 snippet array "array"
