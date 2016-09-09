@@ -34,7 +34,7 @@ snippet default "variable with default value" b
 {{ $${1:var} or '${2:default}' }}
 endsnippet
 
-snippet foreach "loop list" b
+snippet for "loop list" b
 @foreach ($$1s as $${1:item})
 @endforeach
 endsnippet
@@ -47,7 +47,7 @@ snippet if "Description" b
 @endif
 endsnippet
 
-snippet { "Description" 
+snippet { "Description" i
 {{ $${1:VAR} }}
 endsnippet
 
