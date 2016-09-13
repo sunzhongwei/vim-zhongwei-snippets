@@ -16,6 +16,12 @@ foreach (range(0, ${1:total}) as $i) {
 }
 endsnippet
 
+snippet contain "Description" b
+if (strpos($${1:STRING}, $${2:KEYWORD}) !== false) {
+	${3:// TODO}
+}
+endsnippet
+
 snippet date "get date from datetime" b
 $datetime->format('Y-m-d');
 endsnippet
