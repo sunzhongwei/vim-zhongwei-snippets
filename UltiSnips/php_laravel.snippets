@@ -20,8 +20,8 @@ endsnippet
 
 snippet func "laravel controller method" b
 public function ${1:METHOD}(Request $request, $${2:param}) {
-	return view('${1:TEMPLATE}', [
-		"${2:VAR}" => $$2,
+	return view('${3:TEMPLATE}', [
+		"${4:VAR}" => $$4,
 	]);
 }
 endsnippet
