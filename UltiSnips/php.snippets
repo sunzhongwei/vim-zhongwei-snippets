@@ -16,6 +16,24 @@ foreach (range(0, ${1:total}) as $i) {
 }
 endsnippet
 
+snippet foreach "Description" i
+foreach ($${1:ARRAY} as $${2:KEY} => $${3:VALUE}) {
+	${4:// code...}
+}
+endsnippet
+
+snippet split "Description" i
+explode(" ", $${1:STRING});
+endsnippet
+
+snippet join  "Description" i
+join(' ', $${1:ARRAY})
+endsnippet
+
+snippet push "Description" i
+array_push($${1:ARRAY}, $${2:ITEM})
+endsnippet
+
 snippet contain "Description" b
 if (strpos($${1:STRING}, $${2:KEYWORD}) !== false) {
 	${3:// TODO}
