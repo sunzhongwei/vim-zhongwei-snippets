@@ -1,0 +1,15 @@
+snippet ready "Description" b
+$(document).ready(function(){
+	${1:// code...}	
+});
+endsnippet
+
+snippet $ "Description" i
+$("${1:SELECTOR}").
+endsnippet
+
+snippet each "Description" i
+each(function(){
+	alert($(this).text())
+});
+endsnippet
