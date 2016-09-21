@@ -24,3 +24,14 @@ endsnippet
 snippet click "Description" i
 v-on:click="${1:METHOD}"
 endsnippet
+
+snippet el "Description" i
+this.$els.${1:VAR}.
+endsnippet
+
+snippet next "Defer the callback to be executed after the next DOM update cycle. Use it immediately after you’ve changed some data to wait for the DOM update." b
+var that = this;
+Vue.nextTick(function () {
+	that.${1:VAR}
+})
+endsnippet
