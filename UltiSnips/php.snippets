@@ -1,8 +1,14 @@
 ## Snippets from SnipMate, taken from
 ## https://github.com/scrooloose/snipmate-snippets.git
 
-snippet slice "Description" 
+snippet str_slice "Description" 
 mb_substr(${1:STRING}, 0, ${2:LENGTH})
+endsnippet
+
+## Note that array_slice() will reorder and reset the numeric array indices 
+## by default. You can change this behaviour by setting preserve_keys to TRUE.
+snippet array_slice "Description" i
+$${1:OUTPUT} = array_slice($${2:INPUT}, $${3:OFFSET}, $${4:LENGTH}, true);
 endsnippet
 
 snippet random_item "random item" b
@@ -409,5 +415,22 @@ snippet inheritdoc "@inheritdoc docblock"
  * {@inheritdoc}
  */
 endsnippet
+
+# ---------------------------------------- 
+# init
+# ---------------------------------------- 
+snippet php "Description" b
+<?php
+
+${1:// code...}
+endsnippet
+
+# ---------------------------------------- 
+# array
+# ---------------------------------------- 
+snippet list "Description" b
+array(${1:VAR_1}, ${2:VAR_2});
+endsnippet
+
 
 # :vim:ft=snippets:
