@@ -22,12 +22,6 @@ foreach (range(0, ${1:total}) as $i) {
 }
 endsnippet
 
-snippet foreach "Description" i
-foreach ($${1:ARRAY} as $${2:KEY} => $${3:VALUE}) {
-	${4:// code...}
-}
-endsnippet
-
 snippet split "Description" i
 explode(" ", $${1:STRING});
 endsnippet
@@ -111,12 +105,6 @@ endsnippet
 
 snippet for "for"
 for ($${2:i} = 0; $$2 < ${1:count}; $$2${3:++}) {
-	${4:// code...}
-}
-endsnippet
-
-snippet foreachk "foreachk"
-foreach ($${1:variable} as $${2:key} => $${3:value}) {
 	${4:// code...}
 }
 endsnippet
@@ -309,13 +297,6 @@ function ${1:name}(${2:$param})
 $0
 endsnippet
 
-snippet fore "Foreach loop"
-foreach ($${1:variable} as $${3:value}) {
-	${VISUAL}${4}
-}
-$0
-endsnippet
-
 snippet new "New class instance" b
 $${1:variableName} = new ${2:${1/\w+\s*/\u$0/}}($3);
 $0
@@ -426,11 +407,76 @@ ${1:// code...}
 endsnippet
 
 # ---------------------------------------- 
-# array
+# array as list
 # ---------------------------------------- 
-snippet list "Description" b
-array(${1:VAR_1}, ${2:VAR_2});
+snippet list "Description" i
+array(
+	${1:VAR_1}, 
+	${2:VAR_2},
+);
 endsnippet
 
+snippet append "append var to list" i
+$${1:VAR}[] = ${2:VALUE};
+endsnippet
+
+snippet del "del item from array" i
+unset($${1:arr}[${2:INDEX}]);
+endsnippet
+
+snippet list_foreach "Description" i
+foreach ($${1:ARRAY} as $${2:ITEM}) {
+	${4:// code...}
+}
+endsnippet
+
+# ---------------------------------------- 
+# array as dict
+# ---------------------------------------- 
+snippet dict "Description" i
+array(
+	${1:key} => ${2:VALUE},
+);
+endsnippet
+
+snippet dict_foreach "Description" i
+foreach ($${1:ARRAY} as $${2:KEY} => $${3:VALUE}) {
+	${4:// code...}
+}
+endsnippet
+
+snippet : "Description" i
+=> ${1:VALUE},
+endsnippet
+
+
+# ---------------------------------------- 
+# debug
+# ---------------------------------------- 
+snippet dump "Description" i
+var_dump($${1:VAR});
+endsnippet
+
+
+## class
+snippet . "Description" i
+->
+endsnippet
+
+## convert
+snippet int "convert string to int" i
+intval($${1:STRING})
+endsnippet
+
+# ---------------------------------------- 
+# datetime
+# ---------------------------------------- 
+# http://php.net/manual/en/datetime.diff.php
+snippet timedelta "Description" b
+$now = new DateTime('now');
+$from = new DateTime('2016-09-27');
+$interval = $now->diff($from);
+$days = $interval->format('%a');
+endsnippet
 
 # :vim:ft=snippets:
