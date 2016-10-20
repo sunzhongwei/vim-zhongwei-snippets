@@ -52,11 +52,11 @@ snippet { "Description" i
 endsnippet
 
 snippet js "js" b
-<script type="text/javascript" src="{{ URL::asset('js/${1:filename}.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('js/${1:filename}.js') }}?t=t"></script>
 endsnippet
 
 snippet css "css" b
-<link rel="stylesheet" href="{{ URL::asset('css/${1:filename}.css') }}" />
+<link rel="stylesheet" href="{{ URL::asset('css/${1:filename}.css') }}?t=t" />
 endsnippet
 
 snippet date "get date from datetime" b

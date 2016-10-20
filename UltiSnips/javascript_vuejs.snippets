@@ -25,8 +25,12 @@ snippet click "Description" i
 v-on:click="${1:METHOD}"
 endsnippet
 
-snippet el "Description" i
-this.$els.${1:VAR}.
+snippet el "vuejs 1.0" i
+this.$els.${1:VAR}.value
+endsnippet
+
+snippet ref "vuejs 2.0, first set ref=xxx for element" i
+this.$refs.${1:VAR}.value
 endsnippet
 
 snippet next "Defer the callback to be executed after the next DOM update cycle. Use it immediately after you’ve changed some data to wait for the DOM update." b
@@ -34,4 +38,10 @@ var that = this;
 Vue.nextTick(function () {
 	that.${1:VAR}
 })
+endsnippet
+
+snippet func "Description" i
+${1:NAME}: function () {
+	${2:// TODO}
+}
 endsnippet

@@ -1,5 +1,3 @@
-priority -50
-
 ###########################################################################
 #                            TextMate Snippets                            #
 ###########################################################################
@@ -202,6 +200,17 @@ endsnippet
 
 snippet req "require an AMD module"
 require([${1:'dependencies'}], ${2:callback});
+endsnippet
+
+snippet slugify "Description" i
+function slugify(text) {
+	return text.toString().toLowerCase()
+		.replace(/\s+/g, '-')           // Replace spaces with -
+		.replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+		.replace(/\-\-+/g, '-')         // Replace multiple - with single -
+		.replace(/^-+/, '')             // Trim - from start of text
+		.replace(/-+$/, '');            // Trim - from end of text
+}
 endsnippet
 
 # vim:ft=snippets:
