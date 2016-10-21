@@ -1,3 +1,11 @@
+# ---------------------------------------- 
+# HTML Snippets for VIM
+# 
+# Author: Zhongwei Sun
+# EMail:  zhongwei.sun2008@gmail.com
+# Blog:   http://www.sunzhongwei.com
+# ---------------------------------------- 
+
 snippet email "Description" i
 <a href="mailto:${1:EMAIL_ADDRESS}">$1</a>
 endsnippet
@@ -41,4 +49,12 @@ endsnippet
 
 snippet nofollow "Description" i
 <a href="${1:LINK}" rel="nofollow" target="_blank">${2:SITE_NAME}</a>
+endsnippet
+
+snippet vuejs "Description" b
+<script src="//cdn.bootcss.com/vue/2.0.3/vue.min.js"></script>
+endsnippet
+
+snippet a_btn "Description" i
+<a href="javascript:void(0)"></a>
 endsnippet

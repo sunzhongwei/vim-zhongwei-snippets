@@ -43,10 +43,6 @@ snippet slice "Description" i
 ${1:STRING}.slice(0, ${2:END});
 endsnippet
 
-snippet get "Get Elements"
-getElement${1/(T)|.*/(?1:s)/}By${1:T}${1/(T)|(I)|.*/(?1:agName)(?2:d)/}('$2')
-endsnippet
-
 snippet '':f "object method string"
 '${1:${2:#thing}:${3:click}}': function(element) {
 	${VISUAL}$0
@@ -211,6 +207,14 @@ function slugify(text) {
 		.replace(/^-+/, '')             // Trim - from start of text
 		.replace(/-+$/, '');            // Trim - from end of text
 }
+endsnippet
+
+snippet get "get element" i
+document.getElementById("${1:ID}")
+endsnippet
+
+snippet getInput "Description" i
+document.getElementById("${1:ID}").value
 endsnippet
 
 # vim:ft=snippets:
