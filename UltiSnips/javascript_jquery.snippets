@@ -13,3 +13,16 @@ each(function(){
 	alert($(this).text())
 });
 endsnippet
+
+snippet scroll2show "scroll to show" b
+var height = ${1:600};	
+var wrap = $('${2:ELEMENT}');
+
+$(window).scroll(function(){
+	if ($(document).scrollTop() >= height) {
+		wrap.show();
+	} else {
+		wrap.hide();
+	}
+});
+endsnippet
