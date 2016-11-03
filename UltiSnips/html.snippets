@@ -6,6 +6,31 @@
 # Blog:   http://www.sunzhongwei.com
 # ---------------------------------------- 
 
+snippet init "init" b
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="utf-8">
+	<title>Index Page</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+
+	<!-- 禁止百度移动搜索转码 -->
+	<meta http-equiv="Cache-Control" content="no-transform" /> 
+	<meta http-equiv="Cache-Control" content="no-siteapp" /> 
+
+	<!--[if lt IE 9]>
+	<script src="//cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+</body>
+
+</html>
+endsnippet
+
 snippet email "Description" i
 <a href="mailto:${1:EMAIL_ADDRESS}">$1</a>
 endsnippet
@@ -24,27 +49,6 @@ endsnippet
 
 snippet i "iconfont.cn" i
 <i class="iconfont">${1:VALUE}</i>
-endsnippet
-
-snippet init "init" b
-<!DOCTYPE html>
-<html lang="zh-CN">
-
-<head>
-	<meta charset="utf-8">
-	<title>Index Page</title>
-	<meta name="description" content="">
-	<meta name="keywords" content="">
-
-	<!-- 禁止百度移动搜索转码 -->
-	<meta http-equiv="Cache-Control" content="no-transform" /> 
-	<meta http-equiv="Cache-Control" content="no-siteapp" /> 
-</head>
-
-<body>
-</body>
-
-</html>
 endsnippet
 
 snippet nofollow "Description" i
