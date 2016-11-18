@@ -483,4 +483,12 @@ $interval = $now->diff($from);
 $days = $interval->format('%a');
 endsnippet
 
+snippet try "Description" b
+try {
+	test();
+} catch(Exception $e) {
+	var_dump($e->getTrace());
+}
+endsnippet
+
 # :vim:ft=snippets:
