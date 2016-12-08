@@ -453,10 +453,9 @@ endsnippet
 # ---------------------------------------- 
 # debug
 # ---------------------------------------- 
-snippet dump "Description" i
-var_dump($${1:VAR});
+snippet var_dump "Description" i
+echo '<pre>' . var_export($${1:VAR}, true) . '</pre>';
 endsnippet
-
 
 ## class
 snippet . "Description" i
