@@ -30,7 +30,11 @@ html, body {
 endsnippet
 
 snippet clear "clear both" b
-clear: both;
+.clear:after {
+	content: " ";
+	display: table;
+	clear: both;
+}
 endsnippet
 
 snippet strong "Description" i
