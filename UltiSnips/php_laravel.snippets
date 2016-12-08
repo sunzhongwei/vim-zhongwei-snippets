@@ -1,3 +1,15 @@
+snippet init "Description" b
+composer create-project --prefer-dist laravel/laravel ${1:PROJECT_NAME} "5.2.*"
+endsnippet
+
+snippet key "generate key" b
+php artisan key:generate
+endsnippet
+
+snippet server "start server" b
+php artisan serve --port=9090
+endsnippet
+
 snippet l_pn "simple pagination" b
 $${1:items} = DB::table('$1')->simplePaginate(15);
 return view('${2:template}', [
@@ -131,4 +143,23 @@ snippet select "Description" i
 DB::select("
 	${1:select * from }
 ");
+endsnippet
+
+snippet queue "steps to create queue" b
+php artisan queue:table
+php artisan queue:failed-table
+php artisan migrate
+
+# .env
+QUEUE_DRIVER=database
+
+# create worker
+php artisan make:job ${1:DoSomething} 
+vim app/Jobs/${1}.php
+
+# create seeder
+php artisan make:controller SomeController
+
+# start worker
+php artisan queue:listen
 endsnippet
