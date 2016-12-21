@@ -90,3 +90,7 @@ snippet first "Description" i
 @else
 @endif
 endsnippet
+
+snippet desc "Description" i
+mb_substr(strip_tags($${1:CONTENT}, 0, ${2:LENGTH}))
+endsnippet

@@ -425,7 +425,7 @@ unset($${1:arr}[${2:INDEX}]);
 endsnippet
 
 snippet list_foreach "Description" i
-foreach ($${1:ARRAY} as $${2:ITEM}) {
+foreach ($$1s as $${1:ITEM}) {
 	${4:// code...}
 }
 endsnippet
@@ -447,6 +447,10 @@ endsnippet
 
 snippet : "Description" i
 => ${1:VALUE},
+endsnippet
+
+snippet kv "Description" i
+"${1:KEY}" => $$1,
 endsnippet
 
 
