@@ -34,11 +34,6 @@ snippet default "variable with default value" b
 {{ $${1:var} or '${2:default}' }}
 endsnippet
 
-snippet for "loop list" b
-@foreach ($$1s as $${1:item})
-@endforeach
-endsnippet
-
 snippet if "Description" b
 @if (${1:CONDITION})
 	${2:// TODO}	
@@ -70,3 +65,28 @@ snippet csrf "The csrf_field helper function generates the csrf HTML" b
 {{ csrf_field() }}
 endsnippet
 
+# ---------------------------------------- 
+# for
+# ---------------------------------------- 
+snippet for "loop list" b
+@foreach ($$1s as $${1:item})
+@endforeach
+endsnippet
+
+snippet range "Description" i
+range(1, ${1:END})
+endsnippet
+
+snippet forelse "Description" i
+@forelse ($$1s as $${1:ITEM})
+	<li>{{ $$1->name }}</li>
+@empty
+	<p>No $1</p>
+@endforelse
+endsnippet
+
+snippet first "Description" i
+@if ($loop->first)
+@else
+@endif
+endsnippet
