@@ -407,6 +407,22 @@ ${1:// code...}
 endsnippet
 
 # ---------------------------------------- 
+# switch
+# ---------------------------------------- 
+snippet switch "Description" b
+switch ($${1:VAR}) {
+	case ${2:VALUE}:
+		// TODO
+		break;
+	case ${3:VALUE}:
+		// TODO
+		break;
+	default:
+		// TODO
+}
+endsnippet
+
+# ---------------------------------------- 
 # array as list
 # ---------------------------------------- 
 snippet list "Description" i
@@ -451,6 +467,10 @@ endsnippet
 
 snippet kv "Description" i
 "${1:KEY}" => $$1,
+endsnippet
+
+snippet default "Description" i
+isset($${1:ARGS}) ? $$1 : ${2:DEFAULT}
 endsnippet
 
 
