@@ -40,10 +40,6 @@ if (strpos($${1:STRING}, $${2:KEYWORD}) !== false) {
 }
 endsnippet
 
-snippet date "get date from datetime" b
-$datetime->format('Y-m-d');
-endsnippet
-
 ## this 用于类的实例，而 self 用于类
 snippet this "this" i
 $this->${1:SOMETHING}
@@ -504,6 +500,14 @@ $now = new DateTime('now');
 $from = new DateTime('2016-09-27');
 $interval = $now->diff($from);
 $days = $interval->format('%a');
+endsnippet
+
+snippet date "get date from datetime" b
+$datetime->format('Y-m-d');
+endsnippet
+
+snippet year "Description" i
+date("Y")
 endsnippet
 
 snippet try "Description" b
