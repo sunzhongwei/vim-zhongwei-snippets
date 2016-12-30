@@ -1,0 +1,3 @@
+snippet export "Description" b
+mysqldump -uroot -p ${1:DATABASE_NAME} > $1_`date +%Y%m%d%H%M`.sql
+endsnippet
