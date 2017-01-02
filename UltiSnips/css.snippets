@@ -89,6 +89,13 @@ snippet clear "clear both" b
 }
 endsnippet
 
+snippet metadata "Description" b
+.metadata {
+	color: rgba(0,0,0,.4);
+	font-size: .875em;
+}
+endsnippet
+
 snippet strong "Description" i
 <strong>${1:TEXT}</strong>
 endsnippet
@@ -108,19 +115,14 @@ Tags: ${6:Tags}
 */
 endsnippet
 
-snippet comment "Description" b
-<div class="comment card clear">
-	<div class="comment-avatar">
-		<img src="{{ Utils::get_gavatar($comment->email) }}" alt="">
-	</div>
-	<div class="comment-main">
-		<p>
-			<a href="{{ $comment->blog_url }}" rel="nofollow" target="_blank" class="comment-author">
-				{{ trim($comment->nickname) }}
-			</a>
-			<span class="comment-time metadata">{{ Utils::time_since($comment->created_at) }}</span>
-		</p>
-		<pre class="comment-content">{{ $comment->content }}</pre>
-	</div>
-</div>
+snippet 2col "Description" b
+.sidebar {
+	float: right;
+	width: 20%;
+}
+
+.main {
+	/* new a block formatting context */
+	overflow: hidden;  
+}
 endsnippet
