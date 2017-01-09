@@ -7,3 +7,25 @@ endsnippet
 snippet salt "Description" b
 `curl https://api.wordpress.org/secret-key/1.1/salt/`
 endsnippet
+
+snippet nickname "Description" i
+the_author_meta('nickname')
+endsnippet
+
+snippet h_php "Description" i
+<?php ${1:CODE} ?>
+endsnippet
+
+snippet link "Description" i
+<?php the_permalink() ?>
+endsnippet
+
+snippet cf "custom field" i
+<?php echo get_post_meta(get_the_ID(), '${1:KEY}', true); ?>
+endsnippet
+
+snippet cf_if "if custom field not null" i
+<?php if ( get_post_meta( get_the_ID(), '${1:KEY}', true ) ) { ?>
+	<?php echo get_post_meta(get_the_ID(), '$1', true); ?>
+<?php } ?>
+endsnippet
