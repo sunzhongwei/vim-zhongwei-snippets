@@ -1,0 +1,10 @@
+snippet init "Description" b
+name: ${1:PROJECT_NAME} 
+root: ~/work/$1/
+
+windows:
+  - editor: ls
+  - shell: ls
+  - server: ls
+  - snippet: cd ~/.vim/bundle/vim-zhongwei-snippets/UltiSnips/; git pull origin master 
+endsnippet
