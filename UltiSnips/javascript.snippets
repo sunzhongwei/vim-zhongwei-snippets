@@ -246,4 +246,34 @@ snippet ### "Description" i
 // -----------------------------------------------------------
 endsnippet
 
+snippet { "Description" i
+{
+	$0
+}
+endsnippet
+
+# -----------------------------------------------------------
+# local storage 
+# -----------------------------------------------------------
+snippet ls_get "Description" i
+localStorage.getItem('${1:KEY}');
+endsnippet
+
+snippet ls_set "Description" i
+localStorage.setItem('${1:KEY}', ${2:VALUE});
+endsnippet
+
+# -----------------------------------------------------------
+# JSON 
+# IE8 之后支持
+# -----------------------------------------------------------
+snippet json_dump "Description" i
+JSON.stringify(${1:VAR});
+endsnippet
+
+snippet json_load "Description" i
+JSON.parse(${1:VAR});
+endsnippet
+
+
 # vim:ft=snippets:

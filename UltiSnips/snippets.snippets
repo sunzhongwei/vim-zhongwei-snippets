@@ -1,7 +1,7 @@
 # We use a little hack so that the snippet is expanded
 # and parsed correctly
 snippet snip "Snippet definition" i
-`!p snip.rv = "snippet"` ${1:Tab_trigger} "${2:Description}" ${3:b}
+`!p snip.rv = "snippet"` ${1:Tab_trigger} "${2:Description}" ${3:i}
 $0
 `!p snip.rv = "endsnippet"`
 endsnippet
@@ -28,6 +28,12 @@ snippet info "Description" b
 # EMail:  zhongwei.sun2008@gmail.com
 # Blog:   http://www.sunzhongwei.com
 # ---------------------------------------- 
+endsnippet
+
+snippet ### "Description" i
+# -----------------------------------------------------------
+# ${1:DESC} 
+# -----------------------------------------------------------
 endsnippet
 
 # vim:ft=snippets:
