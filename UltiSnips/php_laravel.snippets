@@ -139,6 +139,10 @@ snippet arg "request argument" b
 $request->${1:arg_name};
 endsnippet
 
+snippet ip "Description" i
+$request->ip();
+endsnippet
+
 snippet select "Description" i
 DB::select("
 	${1:select * from }

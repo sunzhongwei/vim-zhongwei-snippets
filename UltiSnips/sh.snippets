@@ -102,4 +102,11 @@ snippet update "Description" b
 cd /etc/apt/sources.list.d
 endsnippet
 
+snippet rsync "Description" i
+rsync --verbose  --progress --stats --compress \
+      --recursive --times --perms --links --delete \
+      --exclude "*.bak" --exclude "*~" --exclude "*.swp" \
+      /source_dir/ username@domain.com:/target_dir
+endsnippet
+
 # vim:ft=snippets:
