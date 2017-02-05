@@ -50,7 +50,7 @@ endsnippet
 # head
 # ---------------------------------------- 
 snippet js "js" b
-<script type="text/javascript" src="{{ URL::asset('js/${1:filename}.js') }}?t=t"></script>
+<script type="text/javascript" src="{{ URL::asset('js/${1:filename}.js') }}?t=`date +%Y%m%d%H%M`"></script>
 endsnippet
 
 snippet css "css" b
