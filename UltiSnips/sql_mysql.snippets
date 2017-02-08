@@ -1,3 +1,10 @@
 snippet export "Description" b
 mysqldump -uroot -p ${1:DATABASE_NAME} > $1_`date +%Y%m%d%H%M`.sql
 endsnippet
+
+snippet wp "create wordpress database and user" i
+CREATE DATABASE ${1:DB_NAME} CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci;
+CREATE USER ${2:USER_NAME}@localhost IDENTIFIED BY '${3:PASSWORD}';
+GRANT ALL PRIVILEGES ON $1.* TO $2@localhost;
+FLUSH PRIVILEGES;
+endsnippet
