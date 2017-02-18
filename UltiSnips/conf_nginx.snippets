@@ -4,3 +4,24 @@ location /share {
 	autoindex on;
 }
 endsnippet
+
+snippet text "Description" i
+location = /${1:LOCATION}{
+	add_header Content-Type text/plain;
+	# because default content-type is application/octet-stream,
+	# browser will offer to "save the file"...
+	# if you want to see reply in browser, uncomment next line 
+	return 200 '${2:Hello World, Nginx!}';
+}
+endsnippet
+
+snippet location "Description" i
+location = / {
+}
+endsnippet
+
+snippet static "Description" i
+location /static/ {
+	alias ${1:/SOMEDIR}/static/;
+}
+endsnippet
