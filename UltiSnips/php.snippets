@@ -518,4 +518,21 @@ try {
 }
 endsnippet
 
+snippet sql_escape "Description" i
+function sql_escape($param, $is_like_param = false) {
+	$param = mysql_real_escape_string($param);
+	if ($is_like_param) {
+		$param = addcslashes($param, "%_");
+	}
+
+	return $param;
+}
+endsnippet
+
+snippet sql "Description" i
+$sql = sprintf("SELECT * FROM users WHERE user='%s' AND age=%d",
+		sql_escape($user),
+		$age);
+endsnippet
+
 # :vim:ft=snippets:
