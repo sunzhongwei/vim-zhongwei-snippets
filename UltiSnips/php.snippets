@@ -207,14 +207,13 @@ public function set${1/\w+\s*/\u$0/}(${5:${2/(void|string|int|integer|double|flo
 $0
 endsnippet
 
-snippet func "Public function" b
+snippet function "Public function" b
 /**
  * ${3:undocumented function}
  *
  * @return ${4:void}
  */
-public function ${1:name}(${2:$param})
-{
+public function ${1:name}(${2:$param}) {
 	${VISUAL}${5:return null;}
 }
 $0

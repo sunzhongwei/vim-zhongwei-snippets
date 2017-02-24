@@ -8,3 +8,7 @@ CREATE USER ${2:USER_NAME}@localhost IDENTIFIED BY '${3:PASSWORD}';
 GRANT ALL PRIVILEGES ON $1.* TO $2@localhost;
 FLUSH PRIVILEGES;
 endsnippet
+
+snippet index "Description" i
+CREATE INDEX $2_index ON ${1:TABLE} (${2:COLUMN});
+endsnippet
