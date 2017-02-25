@@ -41,8 +41,12 @@ snippet redirect "Description" b
 window.location.href = "${1:URL}";
 endsnippet
 
-snippet curlink "Description" i 
-window.location.href 
+snippet url "Description" i 
+var url = window.location.href;
+endsnippet
+
+snippet title "Description" i
+var title = document.getElementsByTagName("title")[0].innerHTML;
 endsnippet
 
 snippet slice "Description" i
@@ -275,5 +279,15 @@ snippet json_load "Description" i
 JSON.parse(${1:VAR});
 endsnippet
 
+# -----------------------------------------------------------
+# Browser Bookmark script
+# -----------------------------------------------------------
+snippet bookmark "Description" i
+javascript:(function(){
+	var title = document.getElementsByTagName("title")[0].innerHTML;
+	var url = window.location.href;
+	alert('[' + title + '](' + url + ')');
+})();
+endsnippet
 
 # vim:ft=snippets:
