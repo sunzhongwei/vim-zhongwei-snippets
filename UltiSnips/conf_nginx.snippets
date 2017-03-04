@@ -25,3 +25,26 @@ location /static/ {
 	alias ${1:/SOMEDIR}/static/;
 }
 endsnippet
+
+snippet wp "Description" i
+server {
+	listen 80;
+
+	root /home/zhongwei/work/wordpress-4.7.2/;
+	index index.php index.html index.htm;
+
+	server_name localhost;
+
+	location / {
+		# try_files $uri $uri/ =404;
+		try_files $uri $uri/ /index.php?q=$uri&$args;
+	}
+
+	location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+	}
+
+	# TODO: 安全
+}
+endsnippet
