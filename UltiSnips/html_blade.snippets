@@ -50,11 +50,15 @@ endsnippet
 # head
 # ---------------------------------------- 
 snippet js "js" b
-<script type="text/javascript" src="{{ URL::asset('js/${1:filename}.js') }}?t=`date +%Y%m%d%H%M`"></script>
+<script type="text/javascript" src="{{ asset('js/${1:filename}.js') }}?t=`date +%Y%m%d%H%M`"></script>
 endsnippet
 
 snippet css "css" b
-<link rel="stylesheet" href="{{ URL::asset('css/${1:filename}.css') }}?t=t" />
+<link rel="stylesheet" href="{{ asset('css/${1:filename}.css') }}?t=t" />
+endsnippet
+
+snippet asset "Description" i
+{{ asset('${1:PATH}') }}
 endsnippet
 
 snippet date "get date from datetime" b
