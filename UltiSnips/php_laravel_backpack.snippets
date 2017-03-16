@@ -1,0 +1,19 @@
+snippet fields "Description" i
+$${1:VAR} = [
+    'name' => '${2:NAME}',
+    'label' => '${3:LABEL}',
+];
+
+// table view
+$this->crud->addColumns([$$1, ]); 
+
+// detail view for create/update
+$this->crud->addFields([$$1, ]); 
+endsnippet
+
+snippet field "Description" i
+$${1:VAR} = [
+    'name' => '${2:NAME}',
+    'label' => '${3:LABEL}',
+];
+endsnippet
