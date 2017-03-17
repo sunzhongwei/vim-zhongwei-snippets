@@ -149,6 +149,12 @@ DB::select("
 ");
 endsnippet
 
+snippet update "Description" i
+$affected = DB::update("
+	update users set votes = 100 where name = ?
+", ['John']);
+endsnippet
+
 snippet queue "steps to create queue" b
 php artisan queue:table
 php artisan queue:failed-table
