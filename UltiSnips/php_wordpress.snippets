@@ -29,3 +29,12 @@ snippet cf_if "if custom field not null" i
 	<?php echo get_post_meta(get_the_ID(), '$1', true); ?>
 <?php } ?>
 endsnippet
+
+snippet layout "Description" i
+<?php
+get_header(); ?>
+
+${1:HTML}
+
+<?php get_footer();
+endsnippet
