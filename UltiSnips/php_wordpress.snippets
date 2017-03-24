@@ -107,3 +107,37 @@ endsnippet
 snippet static "Description" i
 <?php echo get_theme_file_uri('/${1:PATH}'); ?>
 endsnippet
+
+snippet date "Description" i
+<?php the_time('F jS, Y') ?>
+endsnippet
+
+snippet title "Description" i
+<?php the_title(); ?>
+endsnippet
+
+snippet desc "Description" i
+<?php the_excerpt(); ?>
+endsnippet
+
+snippet posts "Description" i
+<?php
+$posts = new WP_Query( array( 'post_type' => 'post', 'category_name' => '新闻', 'posts_per_page' => 2, ) );
+
+if ( $latest_news_list->have_posts() ) :
+	while ( $latest_news_list->have_posts() ) : $latest_news_list->the_post(); ?>
+		<a href="<?php the_permalink() ?>" class="news-left">
+			<i><?php the_time('Y-m-d') ?></i>
+			<b class="news-title">
+				<?php the_title(); ?>
+			</b>
+			<b class="news-fonts">
+				<?php the_excerpt(); ?>
+			</b>
+		</a>
+	<?php
+	endwhile;
+
+endif;
+?>
+endsnippet
