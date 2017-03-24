@@ -38,3 +38,72 @@ ${1:HTML}
 
 <?php get_footer();
 endsnippet
+
+snippet header "Description" i
+<?php
+/**
+ * The header for our theme
+ */
+
+?><!DOCTYPE html>
+<html <?php language_attributes(); ?> class="no-js no-svg">
+<head>
+<meta charset="<?php bloginfo( 'charset' ); ?>">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<?php wp_head(); ?>
+</head>
+
+<body>
+<div id="page" class="site">
+	<div id="header">
+	</div>
+
+	<div id="content" class="site-content">
+
+endsnippet
+
+snippet footer "Description" i
+<?php
+/**
+ * The template for displaying the footer
+ */
+
+?>
+
+	</div><!-- #content -->
+
+	<div id="footer"></div>
+
+</div><!-- #page -->
+
+<?php wp_footer(); ?>
+</body>
+</html>
+endsnippet
+
+snippet scripts "Description" i
+/**
+ * Enqueue scripts and styles.
+ */
+function enqueue_scripts() {
+	wp_enqueue_style( 'main-style', get_theme_file_uri( '/style.css' ), array(), '1.0' );
+
+	// Load the html5 shiv.
+	wp_enqueue_script( 'html5', '//cdn.bootcss.com/html5shiv/r29/html5.min.js', array(), '3.7.3' );
+	wp_script_add_data( 'html5', 'conditional', 'lt IE 9' );
+}
+add_action( 'wp_enqueue_scripts', 'enqueue_scripts' );
+endsnippet
+
+snippet { "Description" i
+<?php ${1:CODE} ?>
+endsnippet
+
+snippet file "Description" i
+get_theme_file_uri('/${1:PATH}');
+endsnippet
+
+snippet static "Description" i
+<?php echo get_theme_file_uri('/${1:PATH}'); ?>
+endsnippet
