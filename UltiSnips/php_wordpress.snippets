@@ -122,22 +122,31 @@ endsnippet
 
 snippet posts "Description" i
 <?php
-$posts = new WP_Query( array( 'post_type' => 'post', 'category_name' => '新闻', 'posts_per_page' => 2, ) );
+$posts = new WP_Query(array(
+	'post_type' => 'post', 
+	'category_name' => '新闻', 
+	'posts_per_page' => 2, ));
 
-if ( $latest_news_list->have_posts() ) :
-	while ( $latest_news_list->have_posts() ) : $latest_news_list->the_post(); ?>
-		<a href="<?php the_permalink() ?>" class="news-left">
-			<i><?php the_time('Y-m-d') ?></i>
-			<b class="news-title">
-				<?php the_title(); ?>
-			</b>
-			<b class="news-fonts">
-				<?php the_excerpt(); ?>
-			</b>
-		</a>
+if ($posts->have_posts()) :
+	while ($posts->have_posts()) : $posts->the_post(); ?>
+
+	${1:HTML}
+
 	<?php
 	endwhile;
-
 endif;
 ?>
+endsnippet
+
+snippet thumb "Description" i
+<?php the_post_thumbnail($size=array(100, 100), $attr=array('alt' => '${1:ALT}')); ?>
+endsnippet
+
+snippet script "Description" i
+wp_enqueue_script(
+	'${1:UNIQUE_NAME}', 
+	$src = '${2:SCRIPT_PATH}', 
+	$deps = array(${3:JQUERY}), 
+	$ver = '`date +%Y%m%d%H%M`', 
+	$in_footer = false);
 endsnippet
