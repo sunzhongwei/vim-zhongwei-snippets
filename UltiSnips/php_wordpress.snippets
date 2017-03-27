@@ -155,10 +155,18 @@ snippet name "site name" i
 <?php bloginfo('name'); ?>
 endsnippet
 
-snippet tab_title "Description" i
-<?php if(is_front_page()) {
+snippet title_in_head "Description" i
+<?php if (is_front_page()) {
 	bloginfo('name');
 } else { 
 	wp_title( '|', true, 'right' );
+}; ?>
+endsnippet
+
+snippet desc_in_head "Description" i
+<?php if (is_front_page()) {
+	bloginfo('description');
+} else { 
+	the_excerpt();
 }; ?>
 endsnippet
