@@ -150,3 +150,15 @@ wp_enqueue_script(
 	$ver = '`date +%Y%m%d%H%M`', 
 	$in_footer = false);
 endsnippet
+
+snippet name "site name" i
+<?php bloginfo('name'); ?>
+endsnippet
+
+snippet tab_title "Description" i
+<?php if(is_front_page()) {
+	bloginfo('name');
+} else { 
+	wp_title( '|', true, 'right' );
+}; ?>
+endsnippet
