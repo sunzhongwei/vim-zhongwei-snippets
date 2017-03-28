@@ -116,6 +116,10 @@ snippet title "Description" i
 <?php the_title(); ?>
 endsnippet
 
+snippet content "Description" i
+<?php the_content(); ?>
+endsnippet
+
 snippet desc "Description" i
 <?php the_excerpt(); ?>
 endsnippet
@@ -159,7 +163,7 @@ snippet title_in_head "Description" i
 <?php if (is_front_page()) {
 	bloginfo('name');
 } else { 
-	wp_title( '|', true, 'right' );
+	echo wp_title(' - ', false, 'right') . get_bloginfo('name');
 }; ?>
 endsnippet
 
@@ -169,4 +173,12 @@ snippet desc_in_head "Description" i
 } else { 
 	the_excerpt();
 }; ?>
+endsnippet
+
+snippet post "Description" i
+<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+	${1:HTML}
+<?php endwhile; else : ?>
+	<p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
+<?php endif; ?>
 endsnippet
