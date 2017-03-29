@@ -182,3 +182,14 @@ snippet post "Description" i
 	<p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
 <?php endif; ?>
 endsnippet
+
+snippet thumb_in_post "Description" i
+<?php if ( ( function_exists('has_post_thumbnail') ) && ( has_post_thumbnail() ) ) {
+	$post_thumbnail_id = get_post_thumbnail_id();
+	$post_thumbnail_url = wp_get_attachment_url( $post_thumbnail_id );
+	?>
+	<div class="post-image">
+		<img title="<?php the_title(); ?>" alt="<?php the_title(); ?>" class="wp-post-image" src="<?php echo $post_thumbnail_url; ?>" style="width:100%; height:auto;">
+	</div>
+<?php } ?>
+endsnippet
