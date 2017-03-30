@@ -193,3 +193,31 @@ snippet thumb_in_post "Description" i
 	</div>
 <?php } ?>
 endsnippet
+
+snippet pagination "Description" i
+<div class="category-pagination">
+	<?php the_posts_pagination(array('prev_text' => '上一页', 'next_text' => '下一页', )); ?>
+</div>
+endsnippet
+
+snippet category_posts  "Description" i
+<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+	<div class="post-item">
+		<a href="<?php the_permalink() ?>">
+			<h2>
+				<?php the_title(); ?>
+			</h2>
+		</a>
+
+		<div class="post-desc">
+			<?php the_excerpt(); ?>
+		</div>
+	</div>
+<?php endwhile; ?>
+	<div class="category-pagination">
+		<?php the_posts_pagination(array('prev_text' => '上一页', 'next_text' => '下一页', )); ?>
+	</div>
+<?php else : ?>
+	<p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
+<?php endif; ?>
+endsnippet
