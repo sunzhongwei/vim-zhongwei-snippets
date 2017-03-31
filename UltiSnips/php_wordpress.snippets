@@ -39,6 +39,10 @@ ${1:HTML}
 <?php get_footer();
 endsnippet
 
+snippet sidebar "Description" i
+<?php get_sidebar(); ?>
+endsnippet
+
 snippet header "Description" i
 <?php
 /**
@@ -220,4 +224,8 @@ snippet category_posts  "Description" i
 <?php else : ?>
 	<p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
 <?php endif; ?>
+endsnippet
+
+snippet include "Description" i
+<?php get_template_part( 'template-parts/${1:PREFIX}', '${2:SURFIX}' ); ?>
 endsnippet
