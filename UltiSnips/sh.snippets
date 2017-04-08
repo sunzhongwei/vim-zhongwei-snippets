@@ -113,4 +113,13 @@ snippet find "Description" i
 find ${1:DIR} -name ${2:FILE_NAME} 
 endsnippet
 
+snippet loop_files "Description" i
+FILES=*.txt
+for f in $FILES
+do
+	echo "$f"
+	// code
+done
+endsnippet
+
 # vim:ft=snippets:

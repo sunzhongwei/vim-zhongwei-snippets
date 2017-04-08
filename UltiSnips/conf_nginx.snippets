@@ -45,6 +45,10 @@ server {
 		fastcgi_pass unix:/run/php/php7.0-fpm.sock;
 	}
 
-	# TODO: 安全
+	# 安全
+	# or, all . directories/files in general (including .git, .htaccess, etc)
+	location ~ /\. {
+		deny all;
+	}
 }
 endsnippet
