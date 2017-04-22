@@ -9,8 +9,8 @@ $("${1:SELECTOR}").
 endsnippet
 
 snippet each "Description" i
-each(function(){
-	alert($(this).text())
+$("li").each(function() {
+	$(this).addClass("foo");
 });
 endsnippet
 
@@ -25,4 +25,27 @@ $(window).scroll(function(){
 		wrap.hide();
 	}
 });
+endsnippet
+
+snippet active "Description" i
+jQuery(document).ready(function($){
+	var tabbars = $('.weui-tabbar a');
+	var active_class = 'weui-bar__item_on';
+
+	tabbars.removeClass(active_class);
+
+	tabbars.each(function() {
+		var cur_path = format_path(location.pathname);
+		if (format_path($(this).attr('href')) == cur_path) {
+			$(this).addClass(active_class);
+		}
+	});
+});
+
+/*
+ * Remove tailing slash in path
+ */
+function format_path(path) {
+	return path.replace(/\/$/, "");
+}
 endsnippet
