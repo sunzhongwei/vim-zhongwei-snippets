@@ -8,6 +8,37 @@ snippet link "Description" i
 [${1:NAME}](${2:URL})
 endsnippet
 
+snippet api "Description" i
+## 接口 - 查询XXX
+
+**请求说明**
+
+HTTP 请求方式: GET
+http://api.xxx.com/api/isvip?id=ID
+
+**参数说明**
+- id （必填）身份证号码
+
+**返回说明**
+正常情况下，服务端会返回下述JSON数据包给客户端：
+
+\`\`\`
+{
+	"errcode": 0,
+    "id": "3701xxxxxxxxxxxx", 
+    "isVIP": 1,
+	"errmsg": ""
+}
+\`\`\`
+
+参数说明
+
+- errcode: 错误码，0 代表正常，非0代表异常
+- id 身份证号码
+- isVIP 是否为VIP，1 代表是，0 代表否
+- errmsg: 错误信息，当 errcode 为非0时，才会显示错误信息。例如，"id 格式不正确"
+endsnippet
+
 
 # 参考：
 # https://github.com/honza/vim-snippets/blob/master/UltiSnips/markdown.snippets
