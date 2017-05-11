@@ -20,25 +20,61 @@ http://api.xxx.com/api/isvip?id=ID
 - id （必填）身份证号码
 
 **返回说明**
-正常情况下，服务端会返回下述JSON数据包给客户端：
+正常情况下，服务端会返回下述 JSON 数据包给客户端：
 
 \`\`\`
 {
 	"errcode": 0,
-    "id": "3701xxxxxxxxxxxx", 
-    "isVIP": 1,
+	"id": "3701xxxxxxxxxxxx", 
+	"isVIP": 1,
 	"errmsg": ""
 }
 \`\`\`
 
 参数说明
 
-- errcode: 错误码，0 代表正常，非0代表异常
+- errcode: 错误码，0 代表正常，非 0 代表异常
 - id 身份证号码
 - isVIP 是否为VIP，1 代表是，0 代表否
 - errmsg: 错误信息，当 errcode 为非0时，才会显示错误信息。例如，"id 格式不正确"
 endsnippet
 
+snippet api_post "Description" i
+## 接口 - 提交 xxx 
+
+**请求说明**
+
+HTTP 请求方式: POST 
+http://api.xxx.com/api/approval
+
+POST 数据格式：JSON
+
+POST 数据例子：
+
+\`\`\`
+{
+	"id": "3701xxxxxxxxxxxx1",		# 身份证号码
+}
+\`\`\`
+
+**参数说明**
+- id （必填）身份证号码
+
+**返回说明**
+正常情况下，服务端会返回下述 JSON 数据包给客户端：
+
+\`\`\`
+{
+	"errcode": 0,
+	"errmsg": ""
+}
+\`\`\`
+
+参数说明
+
+- errcode: 错误码，0 代表正常，非 0 代表异常
+- errmsg: 错误信息，当 errcode 为非 0 时，才会显示错误信息。例如，"id 格式不正确"
+endsnippet
 
 # 参考：
 # https://github.com/honza/vim-snippets/blob/master/UltiSnips/markdown.snippets
