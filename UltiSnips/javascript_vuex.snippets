@@ -3,3 +3,16 @@ export function ${1:NAME} ({commit, state}, {${2:MY_VAR}}) {
 	// TODO
 }
 endsnippet
+
+snippet mutation "Description" i
+export function ${1:NAME} (state, {${2:MY_VAR}}) {
+	// 若属性在 state 定义时已存在，则直接赋值即可
+	// state.key = value;
+	// 若属性在 state 定义时不存在，则需要使用 Vue.set
+	// Vue.set(state.object, key, value);
+}
+endsnippet
+
+snippet state "Description" i
+this.$store.state.${1:KEY}
+endsnippet
