@@ -1,0 +1,46 @@
+snippet pick "Description" i
+pick: function() {
+	var items = new Array("Saab","Volvo","BMW");
+	var self = this;
+
+	picker.pick({
+		'items': items,
+		'index': self.index
+	}, function (ret) {
+		var result = ret.result;
+		if(result == 'success')
+		{
+			self.value = items[ret.data];
+			self.index = ret.data;
+		}
+	});
+}
+endsnippet
+
+snippet wx "Description" i
+<template>
+<div>
+	<text class="text">{{text}}</text>
+</div>
+</template>
+
+<script>
+export default {
+	data () {
+		return {
+			text: 'Hello World.'
+		}
+	}
+}
+</script>
+
+<style>
+.text {
+	font-size: 50;
+}
+</style>
+endsnippet
+
+snippet wx_img "Description" i
+<image style="width:750px; height:750px;" src="https://img.alicdn.com/tps/TB1z.55OFXXXXcLXXXXXXXXXXXX-560-560.jpg"></image>
+endsnippet
