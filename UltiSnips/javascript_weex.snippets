@@ -54,6 +54,7 @@ store.subscribe((mutation, state) => {
 endsnippet
 
 snippet wx_toast "Description" i
+const modal = weex.requireModule('modal')
 modal.toast({
 	message: "${0:MESSAGE}",
 	duration: 0.3
@@ -66,4 +67,14 @@ if (platform == 'iOS') {
 	// TODO
 	// 平台信息，是 ‘iOS’、’android’ 还是 ‘Web’。
 }
+endsnippet
+
+snippet wx_alert "Description" i
+const modal = weex.requireModule('modal')
+modal.alert({
+	message: ${1:'MSG'},
+	duration: 0.3
+}, function (value) {
+	console.log('alert callback', value)
+})
 endsnippet
