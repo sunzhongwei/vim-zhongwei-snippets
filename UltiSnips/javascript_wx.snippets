@@ -1,0 +1,55 @@
+snippet Page "Description" i
+Page({
+  data: {
+    text: "This is page data."
+  },
+  onLoad: function(options) {
+    // Do some initialize when page load.
+  },
+  onReady: function() {
+    // Do something when page ready.
+  },
+  onShow: function() {
+    // Do something when page show.
+  },
+})
+endsnippet
+
+snippet request "Description" i
+wx.request({
+  url: 'test.php', 
+  method: 'GET',
+  data: {
+     x: '',
+     y: ''
+  },
+  header: {
+      'content-type': 'application/json'
+  },
+  success: function(res) {
+    console.log(res.data.key)
+  }
+})
+endsnippet
+
+snippet value "Description" i
+e.detail.value
+endsnippet
+
+snippet global "Description" i
+getApp().globalData.${1:VAR}
+endsnippet
+
+snippet set "Description" i
+this.setData({
+  ${1:KEY}: ${2:VALUE} 
+})
+endsnippet
+
+snippet modal "Description" i
+wx.showModal({
+  title: '提示',
+  content: '这是一个模态弹窗',
+  showCancel: false,
+})
+endsnippet
