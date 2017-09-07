@@ -40,6 +40,10 @@ if (strpos($${1:STRING}, $${2:KEYWORD}) !== false) {
 }
 endsnippet
 
+snippet format "Description" i
+$${1:STRING} = sprintf("%d - %s", $number, $str);
+endsnippet
+
 ## this 用于类的实例，而 self 用于类
 snippet this "this" i
 $this->${1:SOMETHING}
