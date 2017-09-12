@@ -544,4 +544,9 @@ $sql = sprintf("SELECT * FROM users WHERE user='%s' AND age=%d",
 		$age);
 endsnippet
 
+snippet object "Description" i
+use \stdClass as stdClass;
+$${1:VAR} = new stdClass();
+endsnippet
+
 # :vim:ft=snippets:
