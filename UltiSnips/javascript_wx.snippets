@@ -16,19 +16,21 @@ Page({
 endsnippet
 
 snippet request "Description" i
+const app = getApp()
+
 wx.request({
-  url: 'test.php', 
-  method: 'GET',
-  data: {
-     x: '',
-     y: ''
-  },
-  header: {
-      'content-type': 'application/json'
-  },
-  success: function(res) {
-    console.log(res.data.key)
-  }
+	url: \`${app.globalData.host}/api/${1:API}\`,
+	method: 'GET',
+	data: {
+		x: '',
+		y: ''
+	},
+	header: {
+		'content-type': 'application/json'
+	},
+	success: res => {
+		console.log(res.data)
+	}
 })
 endsnippet
 
