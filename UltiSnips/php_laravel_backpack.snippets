@@ -19,3 +19,15 @@ $${1:VAR} = [
 	'label' => '${3:LABEL}',
 ];
 endsnippet
+
+snippet fake "Description" i
+'fake' => true, 
+'store_in' => 'extras',
+endsnippet
+
+snippet money "Description" i
+'type' => 'number',
+'attributes' => ["step" => "any"],  // allow decimals
+'prefix' => "￥",
+'suffix' => "元",
+endsnippet
