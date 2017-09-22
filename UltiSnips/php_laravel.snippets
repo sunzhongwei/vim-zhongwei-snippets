@@ -202,3 +202,9 @@ endsnippet
 snippet timezone "Description" i
 'timezone' => 'Asia/Shanghai',
 endsnippet	
+
+snippet json "Description" i
+return response()->json([
+	'${3:VAR}' => $$3,
+]);
+endsnippet
