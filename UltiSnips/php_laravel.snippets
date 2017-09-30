@@ -143,8 +143,8 @@ DB::table('${1:table_name}')->insert([
 ]);
 endsnippet
 
-snippet arg "request argument" b
-$request->${1:arg_name};
+snippet arg "request argument" i
+$request->get('${1:arg_name}', '');
 endsnippet
 
 snippet ip "Description" i
