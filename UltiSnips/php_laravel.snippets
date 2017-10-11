@@ -121,13 +121,17 @@ public function ${1:items}() {
 }
 endsnippet
 
-snippet get "get" b
+snippet get "get" i
 $${1:item} = ${2:Model}::where('${3:field}', ${4:value})->firstOrFail();
 use App\\$2;
 endsnippet
 
 snippet query "query" b
 $${1:items} = ${2:Model}::where('${3:field}', ${4:value})->get();
+endsnippet
+
+snippet del "delete" b
+${2:Model}::where('${3:field}', ${4:value})->delete();
 endsnippet
 
 snippet view "view" b
@@ -207,4 +211,12 @@ snippet json "Description" i
 return response()->json([
 	'${3:VAR}' => $$3,
 ]);
+endsnippet
+
+snippet transaction "Description" i
+DB::transaction(function () {
+	DB::table('users')->update(['votes' => 1]);
+
+	DB::table('posts')->delete();
+});
 endsnippet
