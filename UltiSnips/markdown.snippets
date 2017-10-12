@@ -24,19 +24,16 @@ http://api.xxx.com/api/isvip?id=ID
 
 \`\`\`
 {
-	"errcode": 0,
-	"id": "3701xxxxxxxxxxxx", 
-	"isVIP": 1,
-	"errmsg": ""
+	"err_code": 0,
+	"err_msg": ""
+	"data": null
 }
 \`\`\`
 
 参数说明
 
-- errcode: 错误码，0 代表正常，非 0 代表异常
-- id 身份证号码
-- isVIP 是否为VIP，1 代表是，0 代表否
-- errmsg: 错误信息，当 errcode 为非0时，才会显示错误信息。例如，"id 格式不正确"
+- err_code: 错误码，0 代表正常，非 0 代表异常
+- err_msg: 错误信息，当 errcode 为非0时，才会显示错误信息。例如，"id 格式不正确"
 endsnippet
 
 snippet api_post "Description" i
@@ -65,15 +62,15 @@ POST 数据例子：
 
 \`\`\`
 {
-	"errcode": 0,
-	"errmsg": ""
+	"err_code": 0,
+	"err_msg": ""
 }
 \`\`\`
 
 参数说明
 
-- errcode: 错误码，0 代表正常，非 0 代表异常
-- errmsg: 错误信息，当 errcode 为非 0 时，才会显示错误信息。例如，"id 格式不正确"
+- err_code: 错误码，0 代表正常，非 0 代表异常
+- err_msg: 错误信息，当 errcode 为非 0 时，才会显示错误信息。例如，"id 格式不正确"
 endsnippet
 
 # 参考：

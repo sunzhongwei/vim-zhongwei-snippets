@@ -214,9 +214,11 @@ return response()->json([
 endsnippet
 
 snippet transaction "Description" i
-DB::transaction(function () {
+DB::transaction(function () use (${1:VAR}) {
 	DB::table('users')->update(['votes' => 1]);
 
 	DB::table('posts')->delete();
+
+	echo $$1;
 });
 endsnippet
