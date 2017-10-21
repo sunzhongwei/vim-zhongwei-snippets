@@ -222,3 +222,17 @@ DB::transaction(function () use (${1:VAR}) {
 	echo $$1;
 });
 endsnippet
+
+snippet api "Description" i
+public function ${1:METHOD}(Request $request, $${2:param}) {
+	$user = $request->user();
+	$rsp = Utils::get_rsp_json();
+	$offset = $request->get('offset', 0);
+	$limit = $request->get('limit', 5);
+	if ($limit > 50) {
+		$limit = 10;
+	}
+
+	return response()->json($rsp);
+}
+endsnippet
