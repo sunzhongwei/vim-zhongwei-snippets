@@ -35,3 +35,14 @@ endsnippet
 snippet tips "Description" i
 'hint' => '${1:STRING}',
 endsnippet
+
+snippet readonly "Description" i
+'attributes' => [
+	'readonly'=>'readonly',
+]
+endsnippet
+
+snippet map "Description" i
+'type' => 'select_from_array',
+'options' => Order::$payed_status_map,
+endsnippet
