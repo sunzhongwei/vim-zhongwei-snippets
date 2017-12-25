@@ -41,7 +41,7 @@ if (strpos($${1:STRING}, $${2:KEYWORD}) !== false) {
 endsnippet
 
 snippet format "Description" i
-$${1:STRING} = sprintf("%d - %s", $number, $str);
+sprintf("%d - %s", $number, $str);
 endsnippet
 
 ## this 用于类的实例，而 self 用于类
@@ -517,6 +517,10 @@ endsnippet
 
 snippet year "Description" i
 date("Y")
+endsnippet
+
+snippet datetime "Description" i
+date("Y-m-d H:i:s")
 endsnippet
 
 snippet try "Description" b
