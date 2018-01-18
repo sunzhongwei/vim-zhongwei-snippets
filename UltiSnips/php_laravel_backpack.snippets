@@ -15,21 +15,22 @@ endsnippet
 
 snippet field "Description" i
 $${1:VAR} = [
-	'name' => '$1',
-	'label' => '${3:LABEL}',
+	'name'    => '$1',
+	'label'   => '${3:LABEL}',
+	'default' => '${4:DEFAULT}',
 ];
 endsnippet
 
 snippet fake "Description" i
-'fake' => true, 
+'fake'     => true,
 'store_in' => 'extras',
 endsnippet
 
 snippet money "Description" i
-'type' => 'number',
-'attributes' => ["step" => "any"],  // allow decimals
-'prefix' => "￥",
-'suffix' => "元",
+'type'       => 'number',
+'attributes' => ["step"   => "any"],  // allow decimals
+'prefix'     => "￥",
+'suffix'     => "元",
 endsnippet
 
 snippet tips "Description" i
