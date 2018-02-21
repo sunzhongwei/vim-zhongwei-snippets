@@ -1,16 +1,26 @@
 snippet fields "Description" i
 // TODO: comment setFromDB
 
-$${1:VAR} = [
-	'name' => '$1',
-	'label' => '${3:LABEL}',
+$id = [
+	'name' => 'id',
+	'label' => 'ID',
+];
+
+$created_at = [
+	'name'    => 'created_at',
+	'label'   => '创建时间',
+];
+
+$update_at = [
+	'name'    => 'updated_at',
+	'label'   => '更新时间',
 ];
 
 // table view
-$this->crud->addColumns([$$1, ]); 
+$this->crud->addColumns([$id, $created_at, $update_at]); 
 
 // detail view for create/update
-$this->crud->addFields([$$1, ]); 
+$this->crud->addFields([]); 
 endsnippet
 
 snippet field "Description" i
