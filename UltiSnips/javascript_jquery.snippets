@@ -49,3 +49,33 @@ function format_path(path) {
 	return path.replace(/\/$/, "");
 }
 endsnippet
+
+snippet get_json "Description" i
+$.getJSON("ajax/test.json", function(data) {
+	console.log(data);
+});
+endsnippet
+
+snippet post "Description" i
+$.post("${1:URL}",
+	{
+		key: value 
+	},
+	function(result) {
+		console.log(result);
+	}
+);
+endsnippet
+
+snippet ajax "Description" i
+$.ajax({
+	url: '${1:URL}',
+	type: 'post',
+	dataType: 'json',
+	data: {
+	},
+	success: function(data) {
+		console.log(data);
+	}
+});
+endsnippet
