@@ -70,11 +70,11 @@ error_log('${1:Some message here.}');
 endsnippet
 
 snippet string "string" b
-$table->string('${1:field_name}', ${2:length});
+$table->string('${1:field_name}', ${2:length})->nullable();
 endsnippet
 
 snippet text "text" b
-$table->text('${1:field_name}');
+$table->text('${1:field_name}')->nullable();
 endsnippet
 
 snippet int "integer" b
