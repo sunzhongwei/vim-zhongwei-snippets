@@ -439,7 +439,7 @@ snippet del "del item from array" i
 unset($${1:arr}[${2:INDEX}]);
 endsnippet
 
-snippet list_foreach "Description" i
+snippet foreach_list "Description" i
 foreach ($$1s as $${1:ITEM}) {
 	${4:// code...}
 }
@@ -454,7 +454,7 @@ array(
 );
 endsnippet
 
-snippet dict_foreach "Description" i
+snippet foreach_dict "Description" i
 foreach ($${1:ARRAY} as $${2:KEY} => $${3:VALUE}) {
 	${4:// code...}
 }
@@ -564,5 +564,3 @@ snippet doc "Description" i
  * @author ${5:`!v g:snips_author`}
  **/
 endsnippet
-
-# :vim:ft=snippets:
