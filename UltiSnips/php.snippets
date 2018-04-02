@@ -1,13 +1,13 @@
 ## Snippets from SnipMate, taken from
 ## https://github.com/scrooloose/snipmate-snippets.git
 
-snippet str_slice "Description" 
+snippet str_slice "php" 
 mb_substr(${1:STRING}, 0, ${2:LENGTH})
 endsnippet
 
 ## Note that array_slice() will reorder and reset the numeric array indices 
 ## by default. You can change this behaviour by setting preserve_keys to TRUE.
-snippet array_slice "Description" i
+snippet array_slice "php" i
 $${1:OUTPUT} = array_slice($${2:INPUT}, $${3:OFFSET}, $${4:LENGTH}, true);
 endsnippet
 
@@ -22,25 +22,25 @@ foreach (range(0, ${1:total}) as $i) {
 }
 endsnippet
 
-snippet split "Description" i
+snippet split "php" i
 explode(" ", $${1:STRING});
 endsnippet
 
-snippet join  "Description" i
+snippet join  "php" i
 join(' ', $${1:ARRAY})
 endsnippet
 
-snippet push "Description" i
+snippet push "php" i
 array_push($${1:ARRAY}, $${2:ITEM})
 endsnippet
 
-snippet contain "Description" b
+snippet contain "php" b
 if (strpos($${1:STRING}, $${2:KEYWORD}) !== false) {
 	${3:// TODO}
 }
 endsnippet
 
-snippet format "Description" i
+snippet format "php" i
 sprintf("%d - %s", $number, $str);
 endsnippet
 
@@ -49,7 +49,7 @@ snippet this "this" i
 $this->${1:SOMETHING}
 endsnippet
 
-snippet self "Description"
+snippet self "php"
 self::${1:SOMETHING}
 endsnippet
 
@@ -399,7 +399,7 @@ endsnippet
 # ---------------------------------------- 
 # init
 # ---------------------------------------- 
-snippet php "Description" b
+snippet php "php" b
 <?php
 
 ${1:// code...}
@@ -408,7 +408,7 @@ endsnippet
 # ---------------------------------------- 
 # switch
 # ---------------------------------------- 
-snippet switch "Description" b
+snippet switch "php" b
 switch ($${1:VAR}) {
 	case ${2:VALUE}:
 		// TODO
@@ -424,7 +424,7 @@ endsnippet
 # ---------------------------------------- 
 # array as list
 # ---------------------------------------- 
-snippet list "Description" i
+snippet list "php" i
 array(
 	${1:VAR_1}, 
 	${2:VAR_2},
@@ -439,7 +439,7 @@ snippet del "del item from array" i
 unset($${1:arr}[${2:INDEX}]);
 endsnippet
 
-snippet foreach_list "Description" i
+snippet foreach_list "php" i
 foreach ($$1s as $${1:ITEM}) {
 	${4:// code...}
 }
@@ -448,27 +448,27 @@ endsnippet
 # ---------------------------------------- 
 # array as dict
 # ---------------------------------------- 
-snippet dict "Description" i
+snippet dict "php" i
 array(
 	${1:key} => ${2:VALUE},
 );
 endsnippet
 
-snippet foreach_dict_ "Description" i
+snippet foreach_dict_ "php" i
 foreach ($${1:ARRAY} as $${2:KEY} => $${3:VALUE}) {
 	${4:// code...}
 }
 endsnippet
 
-snippet : "Description" i
+snippet : "php" i
 => ${1:VALUE},
 endsnippet
 
-snippet kv "Description" i
+snippet kv "php" i
 "${1:KEY}" => $$1,
 endsnippet
 
-snippet default "Description" i
+snippet default "php" i
 isset($${1:ARGS}) ? $$1 : ${2:DEFAULT}
 endsnippet
 
@@ -476,18 +476,18 @@ endsnippet
 # ---------------------------------------- 
 # debug
 # ---------------------------------------- 
-snippet var_dump "Description" i
+snippet var_dump "php" i
 echo '<pre>' . var_export($${1:VAR}, true) . '</pre>';
 endsnippet
 
-snippet debug "Description" i
+snippet debug "php" i
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 endsnippet
 
 ## class
-snippet . "Description" i
+snippet . "php" i
 ->
 endsnippet
 
@@ -504,7 +504,7 @@ endsnippet
 # datetime
 # ---------------------------------------- 
 # http://php.net/manual/en/datetime.diff.php
-snippet timedelta "Description" b
+snippet timedelta "php" b
 $now = new DateTime('now');
 $from = new DateTime('2016-09-27');
 $interval = $now->diff($from);
@@ -515,15 +515,15 @@ snippet date "get date from datetime" b
 $datetime->format('Y-m-d');
 endsnippet
 
-snippet year "Description" i
+snippet year "php" i
 date("Y")
 endsnippet
 
-snippet datetime "Description" i
+snippet datetime "php" i
 date("Y-m-d H:i:s")
 endsnippet
 
-snippet try "Description" b
+snippet try "php" b
 try {
 	test();
 } catch(Exception $e) {
@@ -531,7 +531,7 @@ try {
 }
 endsnippet
 
-snippet sql_escape "Description" i
+snippet sql_escape "php" i
 function sql_escape($param, $is_like_param = false) {
 	$param = mysql_real_escape_string($param);
 	if ($is_like_param) {
@@ -542,22 +542,22 @@ function sql_escape($param, $is_like_param = false) {
 }
 endsnippet
 
-snippet sql "Description" i
+snippet sql "php" i
 $sql = sprintf("SELECT * FROM users WHERE user='%s' AND age=%d",
 		sql_escape($user),
 		$age);
 endsnippet
 
-snippet object "Description" i
+snippet object "php" i
 use \stdClass as stdClass;
 $${1:VAR} = new stdClass();
 endsnippet
 
-snippet uuid "Description" i
+snippet uuid "php" i
 uniqid(${1:'PREFIX'})
 endsnippet
 
-snippet doc "Description" i
+snippet doc "php" i
 /**
  * $2
  * @return ${4:void}
