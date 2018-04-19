@@ -262,3 +262,15 @@ snippet create_if_not_exist "php_laravel" i
 $item = Item::firstOrNew(['name' => 'Flight 10']);
 $item->save();
 endsnippet
+
+snippet duplicate "php_laravel" i
+try {
+	$user_coupon->save();
+} catch (\Illuminate\Database\QueryException $e){
+	$errorCode = $e->errorInfo[1];
+	if($errorCode == 1062){
+		$rsp['err_code'] = Error::DUPLICATE;
+		$rsp['err_msg'] = '不能重复领取同一优惠券';
+	}
+}
+endsnippet
