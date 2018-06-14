@@ -526,7 +526,7 @@ endsnippet
 snippet try "php" b
 try {
 	test();
-} catch(Exception $e) {
+} catch(\Throwable $e) {
 	var_dump($e->getTrace());
 }
 endsnippet
