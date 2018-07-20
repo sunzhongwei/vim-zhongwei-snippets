@@ -282,3 +282,9 @@ try {
 	Log::info($e->getMessage());
 }
 endsnippet
+
+snippet redis "php_laravel" i
+use Illuminate\Support\Facades\Redis;
+$user = Redis::get('user:profile:'.$id);
+Redis::set('name', 'Taylor');
+endsnippet
