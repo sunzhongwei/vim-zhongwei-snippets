@@ -31,14 +31,14 @@ Route::post('/task', function (Request $request) {
 endsnippet
 
 snippet function "laravel controller method" b
-public function ${1:METHOD}(Request $request, $${2:param}) {
+public function_laravel ${1:METHOD}(Request $request, $${2:param}) {
 	return view('${3:TEMPLATE}', [
 		"${4:VAR}" => $$4,
 	]);
 }
 endsnippet
 
-snippet json_function "laravel controller method" b
+snippet function_laravel_json "laravel controller method" b
 public function ${1:METHOD}(Request $request, $${2:param}) {
 	return response()->json([
 		'${3:VAR}' => $$3,
@@ -223,10 +223,11 @@ DB::transaction(function () use (${1:VAR}) {
 });
 endsnippet
 
-snippet api "Description" i
+snippet function_laravel_api "Description" i
 public function ${1:METHOD}(Request $request, $${2:param}) {
 	$user = $request->user();
 	$rsp = Utils::get_rsp_json();
+	// $rsp = ['err_code' => 0, 'err_msg' => 'OK',];
 	$offset = $request->get('offset', 0);
 	$limit = $request->get('limit', 5);
 	if ($limit > 50) {
@@ -287,4 +288,12 @@ snippet redis "php_laravel" i
 use Illuminate\Support\Facades\Redis;
 $user = Redis::get('user:profile:'.$id);
 Redis::set('name', 'Taylor');
+endsnippet
+
+snippet use_model "php_laravel" i
+use App\Models\${1:VALUE};
+endsnippet
+
+snippet use_request "php_laravel" i
+use Illuminate\Http\Request;
 endsnippet
