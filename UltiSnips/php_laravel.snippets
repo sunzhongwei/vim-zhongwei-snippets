@@ -121,13 +121,21 @@ public function ${1:items}() {
 }
 endsnippet
 
-snippet get "get" i
+snippet get_first "laravel firstOrFail" i
 $${1:item} = ${2:Model}::where('${3:field}', ${4:value})->firstOrFail();
 use App\\$2;
 endsnippet
 
-snippet query "query" b
+snippet get_many "laravel get" b
 $${1:items} = ${2:Model}::where('${3:field}', ${4:value})->get();
+endsnippet
+
+snippet get_many_limit "laravel get" b
+$${1:items} = ${2:Model}::select('field1', 'field2')
+	->where('${3:field}', ${4:value})
+	->orderBy('name', 'desc')	
+	->take(10)
+	->get();
 endsnippet
 
 snippet del "delete" b
@@ -294,6 +302,6 @@ snippet use_model "php_laravel" i
 use App\Models\${1:VALUE};
 endsnippet
 
-snippet use_request "php_laravel" i
+snippet request_use "php_laravel" i
 use Illuminate\Http\Request;
 endsnippet

@@ -17,10 +17,14 @@ $updated_at = [
 ];
 
 // table view
-$this->crud->addColumns([$id, $created_at, $updated_at]); 
+$this->crud->addColumns([
+	$id, 
+	$created_at, $updated_at,
+]); 
 
 // detail view for create/update
-$this->crud->addFields([]); 
+$this->crud->addFields([
+]); 
 endsnippet
 
 snippet field "Description" i
