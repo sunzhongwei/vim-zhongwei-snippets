@@ -242,6 +242,7 @@ public function ${1:METHOD}(Request $request, $${2:param}) {
 		$limit = 10;
 	}
 
+	$rsp['data'] = null;
 	return response()->json($rsp);
 }
 endsnippet
@@ -299,9 +300,13 @@ Redis::set('name', 'Taylor');
 endsnippet
 
 snippet use_model "php_laravel" i
-use App\Models\${1:VALUE};
+use App\Models\\${1:VALUE};
 endsnippet
 
-snippet request_use "php_laravel" i
+snippet use_request "php_laravel" i
 use Illuminate\Http\Request;
+endsnippet
+
+snippet ymd_laravel "php_laravel" i
+format('Y-m-d')
 endsnippet
