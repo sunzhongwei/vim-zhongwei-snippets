@@ -310,3 +310,8 @@ endsnippet
 snippet ymd_laravel "php_laravel" i
 format('Y-m-d')
 endsnippet
+
+snippet today "php_laravel" i
+use Carbon\Carbon;
+Carbon::today()->toDateString();
+endsnippet
