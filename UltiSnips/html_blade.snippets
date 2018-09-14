@@ -98,3 +98,29 @@ endsnippet
 snippet desc "Description" i
 mb_substr(strip_tags($${1:CONTENT}, 0, ${2:LENGTH}))
 endsnippet
+
+snippet backpack_new_blade "html_blade" i
+@extends('backpack::layout')
+
+@section('header')
+<section class="content-header">
+    <h1>大象笔记</h1>
+</section>
+@endsection
+
+
+@section('content')
+<div class="row">
+    <div class="col-md-12">
+    </div>
+</div>
+@endsection
+
+@section("after_styles")
+<link rel="stylesheet" href="https://cdn.bootcss.com/element-ui/2.4.0/theme-chalk/index.css" />
+@endsection
+
+@section('after_scripts')
+<script src="https://cdn.bootcss.com/element-ui/2.4.0/index.js"></script>
+@endsection
+endsnippet

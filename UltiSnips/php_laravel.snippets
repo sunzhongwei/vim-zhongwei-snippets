@@ -30,8 +30,8 @@ Route::post('/task', function (Request $request) {
 });
 endsnippet
 
-snippet function "laravel controller method" b
-public function_laravel ${1:METHOD}(Request $request, $${2:param}) {
+snippet function_laravel_view "laravel controller method" b
+public function ${1:METHOD}(Request $request, $${2:param}) {
 	return view('${3:TEMPLATE}', [
 		"${4:VAR}" => $$4,
 	]);
