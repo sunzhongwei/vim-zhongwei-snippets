@@ -1,0 +1,33 @@
+snippet graph "dot" i
+graph g { 
+	a -- b;
+	a -- b;
+	b -- a [color=blue];
+}
+endsnippet
+
+snippet digraph_ "dot" i
+digraph dg { 
+	a -> b;
+	a -> b;
+	b -> a [color=blue];
+}
+endsnippet
+
+snippet node "dot" i
+${1:NAME} [label="${2:LABEL}"];
+endsnippet
+
+snippet subgraph "dot" i
+subgraph cluster_${1:NAME}{
+	node [style=filled, color=white]
+	style = filled
+	color = lightgrey
+
+	a
+	-> b 
+	-> c 
+
+	label = "${2:LABEL}"
+}
+endsnippet
