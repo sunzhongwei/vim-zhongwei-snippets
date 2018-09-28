@@ -1,5 +1,7 @@
 snippet graph "dot" i
-graph g { 
+graph ${1:NAME} { 
+	node [shape=box, margin=0.2]
+
 	a -- b;
 	a -- b;
 	b -- a [color=blue];
@@ -7,7 +9,9 @@ graph g {
 endsnippet
 
 snippet digraph_ "dot" i
-digraph dg { 
+digraph ${1:NAME} { 
+	node [shape=box, margin=0.2]
+
 	a -> b;
 	a -> b;
 	b -> a [color=blue];
