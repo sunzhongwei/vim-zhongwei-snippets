@@ -27,6 +27,9 @@ $this->crud->addColumns([
 // detail view for create/update
 $this->crud->addFields([
 ]); 
+
+$this->crud->enableAjaxTable();
+$this->crud->orderBy('id', 'desc');
 endsnippet
 
 snippet field "Description" i
