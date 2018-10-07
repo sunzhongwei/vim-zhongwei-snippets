@@ -315,3 +315,8 @@ snippet today "php_laravel" i
 use Carbon\Carbon;
 Carbon::today()->toDateString();
 endsnippet
+
+snippet storage "php_laravel" i
+use Illuminate\Support\Facades\Storage;
+Storage::put('${1:FILE_NAME}', ${2:CONTENT});
+endsnippet
