@@ -38,14 +38,6 @@ public function ${1:METHOD}(Request $request, $${2:param}) {
 }
 endsnippet
 
-snippet function_laravel_json "laravel controller method" b
-public function ${1:METHOD}(Request $request, $${2:param}) {
-	return response()->json([
-		'${3:VAR}' => $$3,
-	]);
-}
-endsnippet
-
 snippet redirect "redirect" b
 return redirect()->route('${1:namedRoute}');
 endsnippet
