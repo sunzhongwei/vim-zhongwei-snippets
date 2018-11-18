@@ -76,6 +76,19 @@ snippet radio "Description" i
 'inline' => true,
 endsnippet
 
+snippet relation "php_laravel_backpack" i
+'type'      => 'select2',
+'entity'    => '${1:relation}',
+'attribute' => 'name',
+'model'     => 'App\Models\\${2:Model}',
+
+// TODO: relation function in model
+public function $1()
+{
+	return $this->belongsTo('App\Models\\$2', '$1_id');
+}
+endsnippet
+
 snippet model_function "php_laravel_backpack" i
 'type' => "model_function",
 'function_name' => 'get_${1:field}_col',
