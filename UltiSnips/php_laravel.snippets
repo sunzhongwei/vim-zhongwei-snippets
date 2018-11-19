@@ -312,3 +312,13 @@ snippet required "php_laravel" i
 '${1:NAME}' => 'required'
 '$1.required' => '请设置 $1',
 endsnippet
+
+snippet view_composer "php_laravel" i
+use Illuminate\Support\Facades\View;
+
+View::composer('${1:BLADE_NAME}', function ($view) {
+    ${2:// TODO}
+    $view->with('var1', 'value1')
+         ->with('var2', 'value2');
+});
+endsnippet
