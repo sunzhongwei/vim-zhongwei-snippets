@@ -38,14 +38,6 @@ public function ${1:METHOD}(Request $request, $${2:param}) {
 }
 endsnippet
 
-snippet function_laravel_json "laravel controller method" b
-public function ${1:METHOD}(Request $request, $${2:param}) {
-	return response()->json([
-		'${3:VAR}' => $$3,
-	]);
-}
-endsnippet
-
 snippet redirect "redirect" b
 return redirect()->route('${1:namedRoute}');
 endsnippet
@@ -319,4 +311,19 @@ endsnippet
 snippet storage "php_laravel" i
 use Illuminate\Support\Facades\Storage;
 Storage::put('${1:FILE_NAME}', ${2:CONTENT});
+endsnippet
+
+snippet required "php_laravel" i
+'${1:NAME}' => 'required'
+'$1.required' => '请设置 $1',
+endsnippet
+
+snippet view_composer "php_laravel" i
+use Illuminate\Support\Facades\View;
+
+View::composer('${1:BLADE_NAME}', function ($view) {
+    ${2:// TODO}
+    $view->with('var1', 'value1')
+         ->with('var2', 'value2');
+});
 endsnippet

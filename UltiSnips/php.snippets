@@ -519,7 +519,7 @@ snippet year "php" i
 date("Y")
 endsnippet
 
-snippet datetime "php" i
+snippet now "php" i
 date("Y-m-d H:i:s")
 endsnippet
 
@@ -561,4 +561,19 @@ snippet doc "php" i
 /**
  * $2
  **/
+endsnippet
+
+snippet guzzle_get "php" i
+composer require guzzlehttp/guzzle
+
+use GuzzleHttp\Client;
+
+$client = new Client();
+$url = 'https://www.sunzhongwei.com';
+try {
+	$res = $client->request('GET', $url, ['timeout' => 1.5]);
+	$res = $res->getBody();
+} catch(\Throwable $e) {
+	Log::info('Fail to call api‘);
+}
 endsnippet
