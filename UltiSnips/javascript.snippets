@@ -219,12 +219,23 @@ function slugify(text) {
 }
 endsnippet
 
-snippet get "get element" i
+# -----------------------------------------------------------
+# Selector 
+# -----------------------------------------------------------
+snippet document_getElementById "get element" i
 document.getElementById("${1:ID}")
 endsnippet
 
-snippet getInput "Description" i
+snippet document_getElementById_value "Description" i
 document.getElementById("${1:ID}").value
+endsnippet
+
+snippet document_querySelector "Javascript" i
+document.querySelector("${1:SELECTOR}")
+endsnippet
+
+snippet document_querySelectorAll "Javascript" i
+document.querySelectorAll("${1:SELECTOR}")
 endsnippet
 
 snippet try "Description" b
