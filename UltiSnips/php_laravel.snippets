@@ -39,7 +39,7 @@ public function ${1:METHOD}(Request $request, $${2:param}) {
 endsnippet
 
 snippet redirect "redirect" b
-return redirect()->route('${1:namedRoute}');
+return redirect("${1:PATH}");
 endsnippet
 
 snippet named_route "named route" b
@@ -52,9 +52,8 @@ snippet csrf "The csrf_field helper function generates the csrf HTML" b
 {{ csrf_field() }}
 endsnippet
 
-snippet log "log" b
-use Log;
-Log::info('${1:This is some useful information.}');
+snippet log_laravel "log" b
+\Log::info('${1:This is some useful information.}');
 endsnippet
 
 snippet debug_log "debug log" b
@@ -326,4 +325,22 @@ View::composer('${1:BLADE_NAME}', function ($view) {
     $view->with('var1', 'value1')
          ->with('var2', 'value2');
 });
+endsnippet
+
+snippet validation_rules "php_laravel" i
+'title' => 'required|unique:posts|max:255',
+'code' => 'required|digits:6',
+'tel' =>'required|regex:/^1[0-9]{10}$/',
+endsnippet
+
+snippet validation_messages "php_laravel" i
+public function messages()
+{
+	return [
+		'tel.required' => '请填写手机号',
+		'tel.regex'  => '手机号格式错误',
+		'code.required' => '请填写验证码',
+		'code.digits'  => '验证码格式错误',
+	];
+}
 endsnippet

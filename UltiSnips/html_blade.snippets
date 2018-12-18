@@ -128,3 +128,29 @@ endsnippet
 snippet year "html_blade" i
 {{ now()->year }}
 endsnippet
+
+snippet old "html_blade" i
+value="{{ old('${1:KEY}') }}"
+endsnippet
+
+snippet validation_errors "html_blade" i
+@if ($errors->any())
+<div style="font-size: 13px; color: red;">
+	<ul>
+		@foreach ($errors->all() as $error)
+		<li>{{ $error }}</li>
+		@endforeach
+	</ul>
+</div>
+@endif
+endsnippet
+
+snippet auth "html_blade" i
+@auth
+{{ Auth::user()->name }}
+@endauth
+
+@guest
+// The user is not authenticated...
+@endguest
+endsnippet
