@@ -344,3 +344,35 @@ public function messages()
 	];
 }
 endsnippet
+
+snippet validation_api "php_laravel" i
+$rsp = ['err_code' => 0, 'err_msg' => 'OK',];
+$input = $request->all();
+
+$rules = [
+	'name' => 'required',
+	'person_tel' =>'required|regex:/^1[0-9]{10}$/',
+	'code' => 'required|digits:6',
+];
+
+$messages = [
+	'name' => '请填写公司名称',
+	'person_tel' => '请填写正确的手机号',
+	'code' => '请填写正确的验证码',
+];
+
+$validator = Validator::make($input, $rules, $messages);
+$validator->after(function ($validator) use ($request) {
+	$redis_code = Redis::get(env('APP_NAME').'sms'.$request->get('code'));
+	if ($redis_code != $request->get('code')) {
+		$validator->errors()->add('code', '验证码错误');
+	}
+});
+
+if ($validator->fails()) {
+	$rsp['err_code'] = -1;
+	$rsp['err_msg'] = "数据校验失败";
+	$rsp['data'] = $validator->errors()->all();
+	return response()->json($rsp);
+}
+endsnippet
