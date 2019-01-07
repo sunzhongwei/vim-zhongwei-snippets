@@ -150,6 +150,10 @@ snippet arg "request argument" i
 $request->get('${1:arg_name}', '');
 endsnippet
 
+snippet only "php_laravel" i
+$request->only([]);
+endsnippet
+
 snippet ip "Description" i
 $request->ip();
 endsnippet
@@ -225,6 +229,22 @@ endsnippet
 snippet function_laravel_api "Description" i
 public function ${1:METHOD}(Request $request, $${2:param}) {
 	$user = $request->user();
+	$rsp = Utils::get_rsp_json();
+	// $rsp = ['err_code' => 0, 'err_msg' => 'OK',];
+	$offset = $request->get('offset', 0);
+	$limit = $request->get('limit', 5);
+	if ($limit > 50) {
+		$limit = 10;
+	}
+
+	$rsp['data'] = null;
+	return response()->json($rsp);
+}
+endsnippet
+
+snippet function_laravel_api_web_ajax "Description" i
+public function ${1:METHOD}(Request $request, $${2:param}) {
+	$user = Auth::user();
 	$rsp = Utils::get_rsp_json();
 	// $rsp = ['err_code' => 0, 'err_msg' => 'OK',];
 	$offset = $request->get('offset', 0);
