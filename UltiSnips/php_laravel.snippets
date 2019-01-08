@@ -396,3 +396,12 @@ if ($validator->fails()) {
 	return response()->json($rsp);
 }
 endsnippet
+
+snippet model "php_laravel" i
+protected $table = '';
+protected $primaryKey = 'id';
+// public $timestamps = false;
+// protected $guarded = ['id'];
+protected $fillable = [
+];
+endsnippet
