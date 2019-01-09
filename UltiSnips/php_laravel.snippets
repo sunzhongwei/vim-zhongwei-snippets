@@ -52,8 +52,12 @@ snippet csrf "The csrf_field helper function generates the csrf HTML" b
 {{ csrf_field() }}
 endsnippet
 
-snippet log_laravel "log" b
+snippet log_info_laravel "log" b
 \Log::info('${1:This is some useful information.}');
+endsnippet
+
+snippet log_error_laravel "php_laravel" i
+\Log::error(sprintf("%s - line %d - ${1:ERROR_MSG}", __FILE__, __LINE__));
 endsnippet
 
 snippet debug_log "debug log" b
