@@ -110,3 +110,62 @@ endsnippet
 snippet config "php_laravel_backpack" i
 Config::get('settings.${1:CONFIG}')
 endsnippet
+
+snippet change_status_button "php_laravel_backpack" i
+// CRUD Controller
+$this->crud->addButtonFromModelFunction('line', 'change_status', 'change_status', 'end');
+
+public function change_channel_status(Request $request, $id, $status) {
+    $rsp = ['err_code' => 0, 'err_msg' => 'OK',];
+
+    $item = Channel::find($id);
+    $item->status = $status;
+    $item->save();
+
+    return response()->json($rsp);
+}
+
+// Model
+public function change_status($crud = false)
+{
+    $html = '';
+    if ($this->status == 1) {
+        $html = '<a onclick="change_channel_status('.$this->id.', 0)" class="btn btn-xs btn-danger"><i class="fa fa-lock"></i> 禁用</a>';
+    } else {
+        $html = '<a onclick="change_channel_status('.$this->id.', 1)" class="btn btn-xs btn-primary"><i class="fa fa-unlock"></i> 恢复</a>';
+    }
+
+    return $html;
+}
+
+// my_app.js
+function change_channel_status(id, status) {
+    var msg = '';
+    if (status == 0) {
+        msg = '确认要禁用该渠道？禁用之后，该渠道将无法分佣，也无法提现!';
+    } else {
+        msg = '确认要恢复该渠道？';
+    }
+
+	var con = confirm(msg);
+
+	if (con) {
+		$.ajax({
+			url: "change_channel_status/" + id + "/" + status,
+			type: 'post',
+			dataType: 'json',
+			success: function (data) {
+				if(data.err_code == 0){
+					alert("操作成功!");
+					window.location.reload()
+				}  else{
+					alert("操作失败!");
+				}
+			}
+		});
+	}
+}
+
+// Route admin
+Route::post('change_channel_status/{id}/{status}', 'ChannelCrudController@change_channel_status');
+endsnippet
