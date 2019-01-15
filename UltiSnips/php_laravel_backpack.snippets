@@ -169,3 +169,12 @@ function change_channel_status(id, status) {
 // Route admin
 Route::post('change_channel_status/{id}/{status}', 'ChannelCrudController@change_channel_status');
 endsnippet
+
+snippet table_backpack "php_laravel_backpack" i
+'type'            => 'table',
+'entity_singular' => '${1:ADD_BUTTON_NAME}',    // used on the "Add X" button
+'columns'         => [
+    'name'  => '名称',
+    'price' => '价格',
+],
+endsnippet
