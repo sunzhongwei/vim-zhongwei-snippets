@@ -222,6 +222,7 @@ endsnippet
 
 snippet transaction "Description" i
 DB::transaction(function () use (${1:VAR}) {
+    Order::where()->lockForUpdate()->first();
 	DB::table('users')->update(['votes' => 1]);
 
 	DB::table('posts')->delete();
