@@ -11,25 +11,36 @@ snippet html "html" b
 <html lang="zh-CN">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Index Page</title>
-	<meta name="description" content="">
-	<meta name="keywords" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
 
-	<!-- Set render engine for 360 browser -->
-	<meta name="renderer" content="webkit">
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
 
-	<!-- 禁止百度移动搜索转码 -->
-	<meta http-equiv="Cache-Control" content="no-transform" /> 
-	<meta http-equiv="Cache-Control" content="no-siteapp" /> 
+    <!-- 禁止百度移动搜索转码 -->
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
 
-	<!--[if lt IE 9]>
-	<script src="//cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
-	<![endif]-->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.4.0/css/bootstrap.min.css" />
 </head>
 
 <body>
+    <div class="container">
+        <h1>Just Play!</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-8 main">
+                main
+            </div>
+            <div class="col-sm-12 col-md-4 sidebar">
+                sidebar
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
