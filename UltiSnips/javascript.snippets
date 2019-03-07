@@ -333,4 +333,18 @@ if (window.confirm("${1:您确认要删除？}")) {
 }
 endsnippet
 
+# -----------------------------------------------------------
+# http 
+# -----------------------------------------------------------
+snippet fetch "javascript" i
+fetch('${1:URL}')
+    .then(function(rsp) {
+        console.log(rsp);
+        return rsp.json();
+    }).then(function(json) {
+        console.log(json);
+    });
+endsnippet
+
+
 # vim:ft=snippets:
