@@ -188,3 +188,29 @@ $this->crud->removeButton('create');
 $this->crud->removeButton('update');
 $this->crud->removeButton('delete');
 endsnippet
+
+snippet detail "php_laravel_backpack" i
+$this->crud->enableDetailsRow();
+$this->crud->allowAccess('details_row');
+
+// TODO: 复制到函数中
+public function showDetailsRow($id) {
+    $this->crud->hasAccessOrFail('details_row');
+
+    $item = ${1:Item}::where("id", $id)->first();
+    return view('$1_detail_row', [
+        "item" => $item,
+    ]);
+}
+
+// TODO: 新建一个模板文件
+<div class="row">
+  <div class="col-xs-12">
+    <h5 class="page-header" style="font-size: 18px;">
+      <i class="fa fa-globe"></i> 详情
+    </h5>
+  </div>
+</div>
+<div class="row">
+</div>
+endsnippet
