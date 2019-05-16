@@ -414,3 +414,8 @@ endsnippet
 snippet user_auth "php_laravel" i
 $user = Auth::user();
 endsnippet
+
+snippet header_laravel "php_laravel" i
+$header = $request->header('Authorization');
+$headers = $request->headers->all();
+endsnippet
