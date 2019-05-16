@@ -578,6 +578,27 @@ try {
 }
 endsnippet
 
+snippet guzzle_post "php" i
+composer require guzzlehttp/guzzle
+
+use GuzzleHttp\Client;
+
+$client = new Client();
+$client->setDefaultOption('headers', array('key' => 'value'));
+$url = 'https://www.sunzhongwei.com';
+try {
+	$res = $client->request('POST', $url, [
+		'form_params' => [
+			'key' => 'value',
+		],
+		'timeout' => 1.5,
+	]);
+	$res = $res->getBody();
+} catch(\Throwable $e) {
+	Log::info('Fail to call api');
+}
+endsnippet
+
 snippet key_exists "php" i
 array_key_exists(${1:KEY}, ${2:ARRAY})
 endsnippet
