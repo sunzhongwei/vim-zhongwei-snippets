@@ -151,7 +151,7 @@ DB::table('${1:table_name}')->insert([
 endsnippet
 
 snippet arg "request argument" i
-$request->get('${1:arg_name}', '');
+$request->get('${1:arg_name}', '')
 endsnippet
 
 snippet only "php_laravel" i
@@ -163,7 +163,7 @@ $request->ip();
 endsnippet
 
 snippet select "Description" i
-DB::select("
+$rows = DB::select("
 	${1:select * from }
 ");
 endsnippet

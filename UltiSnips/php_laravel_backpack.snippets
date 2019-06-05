@@ -85,15 +85,32 @@ snippet radio "Description" i
 endsnippet
 
 snippet relation "php_laravel_backpack" i
-'type'      => 'select2',
-'entity'    => '${1:relation}',
-'attribute' => 'name',
-'model'     => 'App\Models\\${2:Model}',
+$${1:VAR} = [
+	'name'    => '$1',
+	'label'   => '${3:LABEL}',
+    'type'      => 'select2',
+    'entity'    => '${5:relation}',
+    'attribute' => 'name',
+    'model'     => 'App\Models\\${2:Model}',
+	'default' => '${4:DEFAULT}',
+    'hint'    => 'Some hint text',
+];
+
+$$1_2 = [
+	'name'    => '$1',
+	'label'   => '$3',
+    'type'      => 'select',
+    'entity'    => '$5',
+    'attribute' => 'name',
+    'model'     => 'App\Models\\$2',
+	'default' => '$4',
+    'hint'    => 'Some hint text',
+];
 
 // TODO: relation function in model
-public function $1()
+public function $5()
 {
-	return $this->belongsTo('App\Models\\$2', '$1_id');
+	return $this->belongsTo('App\Models\\$2', '$5_id');
 }
 endsnippet
 
