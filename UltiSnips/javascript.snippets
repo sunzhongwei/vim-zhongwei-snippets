@@ -41,7 +41,7 @@ snippet redirect "Description" b
 window.location.href = "${1:URL}";
 endsnippet
 
-snippet url "Description" i 
+snippet url "Description" i
 var url = window.location.href;
 endsnippet
 
@@ -220,7 +220,7 @@ function slugify(text) {
 endsnippet
 
 # -----------------------------------------------------------
-# Selector 
+# Selector
 # -----------------------------------------------------------
 snippet document_getElementById "get element" i
 document.getElementById("${1:ID}")
@@ -268,7 +268,7 @@ snippet { "Description" i
 endsnippet
 
 # -----------------------------------------------------------
-# local storage 
+# local storage
 # -----------------------------------------------------------
 snippet ls_get "Description" i
 localStorage.getItem('${1:KEY}');
@@ -279,7 +279,7 @@ localStorage.setItem('${1:KEY}', ${2:VALUE});
 endsnippet
 
 # -----------------------------------------------------------
-# JSON 
+# JSON
 # IE8 之后支持
 # -----------------------------------------------------------
 snippet json_dump "Description" i
@@ -291,7 +291,7 @@ JSON.parse(${1:VAR});
 endsnippet
 
 # -----------------------------------------------------------
-# array 
+# array
 # -----------------------------------------------------------
 snippet last "Description" i
 slice(-1)[0]
@@ -299,7 +299,7 @@ endsnippet
 
 
 # -----------------------------------------------------------
-# string 
+# string
 # -----------------------------------------------------------
 snippet format_es6 "ES6 Template String" i
 \`$\{${1:VAR1}\} - $\{${2:VAR2}\}\`
@@ -328,13 +328,13 @@ window.location.reload();
 endsnippet
 
 snippet confirm "Description" i
-if (window.confirm("${1:您确认要删除？}")) { 
+if (window.confirm("${1:您确认要删除？}")) {
 	// TODO
 }
 endsnippet
 
 # -----------------------------------------------------------
-# http 
+# http
 # -----------------------------------------------------------
 snippet fetch "javascript" i
 fetch('${1:URL}')
@@ -346,5 +346,48 @@ fetch('${1:URL}')
     });
 endsnippet
 
+snippet sweet_success "javascript" i
+Swal.fire(
+    '成功！',
+    '操作成功',
+    'success'
+);
+endsnippet
+
+snippet sweet_error "javascript" i
+Swal.fire(
+    '失败！',
+    '操作失败',
+    'error'
+);
+endsnippet
+
+snippet sweet_input "javascript" i
+const {value: input_value} = await Swal.fire({
+  title: '快递单号',
+  input: 'text',
+  showCancelButton: true,
+  cancelButtonText: '取消',
+  confirmButtonText: '确认',
+  inputValidator: (value) => {
+		return new Promise((resolve) => {
+			if (!value) {
+				resolve('不能为空')
+			} else {
+				resolve();
+			}
+		})
+  }
+});
+
+if (!input_value) {
+  Swal.fire(
+    '信息不全！',
+    '请填写完整信息',
+    'error'
+  );
+  return;
+}
+endsnippet
 
 # vim:ft=snippets:
