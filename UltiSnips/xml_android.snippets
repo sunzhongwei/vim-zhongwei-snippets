@@ -2,8 +2,40 @@ snippet grid_layout "xml_android" i
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/grid_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:columnCount="3"
     android:rowCount="3" >
 </GridLayout>
+endsnippet
+
+snippet linear_layout "xml_android" i
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center_vertical"
+    >
+</LinearLayout>
+endsnippet
+
+snippet text_view "xml_android" i
+<TextView
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+	android:text="${1:TEXT}" 
+    android:textSize="30sp"
+    />
+endsnippet
+
+snippet button "xml_android" i
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:text="${1:TEXT}" 
+    android:textSize="30sp"
+    />
 endsnippet
