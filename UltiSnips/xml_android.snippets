@@ -22,6 +22,7 @@ endsnippet
 
 snippet text_view "xml_android" i
 <TextView
+    android:id="@+id/text_${1:ID}"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
@@ -32,10 +33,15 @@ endsnippet
 
 snippet button "xml_android" i
 <Button
+    android:id="@+id/btn_${1:ID}"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
     android:text="${1:TEXT}" 
     android:textSize="30sp"
     />
+endsnippet
+
+snippet id "xml_android" i
+android:id="@+id/${1:ID}"
 endsnippet
