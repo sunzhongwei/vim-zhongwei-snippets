@@ -3,3 +3,13 @@ fun main(args: Array<String>) {
     println("Hello, World!")
 }
 endsnippet
+
+snippet find_view_by_id "kotlin" i
+findViewById(R.id.${1:ID})
+endsnippet
+
+snippet on_click "kotlin" i
+setOnClickListener {
+    ${1://TODO}
+}
+endsnippet
