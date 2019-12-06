@@ -45,3 +45,17 @@ endsnippet
 snippet id "xml_android" i
 android:id="@+id/${1:ID}"
 endsnippet
+
+snippet image "xml_android" i
+<ImageView
+   android:id="@+id/${2:ID}"
+   android:layout_width="wrap_content"
+   android:layout_height="wrap_content"
+   android:layout_gravity="center_horizontal"
+   android:src="@drawable/${1:FILE_NAME}" 
+   />
+endsnippet
+
+snippet --- "xml_android" i
+<!-- ${1:} -->
+endsnippet
