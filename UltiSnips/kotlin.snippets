@@ -40,3 +40,18 @@ when (randomInt) {
    else -> R.drawable.dice_6
 }
 endsnippet
+
+snippet hide_keyboard "kotlin" i
+// Hide the keyboard.
+val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+imm.hideSoftInputFromWindow(view.windowToken, 0)
+endsnippet
+
+snippet show_keyboard "kotlin" i
+// Set the focus to the edit text.
+editText.requestFocus()
+
+// Show the keyboard.
+val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+imm.showSoftInput(editText, 0)
+endsnippet
