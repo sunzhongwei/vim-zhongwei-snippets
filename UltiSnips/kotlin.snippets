@@ -8,6 +8,11 @@ snippet find_view_by_id "kotlin" i
 findViewById(R.id.${1:ID})
 endsnippet
 
+snippet find "kotlin" i
+lateinit var resultTextView: TextView
+resultTextView = findViewById(R.id.btn_result)
+endsnippet
+
 snippet on_click "kotlin" i
 setOnClickListener {
     ${1://TODO}
