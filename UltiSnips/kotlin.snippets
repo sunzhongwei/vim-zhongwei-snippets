@@ -72,6 +72,8 @@ Log.d("main", "${1:INFO}")
 endsnippet
 
 snippet add_changed_listener "kotlin" i
+import android.text.Editable
+import android.text.TextWatcher
 .addTextChangedListener(object : TextWatcher {
 
     override fun afterTextChanged(s: Editable) {}
@@ -82,6 +84,13 @@ snippet add_changed_listener "kotlin" i
 
     override fun onTextChanged(s: CharSequence, start: Int,
 		before: Int, count: Int) {
+        // s.toString()
     }
 })
+endsnippet
+
+snippet range "kotlin" i
+for (i in 1..${1:N} step 1) {
+    ${2:// TODO}
+}
 endsnippet
