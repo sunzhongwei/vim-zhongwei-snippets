@@ -66,3 +66,22 @@ if (${1:CONDITION}) {
     ${2://TODO}
 }
 endsnippet
+
+snippet log "kotlin" i
+Log.d("main", "${1:INFO}")
+endsnippet
+
+snippet add_changed_listener "kotlin" i
+.addTextChangedListener(object : TextWatcher {
+
+    override fun afterTextChanged(s: Editable) {}
+
+    override fun beforeTextChanged(s: CharSequence, start: Int,
+		count: Int, after: Int) {
+    }
+
+    override fun onTextChanged(s: CharSequence, start: Int,
+		before: Int, count: Int) {
+    }
+})
+endsnippet
