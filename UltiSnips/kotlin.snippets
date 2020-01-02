@@ -94,3 +94,26 @@ for (i in 1..${1:N} step 1) {
     ${2:// TODO}
 }
 endsnippet
+
+snippet list "kotlin" i
+mutableListOf(${1:1}, ${2:2})
+mutableListOf<${3:CLASS}>()
+endsnippet
+
+snippet for_loop "kotlin" i
+for (${1:item} in $1s) {
+    ${2:// TODO}
+}
+endsnippet
+
+snippet set "kotlin" i
+setOf(${1:1}, ${2:2})
+endsnippet
+
+snippet map "kotlin" i
+mutableMapOf("one" to 1, "two" to 2)
+endsnippet
+
+snippet data_class "kotlin" i
+data class ${1:ClassName}(val name: String, val age: Int)
+endsnippet
