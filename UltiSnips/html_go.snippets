@@ -1,3 +1,9 @@
 snippet include "html_go" i
 {{ template "${1:FILE}.html" }}
 endsnippet
+
+snippet if_go "html_go" i
+{{ if .${1:CONDITION} }}
+{{ else }}
+{{ end }}
+endsnippet
