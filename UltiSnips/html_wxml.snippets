@@ -3,3 +3,11 @@ snippet form "Description" i
 	<button class="pay_type" formType="submit">{{ pay_button_text }}</button>
 </form>
 endsnippet
+
+snippet scroll "html_wxml" i
+<scroll-view class="" scroll-x="true" style="width: 100%; white-space: nowrap;">
+    <view style="display: inline-block;">
+        ${1:ITEM}
+    </view>
+</scroll-view>
+endsnippet
