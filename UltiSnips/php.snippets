@@ -531,6 +531,14 @@ try {
 }
 endsnippet
 
+snippet try_5 "php" b
+try {
+	test();
+} catch(\Exception $e) {
+	var_dump($e->getTrace());
+}
+endsnippet
+
 snippet sql_escape "php" i
 function sql_escape($param, $is_like_param = false) {
 	$param = mysql_real_escape_string($param);
