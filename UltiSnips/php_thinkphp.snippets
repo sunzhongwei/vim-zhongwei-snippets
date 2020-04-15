@@ -1,0 +1,8 @@
+snippet create "php_thinkphp 3.2" i
+$id = M("${1:TABLE}")->data(array(
+	"name" => "thinkphp",
+	"created_at" => date("Y-m-d H:i:s"),
+))->add();
+
+echo $id;   // "5"
+endsnippet
