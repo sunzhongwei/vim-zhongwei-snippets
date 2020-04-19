@@ -45,3 +45,7 @@ func Test${1:Function}(t *testing.T) {
     assert.Equal(t, ${2:VALUE}, $1("arg"))
 }
 endsnippet
+
+snippet trim "go" i
+strings.TrimSpace(${1:VAR});
+endsnippet
