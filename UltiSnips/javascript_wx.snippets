@@ -66,3 +66,21 @@ endsnippet
 snippet set_storage "javascript_wx" i
 wx.setStorageSync('${1:KEY}', '${2:VALUE}')
 endsnippet
+
+snippet bind_input "javascript_wx" i
+bind${1:KEY}Input: function(e) {
+    this.setData({
+        $1: e.detail.value
+    })
+},
+
+bindinput="bind$1Input"
+endsnippet
+
+snippet toast "javascript_wx" i
+wx.showToast({
+  title: '成功',
+  icon: 'success',
+  duration: 2000
+});
+endsnippet
