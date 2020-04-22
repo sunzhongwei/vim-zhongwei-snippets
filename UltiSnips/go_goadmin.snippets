@@ -1,0 +1,20 @@
+snippet field_default "go_goadmin" i
+.FieldDefault(${1:DEFAULT})
+endsnippet
+
+snippet field_require "go_goadmin" i
+FieldMust()
+endsnippet
+
+snippet field_not_editable "go_goadmin" i
+.FieldNotAllowEdit()
+endsnippet
+
+snippet column_join "go_goadmin" i
+"github.com/GoAdminGroup/go-admin/template/types"
+info.AddField("${1:COLUMN_NAME}", "${2:FIELD_NAME}", db.Varchar).FieldJoin(types.Join{
+	Table:     "",     // 连表的表名
+	Field:     "",     // 要连表的字段
+	JoinField: "id",   // 连表的表的字段
+})
+endsnippet
