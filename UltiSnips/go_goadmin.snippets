@@ -18,3 +18,8 @@ info.AddField("${1:COLUMN_NAME}", "${2:FIELD_NAME}", db.Varchar).FieldJoin(types
 	JoinField: "id",   // 连表的表的字段
 })
 endsnippet
+
+snippet search "go_goadmin" i
+"github.com/GoAdminGroup/go-admin/template/types"
+FieldFilterable(types.FilterType{Operator: types.FilterOperatorLike})
+endsnippet
