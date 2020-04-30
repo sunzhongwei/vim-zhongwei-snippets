@@ -84,3 +84,11 @@ wx.showToast({
   duration: 2000
 });
 endsnippet
+
+snippet scroll_to_top "javascript_wx" i
+if (wx.pageScrollTo) {
+  wx.pageScrollTo({
+    scrollTop: 0
+  })
+}
+endsnippet
