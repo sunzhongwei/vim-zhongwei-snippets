@@ -80,7 +80,24 @@ endsnippet
 snippet toast "javascript_wx" i
 wx.showToast({
   title: '成功',
-  icon: 'success',
+  icon: 'success',  // or 'none'
   duration: 2000
+});
+endsnippet
+
+snippet scroll_to_top "javascript_wx" i
+if (wx.pageScrollTo) {
+  wx.pageScrollTo({
+    scrollTop: 0
+  })
+}
+endsnippet
+
+snippet http "javascript_wx" i
+app.http({
+  url: "${1:URL}",
+  method: "GET",
+}).then(res => {
+  console.log(res);
 });
 endsnippet
