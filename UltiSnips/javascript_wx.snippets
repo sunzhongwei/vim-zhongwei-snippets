@@ -101,3 +101,9 @@ app.http({
   console.log(res);
 });
 endsnippet
+
+snippet navigate "javascript_wx" i
+wx.navigateTo({
+  url: '/pages/${1:PAGE}/$1'
+})
+endsnippet
