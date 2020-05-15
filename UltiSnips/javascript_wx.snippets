@@ -109,7 +109,7 @@ wx.navigateTo({
 endsnippet
 
 snippet function_wx "javascript_wx" i
-${1:NAME}: function () {
-    // TODO
+${1:NAME}: function(e) {
+    console.log(e.currentTarget.dataset.name);
 },
 endsnippet
