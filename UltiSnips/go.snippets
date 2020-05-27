@@ -75,3 +75,13 @@ endsnippet
 snippet append "go" i
 $1 = append(${1:SLICE}, ${2:ITEM})
 endsnippet
+
+snippet json_encode "go" i
+"encoding/json"
+s, _ := json.Marshal(${1:SLICE})
+endsnippet
+
+snippet json_decode "go" i
+"encoding/json"
+json.Unmarshal([]byte(${1:STRING}), &${2:TARGET})
+endsnippet
