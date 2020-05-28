@@ -23,3 +23,15 @@ snippet search "go_goadmin" i
 "github.com/GoAdminGroup/go-admin/template/types"
 FieldFilterable(types.FilterType{Operator: types.FilterOperatorLike})
 endsnippet
+
+snippet kv_table "go_goadmin" i
+.FieldDisplay(func(model types.FieldModel) interface{} {
+	if model.Value == "0" {
+		return "否"
+	}
+	if model.Value == "1" {
+		return "是"
+	}
+	return "未知"
+})
+endsnippet
