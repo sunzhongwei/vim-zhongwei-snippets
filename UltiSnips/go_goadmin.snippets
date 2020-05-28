@@ -25,7 +25,7 @@ FieldFilterable(types.FilterType{Operator: types.FilterOperatorLike})
 endsnippet
 
 snippet kv_table "go_goadmin" i
-.FieldDisplay(func(model types.FieldModel) interface{} {
+FieldDisplay(func(model types.FieldModel) interface{} {
 	if model.Value == "0" {
 		return "否"
 	}
@@ -34,4 +34,5 @@ snippet kv_table "go_goadmin" i
 	}
 	return "未知"
 })
+"github.com/GoAdminGroup/go-admin/template/types"
 endsnippet
