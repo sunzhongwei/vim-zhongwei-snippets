@@ -85,3 +85,11 @@ snippet json_decode "go" i
 "encoding/json"
 json.Unmarshal([]byte(${1:STRING}), &${2:TARGET})
 endsnippet
+
+snippet cmd_arg "go" i
+if len(os.Args) != 2 {
+	fmt.Println("请输入文件名")
+	return
+}
+fmt.Println(os.Args[1])
+endsnippet
