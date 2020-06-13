@@ -25,7 +25,7 @@ endsnippet
 
 snippet err "go" i
 if err != nil {
-    log.Fatal("Error")
+    log.Println(err)
 }
 endsnippet
 
@@ -92,4 +92,10 @@ if len(os.Args) != 2 {
 	return
 }
 fmt.Println(os.Args[1])
+endsnippet
+
+snippet struct "go" i
+type ${1:NAME} struct {
+	Name    string `json:"name"`
+}
 endsnippet
