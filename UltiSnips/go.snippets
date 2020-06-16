@@ -99,3 +99,11 @@ type ${1:NAME} struct {
 	Name    string `json:"name"`
 }
 endsnippet
+
+snippet create_file "go" i
+file, err := os.Create("${1:FILE_NAME}")
+if err != nil {
+    log.Println(err)
+}
+defer file.Close()
+endsnippet
