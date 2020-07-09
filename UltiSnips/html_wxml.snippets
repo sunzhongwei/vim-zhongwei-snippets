@@ -23,3 +23,11 @@ endsnippet
 snippet rich_text "html_wxml" i
 <rich-text nodes="{{ ${1:VALUE} }}"></rich-text>
 endsnippet
+
+snippet cells "html_wxml" i
+<mp-cells title="表单" footer="底部说明文字底部说明文字">
+    <mp-cell prop="qq" title="qq" ext-class="">
+        <input bindinput="formInputChange" data-field="qq" class="weui-input" placeholder="请输入qq"/>
+    </mp-cell>
+</mp-cells>
+endsnippet
