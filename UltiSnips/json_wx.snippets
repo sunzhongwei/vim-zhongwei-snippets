@@ -5,3 +5,27 @@ endsnippet
 snippet weui_component "json_wx" i
 "mp-${1:NAME}": "weui-miniprogram/$1/$1",
 endsnippet
+
+snippet tabbar "json_wx" i
+"tabBar": {
+  "color": "#666666",
+  "selectedColor": "#0099cb",
+  "borderStyle": "black",
+  "backgroundColor": "#ffffff",
+  "list": [
+    {
+      "pagePath": "pages/index/index",
+      "iconPath": "images/home_inactive.png",
+      "selectedIconPath": "images/home_active.png",
+      "text": "首页"
+    },
+    {
+      "pagePath": "pages/user_center/user_center",
+      "iconPath": "images/my_inactive.png",
+      "selectedIconPath": "images/my_active.png",
+      "text": "我的"
+    }
+  ]
+},
+endsnippet
+
