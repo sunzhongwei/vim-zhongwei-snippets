@@ -117,3 +117,19 @@ endsnippet
 snippet app "javascript_wx" i
 const app = getApp()
 endsnippet
+
+snippet share "javascript_wx" i
+return {
+  title: '',
+  path: '/pages/index/index?id=123',
+  imageUrl: ''
+}
+endsnippet
+
+snippet share_timeline "javascript_wx" i
+onShareTimeline: function () {
+	return {
+	  title: "",
+	}
+},
+endsnippet
