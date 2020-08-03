@@ -97,6 +97,8 @@ snippet http "javascript_wx" i
 app.http({
   url: "${1:URL}",
   method: "GET",
+  param: {
+  },
 }).then(res => {
   console.log(res);
 });
@@ -139,4 +141,8 @@ let id = options.id;
 this.setData({
   id: parseInt(id)
 })
+endsnippet
+
+snippet require "javascript_wx" i
+const util = require('../../utils/util.js');
 endsnippet
