@@ -94,11 +94,12 @@ if (wx.pageScrollTo) {
 endsnippet
 
 snippet http "javascript_wx" i
+let data = {
+};
 app.http({
   url: "${1:URL}",
   method: "GET",
-  param: {
-  },
+  param: data,
 }).then(res => {
   console.log(res);
 });
