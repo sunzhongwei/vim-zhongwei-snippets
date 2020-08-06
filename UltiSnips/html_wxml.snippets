@@ -1,9 +1,3 @@
-snippet form "Description" i
-<form bindsubmit="form_submit" report-submit="true">
-	<button class="pay_type" formType="submit">{{ pay_button_text }}</button>
-</form>
-endsnippet
-
 snippet scroll "html_wxml" i
 <scroll-view class="" scroll-x="true" style="width: 100%; white-space: nowrap;">
     <view style="display: inline-block;">
@@ -136,5 +130,57 @@ save: function() {
 		}
 	})
 },
+endsnippet
 
+snippet slide_view "html_wxml" i
+<mp-slideview buttons="{{${1:ITEM}.btns}}" bindbuttontap="slideButtonTap" icon
+  wx:for="{{$1s}}" wx:for-index="index" wx:for-item="$1">
+  <view>{{$1.name}}</view>
+</mp-slideview>
+
+# json
+"mp-slideview": "weui-miniprogram/slideview/slideview",
+
+// js: init items
+let $1s = res.data.data;
+for (let $1 of $1s) {
+  $1.btns = [{
+    text: '编辑',
+    src: '/images/edit.png',
+    data: $1.id,
+  },{
+    type: 'warn',
+    text: '删除',
+    src: '/images/del.png',
+    data: $1.id,
+  }];
+}
+
+this.setData({
+  $1s: $1s
+})
+
+// js: tap button
+slideButtonTap(e) {
+  let id = e.detail.data;
+  let btnIndex = e.detail.index;
+
+  if (btnIndex === 0) {
+    // 编辑
+  } else if (btnIndex === 1) {
+    // 删除
+  }
+},
+endsnippet
+
+snippet panel "html_wxml" i
+<view class="weui-panel">
+	<view class="weui-panel__hd">${1:TITLE}</view>
+	<view class="weui-panel__bd">
+		<view class="weui-media-box weui-media-box_text">
+		</view>
+	</view>
+    <view class="weui-panel__ft">
+	</view>
+</view>
 endsnippet
