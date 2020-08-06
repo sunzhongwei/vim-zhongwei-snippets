@@ -40,3 +40,101 @@ endsnippet
 snippet page "html_wxml" i
 /pages/${1:PAGE}/$1
 endsnippet
+
+snippet form "html_wxml" i
+<mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+<view class="">
+    <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+        <mp-cells title="" footer="">
+            <mp-cell prop="companyName" title="企业名称" ext-class="">
+                <input bindinput="formInputChange" data-field="companyName"
+                    value="{{formData.companyName}}"
+                    class="weui-input" placeholder="请输入企业名称"/>
+            </mp-cell>
+            <mp-cell prop="startDate" title="开始时间" ext-class="">
+                <picker data-field="startDate" mode="date" value="{{formData.startDate}}" start="1980-01-01" end="2030-01-01" bindchange="formInputChange">
+                    <view class="weui-input">{{formData.startDate}}</view>
+                </picker>
+            </mp-cell>
+        </mp-cells>
+        <mp-cells title="工作内容" footer="">
+            <mp-cell prop="workContent">
+                <textarea class="weui-textarea"
+                    value="{{formData.workContent}}"
+                    data-field="workContent"
+                    bindinput="formInputChange"
+                    placeholder="在职期间工作描述"
+                    style="height: 3.3em" />
+            </mp-cell>
+        </mp-cells>
+    </mp-form>
+</view>
+
+<view class="container" style="margin-top: 4rem;">
+    <button class="primary" style="width: 100%;" bindtap="save">保存</button>
+</view>
+
+# json
+"mp-toptips": "weui-miniprogram/toptips/toptips",
+"mp-form": "weui-miniprogram/form/form",
+"mp-cells": "weui-miniprogram/cells/cells",
+"mp-cell": "weui-miniprogram/cell/cell"
+
+// js: data
+formData: {},
+rules: [{
+		name: 'companyName',
+		rules: {required: true, message: '请填写企业名称'},
+}, {
+		name: 'startDate',
+		rules: {required: true, message: '请填写开始时间'},
+}, {
+		name: 'workContent',
+		rules: {required: true, message: '请填写工作内容'},
+}]
+
+
+// js: method
+formInputChange(e) {
+	const {field} = e.currentTarget.dataset
+	this.setData({
+		[`formData.${field}`]: e.detail.value
+	})
+},
+
+save: function() {
+	this.selectComponent('#form').validate((valid, errors) => {
+		if (!valid) {
+			const firstError = Object.keys(errors)
+			if (firstError.length) {
+				this.setData({
+					error: errors[firstError[0]].message
+				})
+			}
+		} else {
+			let data = {};
+			app.http({
+			  url: "",
+			  method: "POST",
+			  param: data,
+			}).then(res => {
+			  if (res.data.code === "0") {
+				wx.showToast({
+				  title: '保存成功',
+				  icon: 'success',  // or 'none'
+				  duration: 2000
+				});
+				wx.navigateBack();
+			  } else {
+				wx.showToast({
+				  title: '保存失败',
+				  icon: 'none',  // or 'none'
+				  duration: 2000
+				});
+			  }
+			});
+		}
+	})
+},
+
+endsnippet
