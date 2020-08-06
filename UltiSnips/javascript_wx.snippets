@@ -56,7 +56,7 @@ wx.showModal({
   title: '提示',
   content: '这是一个模态弹窗',
   showCancel: false,
-  success (res) {
+  success: res => {
     if (res.confirm) {
       console.log('用户点击确定')
     } else if (res.cancel) {
@@ -116,6 +116,10 @@ snippet navigate "javascript_wx" i
 wx.navigateTo({
   url: '/pages/${1:PAGE}/$1'
 })
+endsnippet
+
+snippet navigate_back "javascript_wx" i
+wx.navigateBack()
 endsnippet
 
 snippet function_wx "javascript_wx" i
