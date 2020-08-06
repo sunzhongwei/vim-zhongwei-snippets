@@ -37,6 +37,7 @@ endsnippet
 
 snippet form "html_wxml" i
 <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+
 <view class="">
     <mp-form id="form" rules="{{rules}}" models="{{formData}}">
         <mp-cells title="" footer="">
@@ -92,7 +93,7 @@ rules: [{
 formInputChange(e) {
 	const {field} = e.currentTarget.dataset
 	this.setData({
-		[`formData.${field}`]: e.detail.value
+		[\`formData.\${field}\`]: e.detail.value
 	})
 },
 
