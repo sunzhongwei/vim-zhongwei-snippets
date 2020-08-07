@@ -217,3 +217,11 @@ endsnippet
 snippet wxs "html_wxml" i
 <wxs module="filter" src="../../utils/filter.wxs"></wxs>
 endsnippet
+
+snippet picker "html_wxml" i
+<picker bindchange="bindItemChange" value="{{itemIndex}}" range="{{items}}">
+  <view class="picker">
+    当前选择：{{items[itemIndex]}}
+  </view>
+</picker>
+endsnippet
