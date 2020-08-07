@@ -18,10 +18,20 @@ snippet rich_text "html_wxml" i
 <rich-text nodes="{{ ${1:VALUE} }}"></rich-text>
 endsnippet
 
-snippet cells "html_wxml" i
+snippet cells_input "html_wxml" i
 <mp-cells title="表单" footer="底部说明文字底部说明文字">
     <mp-cell prop="qq" title="qq" ext-class="">
         <input bindinput="formInputChange" data-field="qq" class="weui-input" placeholder="请输入qq"/>
+    </mp-cell>
+</mp-cells>
+endsnippet
+
+snippet cells_show "html_wxml" i
+<mp-cells ext-class="my-cells" title="带说明的列表项">
+    <mp-cell value="标题文字" footer="说明文字"></mp-cell>
+    <mp-cell>
+        <view>标题文字（使用slot）</view>
+        <view slot="footer">说明文字</view>
     </mp-cell>
 </mp-cells>
 endsnippet
