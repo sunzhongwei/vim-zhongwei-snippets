@@ -219,9 +219,20 @@ snippet wxs "html_wxml" i
 endsnippet
 
 snippet picker "html_wxml" i
-<picker bindchange="bindItemChange" value="{{itemIndex}}" range="{{items}}">
+<picker bindchange="bind$1Change" value="{{$1Index}}" range="{{${1:item}List}}">
   <view class="picker">
-    当前选择：{{items[itemIndex]}}
+    当前选择：{{$1s[$1Index]}}
   </view>
 </picker>
+
+// js data
+$1List: [],
+$1Index: 0,
+
+// js
+bind$1Change: function(e) {
+  this.setData({
+    $1Index: e.detail.value
+  })
+},
 endsnippet
