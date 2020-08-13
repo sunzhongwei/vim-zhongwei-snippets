@@ -162,3 +162,15 @@ endsnippet
 snippet require "javascript_wx" i
 const util = require('../../utils/util.js');
 endsnippet
+
+snippet img_error "javascript_wx" i
+binderror="imgError" data-index='{{index}}'
+
+imgError: function(e) {
+  var index = parseInt(e.currentTarget.dataset.index)
+  this.setData({
+    [`avatars[${index}]`]: '/images/default_avatar.png'
+  })
+},
+endsnippet
+

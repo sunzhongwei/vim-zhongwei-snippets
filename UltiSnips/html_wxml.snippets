@@ -252,3 +252,14 @@ bind$1Change: function(e) {
   })
 },
 endsnippet
+
+snippet banner "html_wxml" i
+<swiper wx:if="images.length" indicator-dots="{{true}}"
+        autoplay="{{true}}" interval="{{3000}}" duration="{{500}}">
+	<block wx:for="{{images}}" wx:for-item="image">
+	  <swiper-item>
+          <image src="{{image}}" mode="aspectFill" style="width: 750rpx; height: 300rpx;"></image>
+	  </swiper-item>
+	</block>
+</swiper>
+endsnippet
