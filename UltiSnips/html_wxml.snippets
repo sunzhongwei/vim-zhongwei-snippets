@@ -263,3 +263,27 @@ snippet banner "html_wxml" i
 	</block>
 </swiper>
 endsnippet
+
+snippet custom_top "html_wxml" i
+// json
+"navigationStyle": "custom",
+
+// js
+const app = getApp()
+menuBtnTop: app.globalData.menuBtnTop,        // 右上角胶囊按钮位置
+menuBtnBottom: app.globalData.menuBtnBottom,  // 右上角胶囊按钮位置
+
+// wxml
+<view class="top_wrap">
+  <view style="height: {{menuBtnBottom}}px;"></view>
+  <view>${1:VALUE}</view>
+</view>
+
+// wxss
+.top_wrap {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center 0;
+    background-image: url("");
+}
+endsnippet
