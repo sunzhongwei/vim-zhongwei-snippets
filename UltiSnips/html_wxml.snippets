@@ -265,6 +265,11 @@ snippet banner "html_wxml" i
 endsnippet
 
 snippet custom_top "html_wxml" i
+<view class="top_wrap">
+  <view style="height: {{menuBtnBottom}}px;"></view>
+  <view>${1:VALUE}</view>
+</view>
+
 // json
 "navigationStyle": "custom",
 
@@ -272,12 +277,6 @@ snippet custom_top "html_wxml" i
 const app = getApp()
 menuBtnTop: app.globalData.menuBtnTop,        // 右上角胶囊按钮位置
 menuBtnBottom: app.globalData.menuBtnBottom,  // 右上角胶囊按钮位置
-
-// wxml
-<view class="top_wrap">
-  <view style="height: {{menuBtnBottom}}px;"></view>
-  <view>${1:VALUE}</view>
-</view>
 
 // wxss
 .top_wrap {
