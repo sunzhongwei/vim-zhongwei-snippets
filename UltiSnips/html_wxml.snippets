@@ -354,3 +354,26 @@ clickCategory: function(e) {
   })
 },
 endsnippet
+
+snippet scroll_vertical "html_wxml" i
+<view class="sv_wrap">
+    <scroll-view class="sv" scroll-y="true">
+    </scroll-view>
+</view>
+
+// wxss
+Page {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+.sv_wrap {
+  flex: 1;
+  height: 100px; /* 黑科技，任意值 */
+}
+
+.sv {
+  height: 100%;
+}
+endsnippet
