@@ -266,9 +266,13 @@ endsnippet
 
 snippet custom_top "html_wxml" i
 <view class="top_wrap">
-  <view style="height: {{menuBtnBottom}}px;"></view>
-  <view>${1:VALUE}</view>
+  <view style="height: {{menuBtnBottom}}px; padding-top: {{menuBtnTop}}px; box-sizing: border-box;"
+    class="flex v_center center">
+    <view class="title" >TITLE</view>
+  </view>
+  <view>VALUE</view>
 </view>
+
 
 // json
 "navigationStyle": "custom",
