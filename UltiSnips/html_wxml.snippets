@@ -7,7 +7,7 @@ snippet scroll "html_wxml" i
 endsnippet
 
 snippet image "html_wxml" i
-<image src="/images/${1:IMAGE}" mode="widthFix" class="" style="width: 2em; height: 2em;"></image>
+<image src="/images/${1:IMAGE}" style="width: 30rpx; height: 30rpx;"></image>
 endsnippet
 
 snippet wx_for "html_wxml" i
@@ -262,4 +262,118 @@ snippet banner "html_wxml" i
 	  </swiper-item>
 	</block>
 </swiper>
+endsnippet
+
+snippet custom_top "html_wxml" i
+<view class="top_wrap">
+  <view style="height: {{menuBtnBottom}}px; padding-top: {{menuBtnTop}}px; box-sizing: border-box;"
+    class="flex v_center center">
+    <view class="title" >TITLE</view>
+  </view>
+  <view>VALUE</view>
+</view>
+
+
+// json
+"navigationStyle": "custom",
+
+// js
+const app = getApp()
+menuBtnTop: app.globalData.menuBtnTop,        // 右上角胶囊按钮位置
+menuBtnBottom: app.globalData.menuBtnBottom,  // 右上角胶囊按钮位置
+
+// wxss
+.top_wrap {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center 0;
+    background-image: url("");
+}
+endsnippet
+
+snippet scroll_category "html_wxml" i
+<view class="categories">
+    <scroll-view scroll-x="true" style="width: 100%; white-space: nowrap;">
+        <view style="display: inline-block;" class="category"
+            wx:for="{{categories}}" wx:for-index="index" wx:for-item="category"
+            bindtap="clickCategory" data-index="{{index}}">
+            <view class="category_name {{active_category_index==index ? 'active_category' : ''}}">{{category.name}}</view>
+            <view wx:if="{{active_category_index==index}}" class="active_line"></view>
+        </view>
+    </scroll-view>
+</view>
+
+// wxss
+.categories {
+	background-color: #fff;
+	box-sizing: border-box;
+	padding: 20rpx 30rpx 0;
+	margin-bottom: 2px;
+}
+
+.category {
+	margin-right: 40rpx;
+}
+
+.active_line {
+	width:112rpx;
+	height:5rpx;
+	background:linear-gradient(270deg,rgba(138,108,252,1),rgba(50,76,200,1));
+	border-radius:2rpx;
+}
+
+.category_name {
+	font-size:25rpx;
+	font-weight:400;
+	color:rgba(52,52,52,1);
+	margin-bottom: 20rpx;
+	text-align: center;
+}
+
+.active_category {
+	font-size:25rpx;
+	font-weight:bold;
+	color:rgba(56,56,240,1);
+}
+
+// js
+categories: [
+  {
+	name: "全部商品",
+  },
+  {
+	name: "数码家电",
+  },
+],
+active_category_index: 0,
+
+clickCategory: function(e) {
+  let index = e.currentTarget.dataset.index
+  this.setData({
+    active_category_index: index
+  })
+},
+endsnippet
+
+snippet scroll_vertical "html_wxml" i
+<view class="sv_wrap">
+    <scroll-view class="sv" scroll-y="true">
+    </scroll-view>
+</view>
+
+// wxss
+Page {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+.sv_wrap {
+  flex: 1;
+  height: 100px; /* 黑科技，任意值 */
+}
+
+.sv {
+  height: 100%;
+}
 endsnippet
