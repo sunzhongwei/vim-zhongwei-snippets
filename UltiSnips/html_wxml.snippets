@@ -397,7 +397,6 @@ snippet tabs "html_wxml" i
 }
 
 .category {
-    margin-right: 40rpx;
 }
 
 .active_line {
@@ -435,4 +434,18 @@ clickCategory: function(e) {
     active_category_index: index
   })
 },
+endsnippet
+
+snippet flex_space_between "html_wxml" i
+<view class="flex flex_space_between ${1:CLASS}">
+    <view class="$1_left">LEFT</view>
+    <view class="$1_right">RIGHT</view>
+</view>
+
+// css
+.$1_left {
+}
+
+.$1_right {
+}
 endsnippet
