@@ -469,3 +469,14 @@ endsnippet
 snippet class "css" i
 class="${1:CLASS_NAME}"
 endsnippet
+
+snippet switch "html_wxml" i
+<switch checked="{{${1:switch}Checked}}" bindchange="$1Change"/>
+
+// js
+$1Change: function(e) {
+    this.setData({
+        $1Checked: e.detail.value,
+    });
+}
+endsnippet
