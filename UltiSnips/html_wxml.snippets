@@ -235,7 +235,7 @@ snippet wxs "html_wxml" i
 endsnippet
 
 snippet picker "html_wxml" i
-<picker bindchange="bind${1/\w+\s*/\u$0/}Change" value="{{$1Index}}" range="{{${1:item}List}}">
+<picker bindchange="bind${1/\w+\s*/\u$0/}Change" value="{{$1Index}}" range="{{${1:item}List}}" range-key="name">
   <view class="picker">
     当前选择：{{$1List[$1Index].name}}
   </view>
