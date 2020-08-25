@@ -480,3 +480,22 @@ $1Change: function(e) {
     });
 }
 endsnippet
+
+snippet picker_region "html_wxml" i
+<picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+	<view class="picker">
+	  当前选择：{{region[0]}}，{{region[1]}}，{{region[2]}}
+	</view>
+</picker>
+
+// js
+region: ['山东省', '烟台市', '福山区'],
+
+bindRegionChange: function (e) {
+    this.setData({
+      region: e.detail.value
+    })
+}
+endsnippet
+
+
