@@ -482,7 +482,7 @@ $1Change: function(e) {
 endsnippet
 
 snippet picker_region "html_wxml" i
-<picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+<picker mode="region" bindchange="bindRegionChange" value="{{region}}" >
 	<view class="picker">
 	  当前选择：{{region[0]}}，{{region[1]}}，{{region[2]}}
 	</view>
@@ -498,4 +498,15 @@ bindRegionChange: function (e) {
 }
 endsnippet
 
+snippet input "html_wxml" i
+<input type="" placeholder="" placeholder-class=""
+        bindchange="inputChange" data-field="name" />
 
+// js
+inputChange: function(e) {
+  const {field} = e.currentTarget.dataset
+  this.setData({
+    [`formData.${field}`]: e.detail.value.trim(),
+  })
+},
+endsnippet
