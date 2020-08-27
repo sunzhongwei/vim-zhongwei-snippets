@@ -361,7 +361,13 @@ endsnippet
 
 snippet scroll_vertical "html_wxml" i
 <view class="sv_wrap">
-    <scroll-view class="sv" scroll-y="true">
+    <scroll-view class="sv" scroll-y="true" bindscrolltolower="fetchMore">
+        <navigator wx:for="{{items}}" wx:for-item="item" url="">
+        </navigator>
+        <view class="tips">
+            <text wx:if="{{ no_more }}">没有更多了</text>
+            <text wx:else>上拉查看更多</text>
+        </view>
     </scroll-view>
 </view>
 
@@ -380,6 +386,56 @@ Page {
 .sv {
   height: 100%;
 }
+
+.tips {
+	font-size: 0.9em;
+	color: rgb(179, 179, 179);
+	display: flex;
+	justify-content: center;
+	margin: 1em auto;
+}
+
+// js
+items: [],
+page: 1,
+size: 30,
+no_more: false,
+
+fetchMore: function() {
+  if (this.data.no_more) {
+    return;
+  }
+
+  let page = this.data.page + 1;
+  this.setData({
+    page: page
+  })
+  this.getItems();
+},
+
+getItems: function() {
+  app.http({
+    url: "/items",
+    method: "GET",
+    param: {
+      page: this.data.page.toString(),
+      pageSize: this.data.size.toString(),
+    }
+  }).then(res => {
+    let items = this.data.items;
+	let data = res.data.data;
+    if (data.length) {
+      this.setData({
+        items: items.concat(data)
+      })
+    }
+    if (data.length < this.data.size) {
+      this.setData({
+        no_more: true
+      })
+    }
+  });
+},
 endsnippet
 
 snippet tabs "html_wxml" i
@@ -523,4 +579,8 @@ formInputChange(e) {
 		[\`formData.\${field}\`]: e.detail.value
 	})
 },
+endsnippet
+
+snippet image_not_scale "html_wxml" i
+<image src="{{image}}" mode="aspectFill" style="width: 750rpx; height: 300rpx;"></image>
 endsnippet
