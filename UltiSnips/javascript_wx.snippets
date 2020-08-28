@@ -201,3 +201,9 @@ wx.setNavigationBarTitle({
 })
 endsnippet
 
+snippet set_for_last_page "javascript_wx" i
+let pages = getCurrentPages();
+let lastPage = pages[pages.length - 2];
+lastPage.setData(data);
+wx.navigateBack();
+endsnippet
