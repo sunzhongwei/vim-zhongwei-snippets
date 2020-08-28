@@ -361,7 +361,7 @@ endsnippet
 
 snippet scroll_vertical "html_wxml" i
 <view class="sv_wrap">
-    <scroll-view class="sv" scroll-y="true" bindscrolltolower="fetchMore">
+    <scroll-view class="sv" scroll-y="true" bindscrolltolower="fetchMore" scroll-top="{{scrollTop}}">
         <navigator wx:for="{{items}}" wx:for-item="item" url="">
         </navigator>
         <view class="tips">
@@ -400,6 +400,7 @@ items: [],
 page: 1,
 size: 30,
 no_more: false,
+scrollTop: 0,
 
 fetchMore: function() {
   if (this.data.no_more) {
@@ -435,6 +436,16 @@ getItems: function() {
       })
     }
   });
+},
+
+reset: function() {
+  this.setData({
+    items: [],
+    page: 1,
+    no_more: false,
+    scrollTop: 0,
+  })
+  this.getItems();
 },
 endsnippet
 
