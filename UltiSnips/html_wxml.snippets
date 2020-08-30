@@ -7,7 +7,7 @@ snippet scroll "html_wxml" i
 endsnippet
 
 snippet image "html_wxml" i
-<image src="/images/${1:IMAGE}" style="width: 30rpx; height: 30rpx;"></image>
+<image src="/images/${1:IMAGE}" style="width: ${2:30}rpx; height: ${3:30}rpx;"></image>
 endsnippet
 
 snippet wx_for "html_wxml" i
@@ -235,18 +235,22 @@ snippet wxs "html_wxml" i
 endsnippet
 
 snippet picker "html_wxml" i
-<picker bindchange="bind$1Change" value="{{$1Index}}" range="{{${1:item}List}}">
+<picker bindchange="bind${1/\w+\s*/\u$0/}Change" value="{{$1Index}}" range="{{${1:item}List}}" range-key="name">
   <view class="picker">
-    当前选择：{{$1s[$1Index]}}
+    当前选择：{{$1List[$1Index].name}}
   </view>
 </picker>
 
 // js data
-$1List: [],
+$1List: [
+    {
+        name: "ITEM1",
+    },
+],
 $1Index: 0,
 
 // js
-bind$1Change: function(e) {
+bind${1/\w+\s*/\u$0/}Change: function(e) {
   this.setData({
     $1Index: e.detail.value
   })
@@ -357,7 +361,13 @@ endsnippet
 
 snippet scroll_vertical "html_wxml" i
 <view class="sv_wrap">
-    <scroll-view class="sv" scroll-y="true">
+    <scroll-view class="sv" scroll-y="true" bindscrolltolower="fetchMore" scroll-top="{{scrollTop}}">
+        <navigator wx:for="{{items}}" wx:for-item="item" url="">
+        </navigator>
+        <view class="tips">
+            <text wx:if="{{ no_more }}">没有更多了</text>
+            <text wx:else>上拉查看更多</text>
+        </view>
     </scroll-view>
 </view>
 
@@ -376,4 +386,212 @@ Page {
 .sv {
   height: 100%;
 }
+
+.tips {
+	font-size: 0.9em;
+	color: rgb(179, 179, 179);
+	display: flex;
+	justify-content: center;
+	margin: 1em auto;
+}
+
+// js
+items: [],
+page: 1,
+size: 30,
+no_more: false,
+scrollTop: 0,
+
+fetchMore: function() {
+  if (this.data.no_more) {
+    return;
+  }
+
+  let page = this.data.page + 1;
+  this.setData({
+    page: page
+  })
+  this.getItems();
+},
+
+getItems: function() {
+  app.http({
+    url: "/items",
+    method: "GET",
+    param: {
+      page: this.data.page.toString(),
+      pageSize: this.data.size.toString(),
+    }
+  }).then(res => {
+    let items = this.data.items;
+	let data = res.data.data;
+    if (data.length) {
+      this.setData({
+        items: items.concat(data)
+      })
+    }
+    if (data.length < this.data.size) {
+      this.setData({
+        no_more: true
+      })
+    }
+  });
+},
+
+reset: function() {
+  this.setData({
+    items: [],
+    page: 1,
+    no_more: false,
+    scrollTop: 0,
+  })
+  this.getItems();
+},
+endsnippet
+
+snippet tabs "html_wxml" i
+<view class="categories flex flex_space_between">
+    <view style="display: inline-block;" class="category"
+        wx:for="{{categories}}" wx:for-index="index" wx:for-item="category"
+        bindtap="clickCategory" data-index="{{index}}">
+        <view class="category_name {{active_category_index==index ? 'active_category' : ''}}">{{category.name}}</view>
+        <view wx:if="{{active_category_index==index}}" class="active_line"></view>
+    </view>
+</view>
+
+// wxss
+.categories {
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 20rpx 30rpx 0;
+    margin-bottom: 2px;
+}
+
+.category {
+}
+
+.active_line {
+	height:4rpx;
+	background:rgba(72,44,196,1);
+	border-radius:2rpx;
+}
+
+.category_name {
+	font-size:30rpx;
+	font-weight:400;
+	color:rgba(51,51,51,1);
+	margin-bottom: 20rpx;
+	text-align: center;
+}
+
+.active_category {
+	font-weight:bold;
+}
+
+// js
+categories: [
+  {
+	name: "全部商品",
+  },
+  {
+	name: "数码家电",
+  },
+],
+active_category_index: 0,
+
+clickCategory: function(e) {
+  let index = e.currentTarget.dataset.index
+  this.setData({
+    active_category_index: index
+  })
+},
+endsnippet
+
+snippet flex_space_between "html_wxml" i
+<view class="flex flex_space_between ${1:CLASS}">
+    <view class="$1_left">LEFT</view>
+    <view class="$1_right">RIGHT</view>
+</view>
+
+// css
+.$1_left {
+}
+
+.$1_right {
+}
+endsnippet
+
+snippet line_split "html_wxml" i
+<view class="line_split"></view>
+
+// css
+.line_split {
+	width:100%;
+	height:1rpx;
+	background:#F1F1F1;
+	margin: 22rpx 0 32rpx;
+}
+endsnippet
+
+snippet class "css" i
+class="${1:CLASS_NAME}"
+endsnippet
+
+snippet switch "html_wxml" i
+<switch checked="{{${1:switch}Checked}}" bindchange="$1Change"/>
+
+// js
+$1Change: function(e) {
+    this.setData({
+        $1Checked: e.detail.value,
+    });
+}
+endsnippet
+
+snippet picker_region "html_wxml" i
+<picker mode="region" bindchange="bindRegionChange" value="{{region}}" >
+	<view class="picker">
+	  当前选择：{{region[0]}}，{{region[1]}}，{{region[2]}}
+	</view>
+</picker>
+
+// js
+region: ['山东省', '烟台市', '福山区'],
+
+bindRegionChange: function (e) {
+    this.setData({
+      region: e.detail.value
+    })
+}
+endsnippet
+
+snippet input "html_wxml" i
+<input type="" placeholder="" placeholder-class=""
+        bindchange="inputChange" data-field="name" />
+
+// js
+inputChange: function(e) {
+  const {field} = e.currentTarget.dataset
+  this.setData({
+    [\`formData.\${field}\`]: e.detail.value.trim()
+  })
+},
+endsnippet
+
+snippet picker_date "html_wxml" i
+<picker data-field="startDate" mode="date" value="{{formData.startDate}}" start="1980-01-01" end="2030-01-01" bindchange="formInputChange">
+	<view class="weui-input">{{formData.startDate}}</view>
+</picker>
+
+// js
+formInputChange(e) {
+	const {field} = e.currentTarget.dataset
+	this.setData({
+		[\`formData.\${field}\`]: e.detail.value
+	})
+},
+endsnippet
+
+snippet image_not_scale "html_wxml" i
+<image src="{{image}}" mode="aspectFill" style="width: 750rpx; height: 300rpx;"></image>
 endsnippet

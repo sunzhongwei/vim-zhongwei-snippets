@@ -179,3 +179,31 @@ wx.switchTab({
     url: '/pages/${1:VALUE}/$1'
 })
 endsnippet
+
+snippet choose_address "javascript_wx" i
+wx.chooseAddress({
+  success (res) {
+    console.log(res.userName)
+    console.log(res.postalCode)
+    console.log(res.provinceName)
+    console.log(res.cityName)
+    console.log(res.countyName)
+    console.log(res.detailInfo)
+    console.log(res.nationalCode)
+    console.log(res.telNumber)
+  }
+})
+endsnippet
+
+snippet title "javascript_wx" i
+wx.setNavigationBarTitle({
+	title: ${1:TITLE} 
+})
+endsnippet
+
+snippet set_for_last_page "javascript_wx" i
+let pages = getCurrentPages();
+let lastPage = pages[pages.length - 2];
+lastPage.setData(data);
+wx.navigateBack();
+endsnippet
