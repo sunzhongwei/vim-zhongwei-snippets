@@ -579,7 +579,9 @@ inputChange: function(e) {
 endsnippet
 
 snippet picker_date "html_wxml" i
-<picker data-field="startDate" mode="date" value="{{formData.startDate}}" start="1980-01-01" end="2030-01-01" bindchange="formInputChange">
+<picker data-field="startDate" mode="date" value="{{formData.startDate}}" 
+        start="1980-01-01" end="2030-01-01" bindchange="formInputChange"
+        fields="day">
 	<view class="weui-input">{{formData.startDate}}</view>
 </picker>
 
