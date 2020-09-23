@@ -258,7 +258,7 @@ bind${1/\w+\s*/\u$0/}Change: function(e) {
 endsnippet
 
 snippet banner "html_wxml" i
-<swiper wx:if="images.length" indicator-dots="{{true}}"
+<swiper wx:if="{{images.length}}" indicator-dots="{{true}}"
         autoplay="{{true}}" interval="{{3000}}" duration="{{500}}">
 	<block wx:for="{{images}}" wx:for-item="image">
 	  <swiper-item>

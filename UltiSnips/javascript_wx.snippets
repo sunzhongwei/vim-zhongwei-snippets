@@ -207,3 +207,11 @@ let lastPage = pages[pages.length - 2];
 lastPage.setData(data);
 wx.navigateBack();
 endsnippet
+
+snippet setClipboardData "javascript_wx" i
+wx.setClipboardData({
+  data: 'data',
+  success (res) {
+  }
+})
+endsnippet
