@@ -215,3 +215,13 @@ wx.setClipboardData({
   }
 })
 endsnippet
+
+snippet open_location "javascript_wx" i
+wx.openLocation({
+  latitude: Number(this.data.info.lat),
+  longitude: Number(this.data.info.lng),
+  scale: 10,
+  name: this.data.info.name,
+  address: this.data.info.address,
+})
+endsnippet
