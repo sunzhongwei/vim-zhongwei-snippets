@@ -225,3 +225,20 @@ wx.openLocation({
   address: this.data.info.address,
 })
 endsnippet
+
+snippet sub_message "javascript_wx" i
+if (wx.requestSubscribeMessage) {
+  wx.requestSubscribeMessage({
+      tmplIds: [''],
+      success: res => {
+      },
+      fail: res => {
+      },
+      complete: res => {
+		// TODO
+      }
+  })
+} else {
+  // TODO
+}
+endsnippet
