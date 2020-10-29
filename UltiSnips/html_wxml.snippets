@@ -607,3 +607,81 @@ endsnippet
 snippet oss_thumbnail "html_wxml" i
 '?x-oss-process=image/resize,w_600,m_lfit'
 endsnippet
+
+snippet button_get_user_info "html_wxml" i
+<view class="open_btn_wrap">
+    <view class="flex v_center">
+        给用户展示的信息
+    </view>
+    <button class="reset_btn2 sky_btn" open-type="getUserInfo"
+        bindgetuserinfo="bindGetUserInfo">
+        text
+    </button>
+</view>
+
+// wxss 
+.reset_btn {
+	margin:0;
+	padding:0;
+	border-radius:0;
+	border:none;
+	font-size:1em;
+	background-color:transparent;
+}
+
+.reset_btn::after{
+  border: none;
+}
+
+.sky_btn {
+	position: absolute;
+	top: 0;
+	opacity: 0;
+	width: 100% !important;
+	height: 100% !important;
+	z-index: 999;
+}
+
+// js
+bindGetUserInfo: function(e) {
+  	wx.getSetting({
+  		success: res => {
+  			if (res.authSetting['scope.userInfo']) {
+  				// 已经授权，可以直接调用 getUserInfo 获取头像昵称
+  				wx.getUserInfo({
+  					success: res => {
+            // e.g. res.userInfo.nickName
+            console.log(res);
+  					},
+  				})
+  			} else {
+        // 未授权
+        this.guideAuth();
+  			}
+  		}
+  	})
+},
+
+/**
+ * 引导授权
+   * 2.3.0 版本开始，用户发生点击行为后，
+   * 才可以跳转打开设置页，管理授权信息。
+ **/
+guideAuth: function() {
+  	wx.showModal({
+  		title: '提示',
+  		content: '请开启用户信息授权，否则将无法使用提现功能',
+  		confirmText: "去开启",
+  		cancelText: "取消",
+  		success: res => {
+  			if (res.confirm) {
+  				wx.openSetting({
+          success: res => {
+  						this.onShow();
+  					}
+  				})
+  			}
+  		}
+  })
+},
+endsnippet
