@@ -3,7 +3,8 @@ snippet gin "go_gin" i
 endsnippet
 
 snippet arg "go_gin" i
-c.Param("${1:ARG}")
+c.Param("${1:ARG}")     // /api/:arg
+c.DefaultQuery("${2:ARG}", "")      // /api?arg=N
 endsnippet
 
 snippet gin_api "go_gin" i
