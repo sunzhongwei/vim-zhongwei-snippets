@@ -55,7 +55,9 @@ snippet modal "Description" i
 wx.showModal({
   title: '提示',
   content: '这是一个模态弹窗',
+  confirmText: "确定",
   showCancel: false,
+  cancelText: "取消",
   success: res => {
     if (res.confirm) {
       console.log('用户点击确定')
@@ -252,4 +254,10 @@ snippet set_title "javascript_wx" i
 wx.setNavigationBarTitle({
   title: '${1:TITLE}'
 })
+endsnippet
+
+snippet disable_share "javascript_wx" i
+// 1. del onShareAppMessage
+// 2. append to onLoad 
+wx.hideShareMenu();
 endsnippet
