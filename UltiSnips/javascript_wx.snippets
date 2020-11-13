@@ -261,3 +261,16 @@ snippet disable_share "javascript_wx" i
 // 2. append to onLoad 
 wx.hideShareMenu();
 endsnippet
+
+snippet audio "javascript_wx" i
+const innerAudioContext = wx.createInnerAudioContext()
+innerAudioContext.autoplay = true
+innerAudioContext.src = '/test.mp3'		// 可以使用 URL
+innerAudioContext.onPlay(() => {
+  console.log('开始播放')
+})
+innerAudioContext.onError((res) => {
+  console.log(res.errMsg)
+  console.log(res.errCode)
+})
+endsnippet
