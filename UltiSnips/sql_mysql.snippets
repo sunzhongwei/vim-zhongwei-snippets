@@ -17,5 +17,8 @@ snippet mysql_create_user "sh" i
 CREATE DATABASE ${1:DB_NAME} CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci;
 create user ${2:USER_NAME}@localhost identified by '${3:PASSWORD}';
 grant all privileges on $1.* to $2@localhost with grant option;
+
+-- 如果是 mysql 8 搭配低版本的 php 7.0
+ALTER USER $2@localhost IDENTIFIED WITH mysql_native_password BY '$3';
 endsnippet
 
