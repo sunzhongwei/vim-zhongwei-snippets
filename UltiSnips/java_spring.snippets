@@ -1,0 +1,22 @@
+snippet entity "java" i
+package com.sunzhongwei.calf.$1;
+
+import com.sunzhongwei.calf.utils.BaseEntity;
+import lombok.Data;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
+
+@Data
+@Entity
+public class ${1:ClassName} extends BaseEntity {
+    @NotNull
+    @Column(unique = true)
+    private String name;
+}
+endsnippet
+
+snippet column_text "java_spring" i
+@Column(columnDefinition = "TEXT")
+endsnippet
