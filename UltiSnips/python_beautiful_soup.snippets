@@ -1,0 +1,22 @@
+snippet beautiful_soup "python_beautiful_soup" i
+import requests
+from bs4 import BeautifulSoup
+
+
+def run():
+    r = requests.get('https://www.sunzhongwei.com')
+
+    if r.status_code != 200:
+        print("error: status code is ", r.status_code)
+        return
+
+    soup = BeautifulSoup(r.content)
+
+    title = soup.select_one("title")
+    print("title is ", title.text)
+
+    print("Name of articles:")
+    articles = soup.select("h3.media-heading")
+    for article in articles:
+        print(article.text)
+endsnippet
