@@ -3,3 +3,33 @@ with open('${1:FILE}', 'r') as f:
     for line in f:
         print line
 endsnippet
+
+snippet python3 "python" i
+#!/usr/bin/env python3
+
+if '__main__' == __name__:
+    print("Hello world!")
+endsnippet
+
+snippet python2 "python" i
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+# ----------------------------------------
+# Just say "Hello world!".
+# ----------------------------------------
+
+
+# ----------------------------------------
+# test cases
+# ----------------------------------------
+def run_doctest():
+    '''python -B <__file__> -v
+    '''
+    import doctest
+    doctest.testmod()
+
+
+if '__main__' == __name__:
+    print "Hello world!"
+endsnippet
