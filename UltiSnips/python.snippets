@@ -39,3 +39,18 @@ snippet doc "python" i
 # ${1:DOC} 
 # ----------------------------------------
 endsnippet
+
+snippet for "python" i
+for ${1:item} in $1s:
+    print($1)
+endsnippet
+
+snippet def "python" i
+def ${1:FUNCTION_NAME}():
+    print("Hello")
+endsnippet
+
+snippet sleep "python" i
+import time
+time.sleep(${1:2})      # sleep $1 seconds
+endsnippet

@@ -20,3 +20,11 @@ def run():
     for article in articles:
         print(article.text)
 endsnippet
+
+snippet get "python_beautiful_soup" i
+r = requests.get(${1:url})
+soup = BeautifulSoup(r.content)
+title = soup.select_one("title")
+print(title.text)
+endsnippet
+
