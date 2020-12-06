@@ -279,8 +279,7 @@ endsnippet
 # -----------------------------------------------------------
 snippet storage_get "Description" i
 let value = localStorage.getItem('${1:KEY}');
-if(null === preference)
-{
+if(null === value) {
     value = 'Default Value';
 }
 endsnippet
