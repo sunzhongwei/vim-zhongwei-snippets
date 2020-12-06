@@ -277,11 +277,15 @@ endsnippet
 # -----------------------------------------------------------
 # local storage
 # -----------------------------------------------------------
-snippet ls_get "Description" i
-localStorage.getItem('${1:KEY}');
+snippet storage_get "Description" i
+let value = localStorage.getItem('${1:KEY}');
+if(null === preference)
+{
+    value = 'Default Value';
+}
 endsnippet
 
-snippet ls_set "Description" i
+snippet storage_set "Description" i
 localStorage.setItem('${1:KEY}', ${2:VALUE});
 endsnippet
 
