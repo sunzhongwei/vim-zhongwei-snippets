@@ -15,6 +15,14 @@ public class ${1:ClassName} extends BaseEntity {
     @Column(unique = true)
     private String name;
 }
+
+// file: $1Repository.java
+package com.sunzhongwei.calf.$1;
+
+import org.springframework.data.repository.CrudRepository;
+
+public interface $1Repository extends CrudRepository<Article, Long> {
+}
 endsnippet
 
 snippet column_text "java_spring" i
@@ -28,3 +36,4 @@ endsnippet
 snippet column_name "java_spring" i
 @Column(name = "${1:NAME}")
 endsnippet
+
