@@ -191,6 +191,55 @@ snippet cloak "css" i
 }
 endsnippet
 
+snippet flex_for_app_wxss "css" i
+.flex {
+	display: flex;
+    display: -webkit-flex; /* Safari */
+}
+
+.flex_all_center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.border_box {
+	box-sizing: border-box;
+}
+
+.flex_1 {
+	flex: 1;
+}
+
+.flex_space_between {
+	justify-content: space-between;
+}
+
+.center {
+	justify-content: center;
+}
+
+.right {
+	justify-content: flex-end;
+}
+
+.v_center {
+	align-items: center;
+}
+
+.v_items {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.v_items_v_center {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+endsnippet
+
 snippet flex "css" i
 display: -webkit-flex; /* Safari */
 display: flex;
