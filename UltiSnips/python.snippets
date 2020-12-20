@@ -54,3 +54,13 @@ snippet sleep "python" i
 import time
 time.sleep(${1:2})      # sleep $1 seconds
 endsnippet
+
+snippet try "python" i
+try:
+    print(555)
+except Exception as e:
+    print("type error: " + str(e))
+    print(traceback.format_exc())
+
+import traceback
+endsnippet
