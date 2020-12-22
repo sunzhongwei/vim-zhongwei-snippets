@@ -289,9 +289,13 @@ snippet card "css" i
 }
 endsnippet
 
-snippet var "css" i
+snippet var_define "css" i
 --${1:VAR_NAME}: ${2:VALUE};
 var(--$1);
+endsnippet
+
+snippet var "css" i
+var(--${1:VAR_NAME})
 endsnippet
 
 snippet fixed_bottom "css" i
