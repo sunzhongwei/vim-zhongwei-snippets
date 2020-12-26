@@ -70,3 +70,15 @@ List<${2/\w+\s*/\u$0/}> $2s;
 @ManyToMany(mappedBy = "$2s")
 List<${1/\w+\s*/\u$0/}> $1s;
 endsnippet
+
+snippet route_get "java_spring" i
+@GetMapping("${1:URL}")
+endsnippet
+
+snippet controller "java_spring" i
+@GetMapping("/{slug}")
+public String tag(@PathVariable("slug") String slug, Model model) {
+    model.addAttribute("item", item);
+    return "";
+}
+endsnippet
