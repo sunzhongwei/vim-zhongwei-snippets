@@ -1,0 +1,20 @@
+snippet th_for "html_thymeleaf" i
+th:each="${1:item}: \${$1s}"
+endsnippet
+
+snippet th_text "html_thymeleaf" i
+th:text="${${1:VAR}}"
+endsnippet
+
+snippet th_block "html_thymeleaf" i
+<th:block>
+</th:block>
+endsnippet
+
+snippet th_inline "html_thymeleaf" i
+th:inline="text"
+endsnippet
+
+snippet th_inline_var "html_thymeleaf" i
+[[${${1:VAR}}]]
+endsnippet
