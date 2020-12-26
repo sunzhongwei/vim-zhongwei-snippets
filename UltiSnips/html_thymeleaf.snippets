@@ -18,3 +18,7 @@ endsnippet
 snippet th_inline_var "html_thymeleaf" i
 [[${${1:VAR}}]]
 endsnippet
+
+snippet th_href "html_thymeleaf" i
+th:href="@{/{${1:var}}($1 = ${$1})}"
+endsnippet
