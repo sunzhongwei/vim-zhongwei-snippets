@@ -40,3 +40,30 @@ endsnippet
 snippet model_add "java_spring" i
 model.addAttribute("${1:KEY}", ${2:VALUE});
 endsnippet
+
+snippet repository "java_spring" i
+package com.sunzhongwei.calf.${1:PACKAGE};
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ${2:Entity}Repository extends JpaRepository<$2, Long> {
+}
+endsnippet
+
+snippet repository_as_property "java_spring" i
+@Autowired
+private ${1/\w+\s*/\u$0/}Repository ${1:entity}Repository;
+endsnippet
+
+snippet many_to_many "java_spring" i
+@ManyToMany
+@JoinTable(
+    name = "$1_$2_relation", 
+    joinColumns = @JoinColumn(name = "${1:entity1}_id"), 
+    inverseJoinColumns = @JoinColumn(name = "${2:entity2}_id"))
+Set<${2/\w+\s*/\u$0/}> $2s;
+
+// TODO: copy to mapped entity class
+@ManyToMany(mappedBy = "$2s")
+Set<${1/\w+\s*/\u$0/}> $1s;
+endsnippet
