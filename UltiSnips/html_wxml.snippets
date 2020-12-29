@@ -815,3 +815,32 @@ snippet line_input "html_wxml" i
 	text-align: right;
 }
 endsnippet
+
+snippet line_kv "html_wxml" i
+<view class="input_line">
+   <view>KEY</view>
+   <view>VALUE</view>
+</view>
+<view class="line_split"></view>
+
+## wxss
+.input_line {
+	display: -webkit-flex; /* Safari */
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	box-sizing: border-box;
+	padding: 10rpx 30rpx;
+}
+
+.line_split {
+	width: 690rpx;
+	height: 1px;
+	background-color: #E1E1E1;
+	margin: 0 auto;
+}
+
+.right_input {
+	text-align: right;
+}
+endsnippet
