@@ -22,3 +22,22 @@ endsnippet
 snippet th_href "html_thymeleaf" i
 th:href="@{/{${1:var}}($1 = ${$1})}"
 endsnippet
+
+snippet th_fragment "html_thymeleaf" i
+<div layout:fragment="content"></div>
+endsnippet
+
+snippet th_use_layout "html_thymeleaf" i
+<html layout:decorator="~{layout}">
+  <head>
+	<title>Emoji</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+  </head>
+  <body>
+    <div layout:fragment="content">
+      <h2>hello world!!!</h2>
+    </div>
+  </body>
+</html>
+endsnippet

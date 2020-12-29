@@ -77,7 +77,7 @@ endsnippet
 
 snippet controller "java_spring" i
 @GetMapping("/{slug}")
-public String tag(@PathVariable("slug") String slug, Model model) {
+public String index(@PathVariable("slug") String slug, Model model) {
     model.addAttribute("item", item);
     return "";
 }
