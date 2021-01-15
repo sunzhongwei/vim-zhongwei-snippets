@@ -2,3 +2,7 @@ snippet tm_click_btn "javascript_tampermonkey" i
 $('input[value="提交答案"]').click();
 endsnippet
 
+snippet find_one "javascript_tampermonkey" i
+let status = $(value).find("td:nth-child(6)").first();
+let text = $(status).text().trim();
+endsnippet
