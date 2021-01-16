@@ -274,3 +274,20 @@ innerAudioContext.onError((res) => {
   console.log(res.errCode)
 })
 endsnippet
+
+snippet clipboard_set "javascript_wx" i
+wx.setClipboardData({
+  data: this.data.shareContent,
+  success (res) {
+    wx.showToast({
+      title: '复制成功',
+      icon: 'success',  // or 'none'
+      duration: 2000
+    });
+  }
+})
+endsnippet
+
+snippet text_selectable "javascript_wx" i
+<text user-select="{{true}}">{{content}}</text>
+endsnippet
