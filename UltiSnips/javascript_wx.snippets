@@ -291,3 +291,21 @@ endsnippet
 snippet text_selectable "javascript_wx" i
 <text user-select="{{true}}">{{content}}</text>
 endsnippet
+
+snippet prevent_duplicate_click "javascript_wx" i
+// data
+requesting: false,
+
+// on click
+if (this.data.requesting) {
+  return;
+}
+this.setData({
+  requesting: true,
+})
+
+// complete 
+this.setData({
+  requesting: false,
+})
+endsnippet
