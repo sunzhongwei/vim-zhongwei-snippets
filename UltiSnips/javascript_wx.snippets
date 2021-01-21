@@ -309,3 +309,16 @@ this.setData({
   requesting: false,
 })
 endsnippet
+
+snippet Tab_trigger "javascript_wx" i
+// json
+"enablePullDownRefresh": true,
+"backgroundColor": "#fff",
+"backgroundTextStyle": "dark",
+
+// js
+onPullDownRefresh: function() {
+  //this.reset();
+  wx.stopPullDownRefresh();
+},
+endsnippet
