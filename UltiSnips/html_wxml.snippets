@@ -11,10 +11,14 @@ snippet image "html_wxml" i
 endsnippet
 
 snippet wx_for "html_wxml" i
-wx:for="{{${1:ARRAY}}}" wx:for-index="index" wx:for-item="item" wx:key="*this"
+wx:for="{{${1:ARRAY}}}" wx:for-index="index" wx:for-item="item" wx:key="${2:id}"
 endsnippet
 
 snippet wx_key "html_wxml" i
+wx:key="${1:id}"
+endsnippet
+
+snippet wx_key_simple "html_wxml" i
 wx:key="*this"
 endsnippet
 
