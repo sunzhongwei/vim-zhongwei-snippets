@@ -11,7 +11,7 @@ snippet image "html_wxml" i
 endsnippet
 
 snippet wx_for "html_wxml" i
-wx:for="{{${1:ARRAY}}}" wx:for-index="index" wx:for-item="item"
+wx:for="{{${1:ARRAY}}}" wx:for-index="index" wx:for-item="item" wx:key="*this"
 endsnippet
 
 snippet rich_text "html_wxml" i
@@ -260,7 +260,7 @@ endsnippet
 snippet banner "html_wxml" i
 <swiper wx:if="{{images.length}}" indicator-dots="{{true}}"
         autoplay="{{true}}" interval="{{3000}}" duration="{{500}}">
-	<block wx:for="{{images}}" wx:for-item="image">
+	<block wx:for="{{images}}" wx:for-item="image" wx:key="*this">
 	  <swiper-item>
           <image src="{{image}}" mode="aspectFill" style="width: 750rpx; height: 300rpx;"></image>
 	  </swiper-item>
@@ -311,7 +311,7 @@ snippet scroll_category "html_wxml" i
 <view class="categories">
     <scroll-view scroll-x="true" style="width: 100%; white-space: nowrap;">
         <view style="display: inline-block;" class="category"
-            wx:for="{{categories}}" wx:for-index="index" wx:for-item="category"
+            wx:for="{{categories}}" wx:for-index="index" wx:for-item="category" wx:key="*this"
             bindtap="clickCategory" data-index="{{index}}">
             <view class="category_name {{active_category_index==index ? 'active_category' : ''}}">{{category.name}}</view>
             <view wx:if="{{active_category_index==index}}" class="active_line"></view>
@@ -374,7 +374,7 @@ endsnippet
 snippet scroll_vertical "html_wxml" i
 <view class="sv_wrap">
     <scroll-view class="sv" scroll-y="true" bindscrolltolower="fetchMore" scroll-top="{{scrollTop}}">
-        <navigator wx:for="{{items}}" wx:for-item="item" url="">
+        <navigator wx:for="{{items}}" wx:for-item="item" wx:key="*this" url="">
         </navigator>
         <view class="tips">
             <text wx:if="{{ no_more }}">没有更多了</text>
@@ -464,7 +464,7 @@ endsnippet
 snippet tabs "html_wxml" i
 <view class="categories flex flex_space_between">
     <view style="display: inline-block;" class="category"
-        wx:for="{{categories}}" wx:for-index="index" wx:for-item="category"
+        wx:for="{{categories}}" wx:for-index="index" wx:for-item="category" wx:key="*this"
         bindtap="clickCategory" data-index="{{index}}">
         <view class="category_name {{active_category_index==index ? 'active_category' : ''}}">{{category.name}}</view>
         <view wx:if="{{active_category_index==index}}" class="active_line"></view>
@@ -695,7 +695,7 @@ endsnippet
 snippet tags "html_wxml" i
 <view class="flex tags">
     <view class="tag flex center v_center"
-          wx:for="{{tags}}" wx:for-index="index" wx:for-item="tag"
+          wx:for="{{tags}}" wx:for-index="index" wx:for-item="tag" wx:key="*this"
           wx:if="{{tag}}">{{tag}}</view>
 </view>
 
