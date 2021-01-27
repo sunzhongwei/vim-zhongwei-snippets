@@ -2,7 +2,15 @@ snippet tm_click_btn "javascript_tampermonkey" i
 $('input[value="提交答案"]').click();
 endsnippet
 
-snippet find_one "javascript_tampermonkey" i
+snippet tm_find_one "javascript_tampermonkey" i
 let status = $(value).find("td:nth-child(6)").first();
 let text = $(status).text().trim();
+endsnippet
+
+snippet tm_get "javascript_tampermonkey" i
+GM_getValue("${1:KEY}", ${2:DEFAULT})
+endsnippet
+
+snippet tm_set "javascript_tampermonkey" i
+GM_setValue("${1:KEY}", ${2:VALUE})
 endsnippet
