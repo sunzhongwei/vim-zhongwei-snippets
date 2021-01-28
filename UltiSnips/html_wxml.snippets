@@ -385,7 +385,8 @@ snippet scroll_vertical "html_wxml" i
         <navigator wx:for="{{items}}" wx:for-item="item" wx:key="*this" url="">
         </navigator>
         <view class="tips">
-            <text wx:if="{{ no_more }}">没有更多了</text>
+            <text wx:if="{{ !items.length }}">暂无数据</text>
+            <text wx:elif="{{ no_more }}">没有更多了</text>
             <text wx:else>上拉查看更多</text>
         </view>
     </scroll-view>
