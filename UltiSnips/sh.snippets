@@ -105,7 +105,7 @@ endsnippet
 snippet rsync "Description" i
 rsync --verbose  --progress --stats --compress \
       --recursive --times --perms --links --delete \
-      --exclude "*.bak" --exclude "*~" --exclude "*.swp" \
+      --exclude "*.bak" --exclude "*~" --exclude "*.swp" --exclude='.git/' \
       /source_dir/ username@domain.com:/target_dir
 endsnippet
 
