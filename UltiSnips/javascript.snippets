@@ -41,6 +41,12 @@ async task1 function () {
 task1();
 endsnippet
 
+snippet promise "javascript" i
+return new Promise((resolve, reject) => {
+    ${1:// TODO}
+})
+endsnippet
+
 snippet set_interval "Description" i
 let intervalId = setInterval(function() {
 	${1:// code...}
@@ -457,5 +463,12 @@ switch(${1:expression}) {
 }
 endsnippet
 
+snippet int "javascript" i
+parseInt(${1:STRING})
+endsnippet
+
+snippet now_date "javascript" i
+new Date().toISOString().slice(0, 10)
+endsnippet
 
 # vim:ft=snippets:

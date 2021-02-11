@@ -1,0 +1,24 @@
+snippet log "kotlin_android" i
+Log.d(_logTag, ${1:VALUE});
+endsnippet
+
+snippet log_tag "kotlin_android" i
+private val _logTag = "${1:MyActivity}"
+endsnippet
+
+snippet view_binding "kotlin_android" i
+import com.sunzhongwei.todo.databinding.${1:SomeBinding}
+
+private var _binding: $1? = null
+// This property is only valid between onCreateView and onDestroyView.
+private val binding get() = _binding!!
+
+// onCreateView
+_binding = $1.inflate(inflater, container, false)
+return binding.root
+
+override fun onDestroyView() {
+	super.onDestroyView()
+	_binding = null
+}
+endsnippet
