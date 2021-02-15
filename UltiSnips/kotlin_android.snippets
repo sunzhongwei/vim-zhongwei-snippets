@@ -22,3 +22,55 @@ override fun onDestroyView() {
 	_binding = null
 }
 endsnippet
+
+snippet recycler_view_adapter "kotlin_android" i
+package com.sunzhongwei.${1:APP}.adapters
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
+import com.sunzhongwei.$1.data.${2:Item}
+import com.sunzhongwei.$1.databinding.${3:BINDING}
+
+
+class $2Adapter : ListAdapter<$2, $2Adapter.$2ViewHolder>($2DiffCallback()) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): $2ViewHolder {
+        return $2ViewHolder(
+            $3.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+    }
+
+    override fun onBindViewHolder(holder: $2ViewHolder, position: Int) {
+        val ${2/\w+\s*/\l$0/} = getItem(position)
+        holder.bind(${2/\w+\s*/\l$0/})
+    }
+
+    class $2ViewHolder(
+        private val binding: $3 
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: $2) {
+            binding.apply {
+                ${2/\w+\s*/\l$0/} = item
+                executePendingBindings()
+            }
+        }
+    }
+}
+
+
+private class $2DiffCallback : DiffUtil.ItemCallback<$2>() {
+    override fun areItemsTheSame(oldItem: $2, newItem: $2): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: $2, newItem: $2): Boolean {
+        return oldItem == newItem
+    }
+}
+endsnippet

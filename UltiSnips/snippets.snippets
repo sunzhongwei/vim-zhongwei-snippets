@@ -20,6 +20,14 @@ snippet $ "Description" i
 \${${1:INDEX}:${2:VALUE}}
 endsnippet
 
+snippet upper_first_letter "snippets" i
+\$\{1/\\w+\\s*/\\u\$0/\}
+endsnippet
+
+snippet lower_first_letter "snippets" i
+\$\{1/\\w+\\s*/\\l\$0/\}
+endsnippet
+
 snippet info "Description" b
 # ---------------------------------------- 
 # ${1:FILE_TYPE} Snippets for VIM
