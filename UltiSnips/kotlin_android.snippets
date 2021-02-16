@@ -74,3 +74,14 @@ private class $2DiffCallback : DiffUtil.ItemCallback<$2>() {
     }
 }
 endsnippet
+
+
+snippet application "kotlin_android" i
+package com.sunzhongwei.${1:APP}
+
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
+
+@HiltAndroidApp
+class MainApplication: Application()
+endsnippet
