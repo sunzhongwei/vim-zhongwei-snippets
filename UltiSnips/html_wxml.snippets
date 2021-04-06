@@ -853,3 +853,21 @@ snippet line_kv "html_wxml" i
 	text-align: right;
 }
 endsnippet
+
+snippet open_data_avatar "html_wxml" i
+<view class="user-img">
+    <open-data type="userAvatarUrl"></open-data>
+</view>
+
+.user-img {
+	width: 200rpx;
+	height: 200rpx;
+	border-radius: 50%;
+	overflow: hidden;
+	justify-content: center;
+}
+endsnippet
+
+snippet open_data_nickname "html_wxml" i
+<open-data type="userNickName"></open-data>
+endsnippet
