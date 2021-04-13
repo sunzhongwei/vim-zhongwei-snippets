@@ -1,0 +1,13 @@
+snippet mysql_setting "python_django" i
+'ENGINE': 'django.db.backends.mysql',
+'NAME': '${1:DB_NAME}',
+'USER': '${2:USER_NAME}',
+'PASSWORD': 'password',
+'HOST': '127.0.0.1',
+'PORT': '3306',
+endsnippet
+
+snippet path_include "python_django" i
+from django.urls import include
+path('${1:APP_NAME}/', include('$1.urls')),
+endsnippet
