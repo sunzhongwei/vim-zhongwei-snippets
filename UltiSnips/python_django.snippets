@@ -42,3 +42,8 @@ snippet csrf_exempt "python_django" i
 from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
 endsnippet
+
+snippet datetimes "python_django" i
+created_at = models.DateTimeField(auto_now_add=True)
+updated_at = models.DateTimeField(auto_now=True)
+endsnippet
