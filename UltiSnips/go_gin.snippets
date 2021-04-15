@@ -7,7 +7,7 @@ c.Param("${1:ARG}")     // /api/:arg
 c.DefaultQuery("${2:ARG}", "")      // /api?arg=N
 endsnippet
 
-snippet gin_api "go_gin" i
+snippet func_gin_api "go_gin" i
 func ${1:NAME}(c *gin.Context) {
     uid, ok := c.Get("uid")
 	id, _ := strconv.Atoi(c.Param("id"))
