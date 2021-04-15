@@ -1,10 +1,32 @@
 snippet django_model_serializer "python_django_rest" i
 from rest_framework import serializers
-from . import ${1:Model}
+from .models import ${1:Model}
 
 
 class $1Serializer(serializers.ModelSerializer):
     class Meta:
         model = $1
         fields = ['id', ]
+endsnippet
+
+
+snippet django_api_view "python_django_rest" i
+from .models import ${1:Model} 
+from .serializers import $1Serializer
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+
+class $1List(APIView):
+    def get(self, request):
+        snippets = Snippet.objects.all()
+        serializer = SnippetSerializer(snippets, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = $1Serializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=200)
+        return Response(serializer.errors, status=400)
 endsnippet
