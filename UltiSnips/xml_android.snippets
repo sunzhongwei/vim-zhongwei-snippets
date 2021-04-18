@@ -91,3 +91,18 @@ snippet var "xml_android" i
     name="${1:VAR}"
     type="com.sunzhongwei.app.data.$1"/>
 endsnippet
+
+snippet style "xml_android" i
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="${1:StyleName}">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#008</item>
+    </style>
+</resources>
+endsnippet
+
+snippet style_apply "xml_android" i
+style="@style/${1:StyleName}"
+endsnippet
+endsnippet
