@@ -20,5 +20,6 @@ grant all privileges on $1.* to $2@localhost with grant option;
 
 -- 如果是 mysql 8 搭配低版本的 php 7.0
 ALTER USER $2@localhost IDENTIFIED WITH mysql_native_password BY '$3';
+FLUSH PRIVILEGES;
 endsnippet
 

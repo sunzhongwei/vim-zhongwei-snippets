@@ -1,0 +1,12 @@
+snippet gorm_insert "go_gorm" i
+if err := models.DB.Create(&${1:MODEL_OBJECT}); err != nil {
+    // Error 1062: Duplicate entry
+}
+endsnippet
+
+snippet gorm_count "go_gorm" i
+var count int64 = 0
+models.DB.Model(&models.${1:MODEL}{}).
+	Where("date = ?", date).
+	Count(&count)
+endsnippet

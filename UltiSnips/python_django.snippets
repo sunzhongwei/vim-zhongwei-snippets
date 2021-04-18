@@ -1,0 +1,49 @@
+snippet mysql_setting "python_django" i
+'ENGINE': 'django.db.backends.mysql',
+'NAME': '${1:DB_NAME}',
+'USER': '${2:USER_NAME}',
+'PASSWORD': 'password',
+'HOST': '127.0.0.1',
+'PORT': '3306',
+endsnippet
+
+snippet path_include "python_django" i
+from django.urls import include
+path('${1:APP_NAME}/', include('$1.urls')),
+endsnippet
+
+snippet urls "python_django" i
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    path('${1:FUNCTION_NAME}', views.$1, name='$1'),
+]
+endsnippet
+
+snippet function_api_json "python_django" i
+from django.http import JsonResponse
+
+def ${1:FUNCTION_NAME}(request):
+    rsp = {
+        "code": 0,
+        "msg": "OK",
+    }
+
+    return JsonResponse(rsp)
+endsnippet
+
+snippet arg_post "python_django" i
+request.POST["${1:ARG}"]
+endsnippet
+
+snippet csrf_exempt "python_django" i
+from django.views.decorators.csrf import csrf_exempt
+@csrf_exempt
+endsnippet
+
+snippet datetimes "python_django" i
+created_at = models.DateTimeField(auto_now_add=True)
+updated_at = models.DateTimeField(auto_now=True)
+endsnippet

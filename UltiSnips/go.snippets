@@ -30,7 +30,7 @@ if err != nil {
 endsnippet
 
 snippet kv "go" i
-"${1:KEY}" : $1,
+"${1:KEY}": $1,
 endsnippet
 
 snippet import_test "go" i
@@ -106,4 +106,27 @@ if err != nil {
     log.Println(err)
 }
 defer file.Close()
+endsnippet
+
+snippet format "go" i
+fmt.Sprintf("%s %d", "age: ", 18)
+endsnippet
+
+snippet loop_slice "go" i
+for i, v := range items {
+	fmt.Printf("%d %s\n", i, v)
+}
+endsnippet
+
+snippet ts "go" i
+t := time.Now()
+ts := t.Format("20060102_150405")
+endsnippet
+
+snippet ensure_dir "go" i
+// ensure dir
+dir := "./public/qrcode/"
+if _, err := os.Stat(dir); os.IsNotExist(err) {
+	os.Mkdir(dir, os.ModePerm)
+}
 endsnippet
