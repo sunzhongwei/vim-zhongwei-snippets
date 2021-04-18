@@ -41,6 +41,13 @@ async task1 function () {
 task1();
 endsnippet
 
+snippet set_timeout_sync_call "javascript" i
+(async () => {
+  await wait(3000);
+  ${1:// DO SOMETHING}
+})();
+endsnippet
+
 snippet promise "javascript" i
 return new Promise((resolve, reject) => {
     ${1:// TODO}
