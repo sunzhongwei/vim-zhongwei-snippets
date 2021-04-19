@@ -18,5 +18,5 @@ func (${1:MODEL}) TableName() string {
 endsnippet
 
 snippet gorm_find_one "go_gorm" i
-db.Where("id = ?", id).First(&${1:MODEL_OBJECT})
+models.DB.Where("id = ?", id).First(&${1:MODEL_OBJECT})
 endsnippet
