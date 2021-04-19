@@ -22,6 +22,6 @@ models.DB.Where("id = ?", id).First(&${1:MODEL_OBJECT})
 endsnippet
 
 snippet gorm_find_all "go_gorm" i
-var ${1/\w+\s*/\l$0/}List []models.${1:MODEL}
+var ${1/\w+\s*/\l$0/}List []models.${1:Model}
 models.DB.Find(&${1/\w+\s*/\l$0/}List)
 endsnippet
