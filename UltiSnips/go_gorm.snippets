@@ -10,3 +10,13 @@ models.DB.Model(&models.${1:MODEL}{}).
 	Where("date = ?", date).
 	Count(&count)
 endsnippet
+
+snippet gorm_table_name "go_gorm" i
+func (${1:MODEL}) TableName() string {
+	return "${2:TABLE_NAME}"
+}
+endsnippet
+
+snippet gorm_find_one "go_gorm" i
+db.Where("id = ?", id).First(&${1:MODEL_OBJECT})
+endsnippet
