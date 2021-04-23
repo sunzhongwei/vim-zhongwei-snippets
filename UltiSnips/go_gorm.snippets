@@ -47,3 +47,7 @@ endsnippet
 snippet gorm_delete "go_gorm" i
 models.DB.Delete(&${1:MODEL_OBJECT})
 endsnippet
+
+snippet gorm_add "go_gorm" i
+models.DB.Model(&${1:modelObject}).Update("${2:FIELD}", gorm.Expr("$2 + ?", 1))
+endsnippet
