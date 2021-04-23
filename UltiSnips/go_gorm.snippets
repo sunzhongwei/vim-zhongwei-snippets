@@ -18,6 +18,7 @@ func (${1:MODEL}) TableName() string {
 endsnippet
 
 snippet gorm_find_one "go_gorm" i
+var $1 models.${1/\w+\s*/\u$0/}
 models.DB.Where("id = ?", id).First(&${1:MODEL_OBJECT})
 endsnippet
 
