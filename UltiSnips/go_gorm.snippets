@@ -1,5 +1,5 @@
 snippet gorm_insert "go_gorm" i
-if err := models.DB.Create(&${1:MODEL_OBJECT}); err != nil {
+if result := models.DB.Create(&${1:MODEL_OBJECT}); result.Error != nil {
     // Error 1062: Duplicate entry
 }
 endsnippet
@@ -46,6 +46,10 @@ endsnippet
 
 snippet gorm_delete "go_gorm" i
 models.DB.Delete(&${1:MODEL_OBJECT})
+endsnippet
+
+snippet gorm_delete_hard "go_gorm" i
+models.DB.Unscoped().Delete(&${1:MODEL_OBJECT})
 endsnippet
 
 snippet gorm_add "go_gorm" i
