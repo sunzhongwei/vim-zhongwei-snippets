@@ -55,3 +55,10 @@ endsnippet
 snippet gorm_add "go_gorm" i
 models.DB.Model(&${1:modelObject}).Update("${2:FIELD}", gorm.Expr("$2 + ?", 1))
 endsnippet
+
+snippet struct_with_gorm_model "go_gorm" i
+type ${1:NAME} struct {
+    gorm.Model
+	Name    string `json:"name"`
+}
+endsnippet
