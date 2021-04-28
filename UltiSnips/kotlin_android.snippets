@@ -7,6 +7,11 @@ private val _logTag = "${1:MyActivity}"
 endsnippet
 
 snippet view_binding "kotlin_android" i
+// Module build.gradle 的 android section 中添加, 然后 Sync
+buildFeatures {
+	viewBinding = true
+}
+
 import com.sunzhongwei.todo.databinding.${1:SomeBinding}
 
 private var _binding: $1? = null
