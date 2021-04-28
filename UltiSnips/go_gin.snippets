@@ -20,6 +20,7 @@ func ${1:NAME}(c *gin.Context) {
 endsnippet
 
 snippet gin_parse_request "go_gin" i
+var $1 models.${1/\w+\s*/\u$0/}
 if err := c.ShouldBindJSON(&${1:MODEL_OBJECT}); err != nil {
     c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
     return

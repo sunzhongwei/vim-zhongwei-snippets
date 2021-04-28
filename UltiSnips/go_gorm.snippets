@@ -1,5 +1,5 @@
 snippet gorm_insert "go_gorm" i
-if err := models.DB.Create(&${1:MODEL_OBJECT}); err != nil {
+if result := models.DB.Create(&${1:MODEL_OBJECT}); result.Error != nil {
     // Error 1062: Duplicate entry
 }
 endsnippet
@@ -9,4 +9,56 @@ var count int64 = 0
 models.DB.Model(&models.${1:MODEL}{}).
 	Where("date = ?", date).
 	Count(&count)
+endsnippet
+
+snippet gorm_table_name "go_gorm" i
+func (${1:MODEL}) TableName() string {
+	return "${2:TABLE_NAME}"
+}
+endsnippet
+
+snippet gorm_find_one "go_gorm" i
+var $1 models.${1/\w+\s*/\u$0/}
+models.DB.Where("id = ?", id).First(&${1:MODEL_OBJECT})
+endsnippet
+
+snippet gorm_find_all "go_gorm" i
+var ${1/\w+\s*/\l$0/}List []models.${1:Model}
+models.DB.Find(&${1/\w+\s*/\l$0/}List)
+endsnippet
+
+snippet gorm_find_all_pagination "go_gorm" i
+limit, _ := strconv.Atoi(c.Query("size"))
+page, _ := strconv.Atoi(c.Query("page"))
+var items []models.${1:MODEL}
+
+models.DB.
+	Where("field = ?", VAR).
+	Order("id asc").
+	Limit(limit).
+	Offset((page - 1) * limit).
+	Find(&items)
+endsnippet
+
+snippet gorm_save "go_gorm" i
+models.DB.Save(&${1:MODEL_OBJECT})
+endsnippet
+
+snippet gorm_delete "go_gorm" i
+models.DB.Delete(&${1:MODEL_OBJECT})
+endsnippet
+
+snippet gorm_delete_hard "go_gorm" i
+models.DB.Unscoped().Delete(&${1:MODEL_OBJECT})
+endsnippet
+
+snippet gorm_add "go_gorm" i
+models.DB.Model(&${1:modelObject}).Update("${2:FIELD}", gorm.Expr("$2 + ?", 1))
+endsnippet
+
+snippet struct_with_gorm_model "go_gorm" i
+type ${1:NAME} struct {
+    gorm.Model
+	Name    string `json:"name"`
+}
 endsnippet
