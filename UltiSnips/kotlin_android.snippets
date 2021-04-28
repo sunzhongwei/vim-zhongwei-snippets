@@ -6,7 +6,7 @@ snippet log_tag "kotlin_android" i
 private val _logTag = "${1:MyActivity}"
 endsnippet
 
-snippet view_binding "kotlin_android" i
+snippet view_binding_in_fragment "kotlin_android" i
 // Module build.gradle 的 android section 中添加, 然后 Sync
 buildFeatures {
 	viewBinding = true
@@ -26,6 +26,24 @@ override fun onDestroyView() {
 	super.onDestroyView()
 	_binding = null
 }
+endsnippet
+
+snippet view_binding_in_activity "kotlin_android" i
+// Module build.gradle 的 android section 中添加, 然后 Sync
+buildFeatures {
+	viewBinding = true
+}
+
+import com.sunzhongwei.todo.databinding.${1:SomeBinding}
+
+private lateinit var binding: $1
+
+// onCreateView
+// remove: setContentView(R.layout.activity_main)
+// use binding.<RID>.text = something
+binding = $1.inflate(layoutInflater)
+val view = binding.root
+setContentView(view)
 endsnippet
 
 snippet recycler_view_adapter "kotlin_android" i
