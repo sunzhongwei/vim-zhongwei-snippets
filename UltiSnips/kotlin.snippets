@@ -20,12 +20,12 @@ setOnClickListener {
 endsnippet
 
 snippet toast "kotlin" i
-Toast.makeText(this, "button clicked",
+Toast.makeText(this, "${1:button clicked}",
 	Toast.LENGTH_SHORT).show()
 endsnippet
 
 snippet func "kotlin" i
-public fun ${1:FUNCTION_NAME}(view: View) {
+public fun ${1:FUNCTION_NAME}(view: View): Int {
     ${2://TODO}
 }
 endsnippet
@@ -117,4 +117,11 @@ endsnippet
 
 snippet data_class "kotlin" i
 data class ${1:ClassName}(val name: String, val age: Int)
+endsnippet
+
+snippet try "kotlin" i
+try {
+    ${1:// DO SOMETHINE}
+} catch (e: Exception) {
+}
 endsnippet
