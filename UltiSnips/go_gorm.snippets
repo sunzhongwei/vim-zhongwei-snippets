@@ -19,7 +19,7 @@ endsnippet
 
 snippet gorm_find_one "go_gorm" i
 var $1 models.${1/\w+\s*/\u$0/}
-models.DB.Where("id = ?", id).First(&${1:MODEL_OBJECT})
+models.DB.Where("id = ?", id).First(&${1:item})
 endsnippet
 
 snippet gorm_find_all "go_gorm" i
