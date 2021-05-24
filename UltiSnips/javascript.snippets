@@ -55,7 +55,7 @@ return new Promise((resolve, reject) => {
 endsnippet
 
 snippet set_interval "Description" i
-let intervalId = setInterval(function() {
+let intervalId = setInterval(() => {
 	${1:// code...}
 }, 1000);
 clearInterval(intervalId);
