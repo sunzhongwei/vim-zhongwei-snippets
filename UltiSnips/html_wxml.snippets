@@ -24,6 +24,15 @@ endsnippet
 
 snippet rich_text "html_wxml" i
 <rich-text nodes="{{ ${1:VALUE} }}"></rich-text>
+
+// image width
+if (res.data.data) {
+  let item = res.data.data;
+  item.content = item.content.replace(/\<img/gi, '<img style="max-width:100%;height:auto"')
+  this.setData({
+    item
+  })
+}
 endsnippet
 
 snippet cells_input "html_wxml" i
