@@ -1,5 +1,8 @@
 snippet antdpro_type "typescript_antd_pro" i
-type ${1:Item} = {
+// ----------------------------- 
+// ${1:Item} 
+// ----------------------------- 
+type $1 = {
   ID?: string;
   CreatedAt?: string;
 }
@@ -11,3 +14,37 @@ type $1s = {
 }
 endsnippet
 
+snippet antdpro_api "typescript_antd_pro" i
+// ----------------------------- 
+// ${1:Item} 
+// ----------------------------- 
+export async function get$1s(
+  params: {
+    current?: number;
+    pageSize?: number;
+  },
+  options?: { [key: string]: any },
+) {
+  return request<API.$1s>('/api/admin/${1/\w+\s*/\l$0/}s', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+export async function update$1(options?: { [key: string]: any }) {
+  return request<API.$1>('/api/admin/update_${1/\w+\s*/\l$0/}', {
+    method: 'POST',
+    data: options,
+  });
+}
+
+export async function remove$1(options?: { [key: string]: any }) {
+  return request<Record<string, any>>('/api/admin/remove_${1/\w+\s*/\l$0/}', {
+    method: 'POST',
+    data: options,
+  });
+}
+endsnippet
