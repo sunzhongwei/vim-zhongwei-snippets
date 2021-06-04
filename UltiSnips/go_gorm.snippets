@@ -44,6 +44,10 @@ snippet gorm_save "go_gorm" i
 models.DB.Save(&${1:MODEL_OBJECT})
 endsnippet
 
+snippet gorm_update_using_select "go_gorm 可以更新零值" i
+models.DB.Select("field1", "field2").Updates(${1:object})
+endsnippet
+
 snippet gorm_delete "go_gorm" i
 models.DB.Delete(&${1:MODEL_OBJECT})
 endsnippet
