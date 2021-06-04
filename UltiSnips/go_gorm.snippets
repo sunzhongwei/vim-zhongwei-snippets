@@ -30,10 +30,21 @@ endsnippet
 snippet gorm_find_all_pagination "go_gorm" i
 limit, _ := strconv.Atoi(c.Query("size"))
 page, _ := strconv.Atoi(c.Query("page"))
+status, _ := strconv.Atoi(c.DefaultQuery("status", "0"))
 var items []models.${1:MODEL}
+db := models.DB
 
-models.DB.
-	Where("field = ?", VAR).
+if limit > 100 {
+	limit = 100
+}
+if page < 1 {
+	page = 1
+}
+if status > 0 {
+	db = db.Where("status", status)
+}
+
+db.Where("field = ?", VAR).
 	Order("id asc").
 	Limit(limit).
 	Offset((page - 1) * limit).
