@@ -85,6 +85,7 @@ endsnippet
 snippet struct_with_table_name "go_gorm" i
 type ${1:NAME} struct {
 	Name    string `json:"name"`
+    CreatedAt time.Time
 }
 
 func ($1) TableName() string {
