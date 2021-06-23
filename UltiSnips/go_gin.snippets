@@ -19,6 +19,40 @@ func ${1:NAME}(c *gin.Context) {
 }
 endsnippet
 
+snippet func_gin_api_antd_table "go_gin" i
+func ${1:Name}(c *gin.Context) {
+	limit, _ := strconv.Atoi(c.Query("pageSize"))
+	page, _ := strconv.Atoi(c.Query("current"))
+	deviceId := c.DefaultQuery("DeviceId", "")
+	var items []models.${2:Model}
+	db := models.DB
+
+	if limit > 100 {
+		limit = 100
+	}
+	if page < 1 {
+		page = 1
+	}
+	if deviceId != "" {
+		db = db.Where("device_id", deviceId)
+	}
+
+	db.Order("id desc").
+		Limit(limit).
+		Offset((page - 1) * limit).
+		Find(&items)
+
+	var count int64 = 0
+	db.Model(&models.$2{}).Count(&count)
+
+	c.JSON(http.StatusOK, gin.H{
+		"success": true,
+		"total":   count,
+		"data":    items,
+	})
+}
+endsnippet
+
 snippet gin_parse_request "go_gin" i
 var $1 models.${1/\w+\s*/\u$0/}
 if err := c.ShouldBindJSON(&${1:struct}); err != nil {
