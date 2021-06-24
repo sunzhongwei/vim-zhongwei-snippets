@@ -7,3 +7,12 @@ useEffect(() => {
   };
 });
 endsnippet
+
+snippet react_use_state "javascript_react" i
+const [${1:data}, set${1/\w+\s*/\u$0/}] = useState(0);
+endsnippet
+
+snippet react_if "javascript_react" i
+{${1:Condition} &&
+}
+endsnippet
