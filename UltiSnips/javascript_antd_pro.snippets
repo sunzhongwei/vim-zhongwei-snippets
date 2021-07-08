@@ -10,3 +10,329 @@ snippet antd_pro_form_text "javascript_antd_pro" i
 	width="md"
 />
 endsnippet
+
+snippet antd_pro_list "javascript_antd_pro" i
+import { PlusOutlined } from '@ant-design/icons';
+import { Button, message } from 'antd';
+import React, { useState, useRef } from 'react';
+import { FormattedMessage } from 'umi';
+import { PageContainer, FooterToolbar } from '@ant-design/pro-layout';
+import type { ProColumns, ActionType } from '@ant-design/pro-table';
+import ProTable from '@ant-design/pro-table';
+import CreateForm from './components/CreateForm';
+import { get${1:Item}s, add$1, update$1, remove$1 } from '@/services/ant-design-pro/api';
+
+const HEADER_TITLE = "$1列表"
+
+/**
+ * 添加
+ *
+ * @param fields
+ */
+const handleAdd = async (fields: API.$1) => {
+  const hide = message.loading('正在添加');
+  try {
+    await add$1({ ...fields });
+    hide();
+    message.success('添加成功');
+    return true;
+  } catch (error) {
+    hide();
+    message.error('添加失败请重试！');
+    return false;
+  }
+};
+
+/**
+ * 更新
+ *
+ * @param fields
+ */
+const handleUpdate = async (fields: API.$1) => {
+  const hide = message.loading('正在更新');
+  try {
+    await update$1(fields);
+    hide();
+
+    message.success('更新成功');
+    return true;
+  } catch (error) {
+    hide();
+    message.error('更新失败请重试！');
+    return false;
+  }
+};
+
+/**
+ * 删除
+ *
+ * @param selectedRows
+ */
+const handleRemove = async (selectedRows: API.$1[]) => {
+  const hide = message.loading('正在删除');
+  if (!selectedRows) return true;
+  try {
+    await remove$1({
+      ids: selectedRows.map((row) => row.ID),
+    });
+    hide();
+    message.success('删除成功，即将刷新');
+    return true;
+  } catch (error) {
+    hide();
+    message.error('删除失败，请重试');
+    return false;
+  }
+};
+
+const $1s: React.FC = () => {
+  const [createFormVisible, handleFormVisible] = useState<boolean>(false);
+
+  const actionRef = useRef<ActionType>();
+  const [currentRow, setCurrentRow] = useState<API.$1>();
+  const [selectedRowsState, setSelectedRows] = useState<API.$1[]>([]);
+
+  const columns: ProColumns<API.$1>[] = [
+    {
+      title: "ID",
+      dataIndex: "ID",
+      valueType: 'text',
+    },
+    {
+      title: "状态",
+      dataIndex: "Status",
+      valueType: 'select',
+      filters: true,
+      onFilter: true,
+      valueEnum: {
+        1: { text: '新', status: 'Default' },
+        2: { text: '处理中', status: 'Processing' },
+      },
+    },
+    {
+      title: "创建时间",
+      dataIndex: 'CreatedAt',
+      valueType: 'dateTime',
+      search: false,
+    },
+    {
+      title: "操作",
+      dataIndex: 'option',
+      valueType: 'option',
+      render: (_, record) => [
+        <a
+          key="config"
+          onClick={() => {
+            //handleModalVisible(true);
+            handleFormVisible(true);
+            setCurrentRow(record);
+            //formRef.current.setFieldValues(record)
+          }}
+        >
+          编辑
+        </a>,
+      ],
+    },
+  ];
+
+  return (
+    <PageContainer>
+      <ProTable<API.$1, API.PageParams>
+        headerTitle=HEADER_TITLE
+        actionRef={actionRef}
+        rowKey="ID"
+        search={{
+          labelWidth: 120,
+        }}
+        toolBarRender={() => [
+          <Button
+            type="primary"
+            key="primary"
+            onClick={() => {
+              //handleModalVisible(true);
+              handleFormVisible(true);
+            }}
+          >
+            <PlusOutlined /> <FormattedMessage id="pages.searchTable.new" defaultMessage="新建" />
+          </Button>,
+        ]}
+        request={get$1s}
+        columns={columns}
+        rowSelection={{
+          onChange: (_, selectedRows) => {
+            setSelectedRows(selectedRows);
+          },
+        }}
+      />
+      {selectedRowsState?.length > 0 && (
+        <FooterToolbar
+          extra={
+            <div>
+              已选择
+              <a style={{ fontWeight: 600 }}>{selectedRowsState.length}</a>
+              项
+            </div>
+          }
+        >
+          <Button
+            onClick={async () => {
+              await handleRemove(selectedRowsState);
+              setSelectedRows([]);
+              actionRef.current?.reloadAndRest?.();
+            }}
+          >
+            <FormattedMessage id="pages.searchTable.batchDeletion" defaultMessage="批量删除" />
+          </Button>
+        </FooterToolbar>
+      )}
+      <CreateForm
+        createFormVisible={createFormVisible}
+        values={currentRow || {}}
+        onFinish={async (value) => {
+          // TODO: 
+          // convert string to number
+          if (value.Status) {
+            value.Status = parseInt(value.Status);
+          }
+
+          if (value.ID) {
+            const success = await handleUpdate(value as API.$1);
+            if (success) {
+              handleFormVisible(false);
+              if (actionRef.current) {
+                actionRef.current.reload();
+              }
+            }
+          } else {
+            const success = await handleAdd(value as API.$1);
+            if (success) {
+              handleFormVisible(false);
+              if (actionRef.current) {
+                actionRef.current.reload();
+              }
+            }
+          }
+        }}
+        onCancel={() => {
+          handleFormVisible(false);
+          setCurrentRow(undefined);
+        }}
+      >
+      </CreateForm>
+    </PageContainer>
+  );
+};
+
+export default $1s;
+endsnippet
+
+snippet antd_pro_create "javascript_antd_pro" i
+import React from 'react';
+import {Modal, Form, Input, Button, Row, Col, Select} from 'antd';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import './CreateForm.css';
+
+type CreateFormProps = {
+    values: API.${1:Item};
+    createFormVisible: boolean;
+    onCancel: () => void;
+    onFinish: (values: API.$1) => void;
+}
+
+const CreateForm: React.FC<CreateFormProps> = (props) => {
+    return (
+        <Modal
+            title={props.values.ID ? "编辑" : "新建"}
+            width={800}
+            visible={props.createFormVisible}
+            bodyStyle={{ padding: '32px 40px 48px' }}
+            footer={null}
+            onCancel={() =>{
+                props.onCancel();
+            }}
+            destroyOnClose
+        >
+            <Form
+                layout="vertical"
+                preserve={false}
+                initialValues={props.values}
+                onFinish={props.onFinish}
+            >
+                <Form.Item name="ID" hidden={true}>
+                    <Input />
+                </Form.Item>
+                <Form.Item name="Name" label="名称" rules={[{ required: true }]}>
+                    <Input />
+                </Form.Item>
+                <Form.Item>
+                    <Button type="primary" htmlType="submit">
+                        保存
+                    </Button>
+                </Form.Item>
+            </Form>
+        </Modal>
+    )
+}
+
+export default CreateForm;
+endsnippet
+
+
+snippet antd_pro_api "javascript_antd_pro" i
+// TODO: typings.d.ts
+// ----------------------------- 
+// ${1:Item} 
+// ----------------------------- 
+  type $1 = {
+    ID?: string;
+    CreatedAt?: string;
+  }
+
+  type $1s = {
+    data?: $1[];
+    total?: number;
+    success?: boolean;
+  }
+
+// ----------------------------- 
+// $1 
+// ----------------------------- 
+export async function get$1s(
+  params: {
+    current?: number;
+    pageSize?: number;
+  },
+  options?: { [key: string]: any },
+) {
+  return request<API.$1s>('/api/admin/get$1s', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+export async function add$1(options?: { [key: string]: any }) {
+  return request<API.$1>('/api/admin/add$1', {
+    method: 'POST',
+    data: options,
+  });
+}
+
+
+export async function update$1(options?: { [key: string]: any }) {
+  return request<API.$1>('/api/admin/update$1', {
+    method: 'POST',
+    data: options,
+  });
+}
+
+export async function remove$1(options?: { [key: string]: any }) {
+  return request<Record<string, any>>('/api/admin/remove$1', {
+    method: 'POST',
+    data: options,
+  });
+}
+endsnippet
