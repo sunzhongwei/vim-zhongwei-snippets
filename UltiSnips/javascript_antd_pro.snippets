@@ -22,8 +22,6 @@ import ProTable from '@ant-design/pro-table';
 import CreateForm from './components/CreateForm';
 import { get${1:Item}s, add$1, update$1, remove$1 } from '@/services/ant-design-pro/api';
 
-const HEADER_TITLE = "$1列表"
-
 /**
  * 添加
  *
@@ -97,6 +95,7 @@ const $1s: React.FC = () => {
       title: "ID",
       dataIndex: "ID",
       valueType: 'text',
+      search: false,
     },
     {
       title: "状态",
@@ -138,7 +137,7 @@ const $1s: React.FC = () => {
   return (
     <PageContainer>
       <ProTable<API.$1, API.PageParams>
-        headerTitle=HEADER_TITLE
+        headerTitle="$1列表"
         actionRef={actionRef}
         rowKey="ID"
         search={{
@@ -280,10 +279,10 @@ endsnippet
 
 
 snippet antd_pro_api "javascript_antd_pro" i
-// TODO: typings.d.ts
-// ----------------------------- 
-// ${1:Item} 
-// ----------------------------- 
+  // TODO: typings.d.ts
+  // ----------------------------- 
+  // ${1:Item} 
+  // ----------------------------- 
   type $1 = {
     ID?: string;
     CreatedAt?: string;
@@ -335,4 +334,25 @@ export async function remove$1(options?: { [key: string]: any }) {
     data: options,
   });
 }
+endsnippet
+
+snippet antd_pro_row "javascript_antd_pro" i
+<Row gutter={18}>
+  <Col span={12}>
+  </Col>
+  <Col span={12}>
+  </Col>
+</Row>
+endsnippet
+
+snippet antd_pro_field_text "javascript_antd_pro" i
+{
+  title: "${1:Title}",
+  dataIndex: "${2:Var}",
+  valueType: 'text',
+  search: false,
+},
+<Form.Item name="$2" label="$1" rules={[{ required: true }]}>
+    <Input />
+</Form.Item>
 endsnippet
