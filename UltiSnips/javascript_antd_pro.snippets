@@ -356,3 +356,15 @@ snippet antd_pro_field_text "javascript_antd_pro" i
     <Input />
 </Form.Item>
 endsnippet
+
+snippet antd_pro_field_number "javascript_antd_pro" i
+{
+  title: "${1:Title}",
+  dataIndex: "${2:Var}",
+  valueType: 'digit',
+  search: false,
+},
+<Form.Item name="$2" label="$1" tooltip="" rules={[{ required: true }]}>
+    <Input defaultValue="0" type="number" />
+</Form.Item>
+endsnippet
