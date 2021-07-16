@@ -127,12 +127,12 @@ snippet ensure_dir "go" i
 // ensure dir
 dir := "./public/qrcode/"
 if _, err := os.Stat(dir); os.IsNotExist(err) {
-	os.Mkdir(dir, os.ModePerm)
+	os.MkdirAll(dir, os.ModePerm)
 }
 endsnippet
 
 snippet today_string "go" i
-today := time.Now().Local().Format("2006-01-02")
+today := time.Now().Local().Format("2006-01-02 15:04:05")
 endsnippet
 
 snippet len "go" i
