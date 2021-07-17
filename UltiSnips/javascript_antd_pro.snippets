@@ -368,3 +368,33 @@ snippet antd_pro_field_number "javascript_antd_pro" i
     <Input defaultValue="0" type="number" />
 </Form.Item>
 endsnippet
+
+snippet antd_pro_field_select_async "javascript_antd_pro" i
+import React, {useState, useEffect} from 'react';
+import {get$1s} from '@/services/ant-design-pro/api';
+
+const [${1/\w+\s*/\l$0/}s, set${1:Item}s] = useState([]);
+
+useEffect(async () => {
+  let data = await get$1s({current: 1, pageSize: 65535});
+  if (!data.success) {
+    return;
+  }
+  set$1s(data.data.map(item => ({
+    value: item.ID,
+    label: `${item.Name} (${item.Tel})`
+  })));
+}, []); // mount 和 unmount 时执行
+
+<Form.Item name="$1Id" label="$1">
+  <Select options={${1/\w+\s*/\l$0/}s}
+	allowClear
+	showSearch
+	optionFilterProp="label"
+	filterOption={(input, option) =>
+		option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
+	}
+  >
+  </Select>
+</Form.Item>
+endsnippet
