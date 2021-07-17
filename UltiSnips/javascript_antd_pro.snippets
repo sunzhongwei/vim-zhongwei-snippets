@@ -380,10 +380,15 @@ useEffect(async () => {
   if (!data.success) {
     return;
   }
-  set$1s(data.data.map(item => ({
+  let options = data.data.map(item => ({
     value: item.ID,
-    label: `${item.Name} (${item.Tel})`
-  })));
+    label: item.Name, 
+  }));
+  options.push({
+    value: 0,
+    label: "无",
+  });
+  set$1s(options);
 }, []); // mount 和 unmount 时执行
 
 <Form.Item name="$1Id" label="$1">
