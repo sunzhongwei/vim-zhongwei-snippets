@@ -478,4 +478,16 @@ snippet now_date "javascript" i
 new Date().toISOString().slice(0, 10)
 endsnippet
 
+snippet arg_of_url "javascript" i
+function argOfUrl(url, name) {
+  if (!url) url = window.location.href;
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+    results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+endsnippet
+
 # vim:ft=snippets:
