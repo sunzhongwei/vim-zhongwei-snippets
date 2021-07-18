@@ -22,3 +22,8 @@ endsnippet
 snippet tm_display "javascript_tampermonkey" i
 style.display   // != "none"
 endsnippet
+
+snippet tm_location_change "javascript_tampermonkey" i
+window.location.href = ${1:NEW_URL};
+throw new Error("Stopped JavaScript.");
+endsnippet
