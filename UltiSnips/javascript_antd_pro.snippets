@@ -402,4 +402,31 @@ useEffect(async () => {
   >
   </Select>
 </Form.Item>
+
+
+// TODO: list
+const [${1/\w+\s*/\l$0/}s, set$1s] = useState({});
+
+useEffect(async () => {
+  let data = await get$1s({current: 1, pageSize: 65535});
+  if (!data.success) {
+    return;
+  }
+  let result = {
+    0: "无",
+  };
+  for (let item of data.data) {
+    result[item.ID] = item.Name;
+  }
+  set$1s(result);
+}, []);     // mount 和 unmount 时执行
+
+{
+  title: "代理商",
+  dataIndex: '$1Id',
+  valueType: 'select',
+  valueEnum: ${1/\w+\s*/\l$0/}s,
+  search: false,
+},
 endsnippet
+
