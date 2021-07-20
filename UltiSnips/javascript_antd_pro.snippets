@@ -369,6 +369,31 @@ snippet antd_pro_field_number "javascript_antd_pro" i
 </Form.Item>
 endsnippet
 
+snippet antd_pro_field_select "javascript_antd_pro" i
+{
+  title: "${1:Label}",
+  dataIndex: "${2:Var}",
+  valueType: 'select',
+  filters: true,
+  onFilter: true,
+  valueEnum: {
+    1: { text: '${3:Option1}', status: 'Default' },
+    2: { text: '${4:Option2}', status: 'Processing' },
+    3: { text: '${5:Option3}', status: 'Success' },
+  },
+},
+
+const options = [
+  { label: "$3", value: 1, },
+  { label: "$4", value: 2, },
+  { label: "$5", value: 3, },
+];
+<Form.Item name="$2" label="$1">
+  <Select options={options}>
+  </Select>
+</Form.Item>
+endsnippet
+
 snippet antd_pro_field_select_async "javascript_antd_pro" i
 import React, {useState, useEffect} from 'react';
 import {get$1s} from '@/services/ant-design-pro/api';
