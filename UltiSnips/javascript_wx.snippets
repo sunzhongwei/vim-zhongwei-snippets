@@ -332,3 +332,9 @@ onPullDownRefresh: function() {
   wx.stopPullDownRefresh();
 },
 endsnippet
+
+snippet wx_tel "javascript_wx" i
+wx.makePhoneCall({
+  phoneNumber: ${1:Tel} 
+})
+endsnippet
