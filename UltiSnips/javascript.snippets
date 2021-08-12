@@ -351,9 +351,13 @@ endsnippet
 # -----------------------------------------------------------
 # object 
 # -----------------------------------------------------------
-snippet object_loop_keys "javascript" i
+snippet object_keys_loop "javascript" i
 for (const [key, value] of Object.entries(${1:object})) {
 }
+endsnippet
+
+snippet object_keys "javascript" i
+Object.keys(${1:object})
 endsnippet
 
 # -----------------------------------------------------------
