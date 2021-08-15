@@ -551,7 +551,7 @@ snippet flex_space_between "html_wxml" i
 }
 endsnippet
 
-snippet line_split "html_wxml" i
+snippet wx_line_split "html_wxml" i
 <view class="line_split"></view>
 
 // css
@@ -796,7 +796,7 @@ hideMask: function() {
 },
 endsnippet
 
-snippet line_input "html_wxml" i
+snippet wx_line_input "html_wxml" i
 <view class="input_line">
    <view>联系电话</view>
    <view>
@@ -832,9 +832,66 @@ snippet line_input "html_wxml" i
 .right_input {
 	text-align: right;
 }
+
+## js
+inputChange: function(e) {
+  const {field} = e.currentTarget.dataset
+  this.setData({
+    [\`formData.\${field}\`]: e.detail.value.trim()
+  })
+},
 endsnippet
 
-snippet line_kv "html_wxml" i
+snippet wx_line_picker "html_wxml" i
+<view class="input_line">
+   <view class="optional">${2:Label}</view>
+   <view>
+        <picker bindchange="bind${1/\w+\s*/\u$0/}Change" value="{{$1Index}}" 
+            range="{{${1:item}List}}" range-key="name">
+          <view class="right_input placeholder" wx:if="{{$1Index === null}}">
+            请选择$2
+          </view>
+          <view class="right_input" wx:else>
+            {{$1List[$1Index].name}}
+          </view>
+        </picker>
+   </view>
+</view>
+<view class="line_split"></view>
+
+// $2 
+$1List: [
+    {
+        name: "ITEM1",
+    },
+],
+$1Index: null,
+
+bind${1/\w+\s*/\u$0/}Change: function(e) {
+  this.setData({
+    $1Index: e.detail.value
+  })
+},
+endsnippet
+
+snippet wx_line_value "html_wxml" i
+<view class="input_line">
+   <view>${2:Label}</view>
+   <view>
+      <view class="right_input placeholder" wx:if="{{${1:VAR} === null}}">
+        N/A
+      </view>
+      <view class="right_input" wx:else>
+        {{$1}} %
+      </view>
+   </view>
+</view>
+<view class="line_split"></view>
+
+$1: null,   // $2
+endsnippet
+
+snippet wx_line_kv "html_wxml" i
 <view class="input_line">
    <view>KEY</view>
    <view>VALUE</view>
