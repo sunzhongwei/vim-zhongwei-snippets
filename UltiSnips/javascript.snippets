@@ -340,10 +340,25 @@ snippet last "Description" i
 slice(-1)[0]
 endsnippet
 
-snippet del_item_from_array_by_index "javascript" i
+snippet array_del_by_index "javascript" i
 array.splice(index, 1);
 endsnippet
 
+snippet array_in "javascript" i
+${1:Array}.includes(${2:Value})
+endsnippet
+
+# -----------------------------------------------------------
+# object 
+# -----------------------------------------------------------
+snippet object_keys_loop "javascript" i
+for (const [key, value] of Object.entries(${1:object})) {
+}
+endsnippet
+
+snippet object_keys "javascript" i
+Object.keys(${1:object})
+endsnippet
 
 # -----------------------------------------------------------
 # string
