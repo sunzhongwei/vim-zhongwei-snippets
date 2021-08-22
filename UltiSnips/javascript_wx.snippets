@@ -72,8 +72,12 @@ snippet data "Description" i
 this.data.${1:VAR}
 endsnippet
 
-snippet set_storage "javascript_wx" i
+snippet wx_storage_set "javascript_wx" i
 wx.setStorageSync('${1:KEY}', '${2:VALUE}')
+endsnippet
+
+snippet wx_storage_get "javascript_wx" i
+wx.getStorageSync('${1:KEY}')
 endsnippet
 
 snippet bind_input "javascript_wx" i
