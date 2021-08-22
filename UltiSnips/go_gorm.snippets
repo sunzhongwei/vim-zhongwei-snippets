@@ -51,6 +51,10 @@ db.Where("field = ?", VAR).
 	Find(&items)
 endsnippet
 
+snippet gorm_order "go_gorm" i
+Order("id asc").
+endsnippet
+
 snippet gorm_save "go_gorm" i
 models.DB.Save(&${1:MODEL_OBJECT})
 endsnippet
