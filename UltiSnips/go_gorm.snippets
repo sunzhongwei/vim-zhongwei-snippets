@@ -19,7 +19,11 @@ endsnippet
 
 snippet gorm_find_one "go_gorm" i
 var $1 models.${1/\w+\s*/\u$0/}
-models.DB.Where("\`id\` = ?", id).First(&${1:item})
+err := models.DB.Where("\`id\` = ?", id).First(&${1:item})
+if err != nil {
+    // record not found
+    log.Println(err)
+}
 endsnippet
 
 snippet gorm_find_all "go_gorm" i
@@ -95,4 +99,29 @@ type ${1:NAME} struct {
 func ($1) TableName() string {
 	return "${2:TABLE_NAME}"
 }
+endsnippet
+
+snippet gorm_lock_for_update "go_gorm" i
+var $1 models.${1/\w+\s*/\u$0/}
+
+models.DB.Transaction(func(tx *gorm.DB) error {
+    // 在事务中执行一些 db 操作（从这里开始，您应该使用 'tx' 而不是 'db'）
+    // 返回任何错误都会回滚事务
+    var err error
+
+    err = tx.Clauses(clause.Locking{Strength: "UPDATE"}).
+        Where("status", 0).
+        First(&${1:item}).
+        Error
+
+    if err != nil {
+        // record not found
+        log.Println(err)
+        return err
+    }
+    tx.Model(&$1).Update("status", 1)
+
+    // 返回 nil 提交事务
+    return nil
+})
 endsnippet
