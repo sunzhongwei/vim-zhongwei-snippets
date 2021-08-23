@@ -19,7 +19,7 @@ endsnippet
 
 snippet gorm_find_one "go_gorm" i
 var $1 models.${1/\w+\s*/\u$0/}
-err := models.DB.Where("\`id\` = ?", id).First(&${1:item})
+err := models.DB.Where("\`id\` = ?", id).First(&${1:item}).Error
 if err != nil {
     // record not found
     log.Println(err)
