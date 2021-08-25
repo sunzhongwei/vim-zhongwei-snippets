@@ -76,7 +76,9 @@ models.DB.Unscoped().Delete(&${1:MODEL_OBJECT})
 endsnippet
 
 snippet gorm_update_by_add "go_gorm" i
-models.DB.Model(&${1:modelObject}).Update("${2:FIELD}", gorm.Expr("$2 + ?", 1))
+models.DB.Model(&models.${1:StructName}{}).
+    Where("id = ?", ${2:ID}).
+    Update("${3:field}", gorm.Expr("$3 + ?", 1))
 endsnippet
 
 snippet struct_with_gorm_model "go_gorm" i
