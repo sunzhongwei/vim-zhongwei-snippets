@@ -23,7 +23,13 @@ wx:key="*this"
 endsnippet
 
 snippet rich_text "html_wxml" i
-<rich-text nodes="{{ ${1:VALUE} }}"></rich-text>
+<view class="rich_wrap">
+    <rich-text nodes="{{ ${1:VALUE} }}"></rich-text>
+</view>
+
+.rich_wrap {
+	padding: 30rpx;
+}
 
 // image width
 if (res.data.data) {
