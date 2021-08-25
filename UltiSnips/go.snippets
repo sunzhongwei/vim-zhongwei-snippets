@@ -37,14 +37,12 @@ snippet kv "go" i
 "${1:KEY}": $1,
 endsnippet
 
-snippet import_test "go" i
+snippet test "go" i
 import (
     "testing"
     "github.com/stretchr/testify/assert"
 )
-endsnippet
 
-snippet test "go" i
 func Test${1:Function}(t *testing.T) {
     assert.Equal(t, ${2:VALUE}, $1("arg"))
 }
