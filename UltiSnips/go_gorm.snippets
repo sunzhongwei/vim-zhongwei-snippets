@@ -128,3 +128,11 @@ models.DB.Transaction(func(tx *gorm.DB) error {
     return nil
 })
 endsnippet
+
+snippet gorm_raw_sql "go_gorm" i
+models.DB.Exec(`
+    UPDATE user 
+    SET status = 0
+    WHERE status = 1 AND updated_at < NOW() - INTERVAL 21 DAY
+`)
+endsnippet
