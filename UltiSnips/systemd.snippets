@@ -1,0 +1,23 @@
+# config file path:
+# /etc/systemd/system/go_member.service
+
+[Unit]
+Description=Golang Members
+
+[Service]
+User=www-data
+Group=www-data
+Type=simple
+Restart=always
+RestartSec=20
+StartLimitInterval=0
+Nice=10
+WorkingDirectory=$1/
+ExecStart=/usr/bin/nohup ${1:ROOT_PATH}/${2:COMMAND}
+StandardOutput=null
+TimeoutStartSec=30
+StandardOutput=append:$1/log/access.log
+StandardError=append:$1/log/err.log
+
+[Install]
+RequiredBy=multi-user.target
