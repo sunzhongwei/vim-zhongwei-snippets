@@ -278,6 +278,10 @@ snippet find_all "Javascript" i
 document.querySelectorAll("${1:SELECTOR}")
 endsnippet
 
+snippet dom_set_content "javascript" i
+document.querySelector("${1:selector}").textContent = "${2:value}"
+endsnippet
+
 snippet try "Description" b
 try {
 	// TODO
