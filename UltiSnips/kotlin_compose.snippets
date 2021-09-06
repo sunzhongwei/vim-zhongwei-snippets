@@ -17,3 +17,14 @@ endsnippet
 snippet compose_row_space_between "kotlin_compose" i
 horizontalArrangement = Arrangement.SpaceBetween
 endsnippet
+
+snippet compose_view_model "kotlin_compose" i
+import android.app.Application
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.viewmodel.compose.viewModel
+
+val context = LocalContext.current
+val ${1:item}ViewModel: ${1/\w+\s*/\u$0/}ViewModel = viewModel(
+    factory = ${1/\w+\s*/\u$0/}ViewModelFactory(context.applicationContext as Application)
+)
+endsnippet
