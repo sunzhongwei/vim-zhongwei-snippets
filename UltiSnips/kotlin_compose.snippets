@@ -8,6 +8,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.runtime.Composable
 @Preview
 @Composable
+fun Preview${1:Home}() {
+    val navController = rememberNavController()
+    $1Screen(navController)
+}
 endsnippet
 
 snippet compose_width_max "kotlin_compose" i
@@ -28,3 +32,4 @@ val ${1:item}ViewModel: ${1/\w+\s*/\u$0/}ViewModel = viewModel(
     factory = ${1/\w+\s*/\u$0/}ViewModelFactory(context.applicationContext as Application)
 )
 endsnippet
+
