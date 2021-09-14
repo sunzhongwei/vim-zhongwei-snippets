@@ -33,3 +33,15 @@ val ${1:item}ViewModel: ${1/\w+\s*/\u$0/}ViewModel = viewModel(
 )
 endsnippet
 
+snippet v_center "kotlin_compose" i
+verticalAlignment = Alignment.CenterVertically,
+endsnippet
+
+snippet center "kotlin_compose" i
+horizontalArrangement = Arrangement.End
+endsnippet
+
+snippet compose_click "kotlin_compose" i
+Modifier
+    .clickable(onClick = onClick)
+endsnippet
