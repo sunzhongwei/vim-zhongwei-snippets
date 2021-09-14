@@ -45,3 +45,11 @@ snippet compose_click "kotlin_compose" i
 Modifier
     .clickable(onClick = onClick)
 endsnippet
+
+snippet remember "kotlin_compose" i
+val ${1:mutableState} = remember { mutableStateOf(${2:default}) }
+endsnippet
+
+snippet remember_set_value "kotlin_compose" i
+val (${1:value}, set${1/\w+\s*/\u$0/}) = remember { mutableStateOf(${2:default}) }
+endsnippet
