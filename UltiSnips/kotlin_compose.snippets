@@ -53,3 +53,15 @@ endsnippet
 snippet remember_set_value "kotlin_compose" i
 val (${1:value}, set${1/\w+\s*/\u$0/}) = remember { mutableStateOf(${2:default}) }
 endsnippet
+
+snippet compose_field_number "kotlin_compose" i
+val (${1:value}, set${1/\w+\s*/\u$0/}) = remember { mutableStateOf(${2:default}) }
+
+TextField(
+    label = { Text("Number") },
+    value = $1.toString(),
+    onValueChange = {set${1/\w+\s*/\u$0/}(it.toInt())},
+    modifier = Modifier.fillMaxWidth(),
+    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+)
+endsnippet
