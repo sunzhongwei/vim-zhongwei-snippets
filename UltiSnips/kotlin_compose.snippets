@@ -65,3 +65,45 @@ TextField(
     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
 )
 endsnippet
+
+snippet compose_alert_dialog "kotlin_compose" i
+val (${1:dialogVisibleForDel}, set${1/\w+\s*/\u$0/}) = remember { mutableStateOf(false) }
+
+if ($1) {
+    AlertDialog(
+        onDismissRequest = {
+            // Dismiss the dialog when the user clicks outside the dialog or on the back
+            // button. If you want to disable that functionality, simply use an empty
+            // onCloseRequest.
+            set${1/\w+\s*/\u$0/}(false)
+        },
+        title = {
+            Text(text = "Title")
+        },
+        text = {
+            Text(
+                "This area typically contains the supportive text " +
+                    "which presents the details regarding the Dialog's purpose."
+            )
+        },
+        confirmButton = {
+            TextButton(
+                onClick = {
+                    set${1/\w+\s*/\u$0/}(false)
+                }
+            ) {
+                Text("Confirm")
+            }
+        },
+        dismissButton = {
+            TextButton(
+                onClick = {
+                    set${1/\w+\s*/\u$0/}(false)
+                }
+            ) {
+                Text("Dismiss")
+            }
+        }
+    )
+}
+endsnippet
