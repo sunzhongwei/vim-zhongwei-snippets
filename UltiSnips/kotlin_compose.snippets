@@ -37,14 +37,14 @@ snippet v_center "kotlin_compose" i
 verticalAlignment = Alignment.CenterVertically,
 endsnippet
 
-snippet center "kotlin_compose" i
-horizontalArrangement = Arrangement.End
-Column(
-    modifier = Modifier.fillMaxWidth().padding(15.dp),
-    horizontalAlignment = Alignment.CenterHorizontally,
-) {
-    Text(text = "No items.")
-}
+snippet center_column "kotlin_compose" i
+modifier = Modifier.fillMaxWidth().padding(15.dp),
+horizontalAlignment = Alignment.CenterHorizontally,
+endsnippet
+
+snippet center_row "kotlin_compose" i
+modifier = Modifier.fillMaxWidth().padding(25.dp),
+horizontalArrangement = Arrangement.Center,
 endsnippet
 
 snippet compose_modifier "kotlin_compose" i
