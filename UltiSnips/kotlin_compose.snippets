@@ -117,3 +117,22 @@ if ($1) {
     )
 }
 endsnippet
+
+snippet compose_button "kotlin_compose" i
+Row (
+    modifier = Modifier
+        .fillMaxWidth()
+        .padding(25.dp),
+    horizontalArrangement = Arrangement.Center,
+){
+    Button(
+        onClick = { setDialogVisibleForDel(true) },
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = Color.White,
+            contentColor = Color.Red
+        )
+    ) {
+        Text(text = "Delete")
+    }
+}
+endsnippet
