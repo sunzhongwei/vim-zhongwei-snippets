@@ -342,3 +342,24 @@ wx.makePhoneCall({
   phoneNumber: ${1:Tel} 
 })
 endsnippet
+
+snippet submit "javascript_wx" i
+submit: function() {
+  if (!this.validate()) {
+    return;
+  }
+},
+
+validate: function() {
+  if (!this.data.formData.name) {
+    wx.showToast({
+      title: '请输入联系人姓名',
+      icon: 'none',  // or 'none'
+      duration: 2000
+    });
+    return false;
+  }
+
+  return true;
+},
+endsnippet
