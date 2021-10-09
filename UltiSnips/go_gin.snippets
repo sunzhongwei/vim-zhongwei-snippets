@@ -188,3 +188,9 @@ snippet gin_uid "go_gin" i
 uid, _ := c.Get("uid")
 role, _ := c.Get("role")
 endsnippet
+
+snippet gin_search_filter "go_gorm" i
+if ${1:param} := c.DefaultQuery("${1/\w+\s*/\u$0/}", ""); $1 != "" {
+    db = db.Where("$1", $1)
+}
+endsnippet
