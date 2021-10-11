@@ -27,3 +27,36 @@ snippet tm_location_change "javascript_tampermonkey" i
 window.location.href = ${1:NEW_URL};
 throw new Error("Stopped JavaScript.");
 endsnippet
+
+snippet tm_http_get "javascript_tampermonkey" i
+GM_xmlhttpRequest({
+  method:     "GET",
+  url:        "",
+  onload:     function (response) {
+    console.log(response.responseText);
+    var rsp = JSON.parse(response.responseText);
+    if (rsp.code != 200) {
+      console.log("error: rsp code " + rsp.code);
+      return;
+    }
+  }
+});
+endsnippet
+
+snippet tm_http_post "javascript_tampermonkey" i
+let data = {
+};
+GM_xmlhttpRequest({
+  method:     "POST",
+  url:        "",
+  data:       data,
+  onload:     function (response) {
+    console.log(response.responseText);
+    var rsp = JSON.parse(response.responseText);
+    if (rsp.code != 200) {
+      console.log("error: rsp code " + rsp.code);
+      return;
+    }
+  }
+});
+endsnippet
