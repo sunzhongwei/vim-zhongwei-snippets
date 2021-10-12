@@ -14,6 +14,14 @@ snippet print "go" i
 fmt.Println(${1:VAR})
 endsnippet
 
+snippet print_format "go" i
+fmt.Printf("%d", s) 
+endsnippet
+
+snippet string_format "go" i
+fmt.Sprintf("%s %d", "age: ", 18)
+endsnippet
+
 snippet log "go" i
 log.Println(${1:VAR})
 endsnippet
@@ -54,14 +62,6 @@ endsnippet
 
 snippet trim "go" i
 strings.TrimSpace(${1:VAR});
-endsnippet
-
-snippet now_string "go" i
-time.Now().Format("2006-01-02 15:04:05")
-endsnippet
-
-snippet now "go" i
-time.Now()
 endsnippet
 
 snippet func "go" i
@@ -114,19 +114,10 @@ if err != nil {
 defer file.Close()
 endsnippet
 
-snippet format "go" i
-fmt.Sprintf("%s %d", "age: ", 18)
-endsnippet
-
 snippet loop_slice "go" i
 for i, v := range items {
 	fmt.Printf("%d %s\n", i, v)
 }
-endsnippet
-
-snippet ts "go" i
-t := time.Now()
-ts := t.Format("20060102_150405")
 endsnippet
 
 snippet ensure_dir "go" i
@@ -137,14 +128,29 @@ if _, err := os.Stat(dir); os.IsNotExist(err) {
 }
 endsnippet
 
-snippet today_string "go" i
-today := time.Now().Local().Format("2006-01-02 15:04:05")
-endsnippet
-
 snippet len "go" i
 len(${1:SLICE})
 endsnippet
 
-snippet sleep "go" i
+snippet time_today_string "go" i
+today := time.Now().Local().Format("2006-01-02 15:04:05")
+endsnippet
+
+snippet time_sleep "go" i
 time.Sleep(time.Millisecond*6000)
 endsnippet
+
+snippet time_now_string "go" i
+time.Now().Format("2006-01-02 15:04:05")
+endsnippet
+
+snippet time_now "go" i
+time.Now()
+endsnippet
+
+snippet time_ts "go" i
+t := time.Now()
+ts := t.Format("20060102_150405")
+endsnippet
+
+
