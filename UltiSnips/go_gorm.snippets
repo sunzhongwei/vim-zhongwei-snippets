@@ -12,6 +12,11 @@ models.DB.Model(&models.${1:MODEL}{}).
 	Count(&count)
 endsnippet
 
+snippet gorm_count_distinct "go_gorm" i
+var count int64 = 0
+models.DB.Model(&${1:Model}{}).Distinct("name").Count(&count)
+endsnippet
+
 snippet gorm_table_name "go_gorm" i
 func (${1:MODEL}) TableName() string {
 	return "${2:TABLE_NAME}"
