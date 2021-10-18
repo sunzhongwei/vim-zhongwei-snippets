@@ -14,7 +14,7 @@ endsnippet
 
 snippet gorm_count_distinct "go_gorm" i
 var count int64 = 0
-models.DB.Model(&${1:Model}{}).Distinct("name").Count(&count)
+models.DB.Model(&models.${1:Model}{}).Distinct("name").Count(&count)
 endsnippet
 
 snippet gorm_table_name "go_gorm" i
