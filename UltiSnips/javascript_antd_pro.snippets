@@ -460,3 +460,16 @@ useEffect(async () => {
 },
 endsnippet
 
+snippet antd_pro_route "javascript_antd_pro" i
+{
+  name: '$1',
+  icon: 'TeamOutlined',
+  path: '/${1/\w+\s*/\l$0/}',
+  component: './${1:Page}',
+  access: 'canAdmin',
+},
+
+// F12 in Vim
+mkdir -p src/pages/$1/components; touch src/pages/$1/index.tsx; touch src/pages/$1/components/CreateForm.tsx; 
+endsnippet
+
