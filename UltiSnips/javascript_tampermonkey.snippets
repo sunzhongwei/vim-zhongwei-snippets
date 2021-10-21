@@ -62,6 +62,19 @@ GM_xmlhttpRequest({
 endsnippet
 
 snippet tm_http_sync "javascript_tampermonkey" i
+// @grant        GM_xmlhttpRequest
+// @connect      localhost
+// @connect      127.0.0.1
+
+(async () => {
+  let rsp = await tmHttp("");
+  rsp = JSON.parse(rsp);
+  if (rsp.code != 200) {
+    console.log("error: rsp code " + rsp.code);
+    return;
+  }
+})();
+
 function tmHttp(url, method = "GET", data = {}) {
   return new Promise((resolve, reject) => {
     GM_xmlhttpRequest({
