@@ -60,3 +60,21 @@ GM_xmlhttpRequest({
   }
 });
 endsnippet
+
+snippet tm_http_sync "javascript_tampermonkey" i
+function tmHttp(url, method = "GET", data = {}) {
+  return new Promise((resolve, reject) => {
+    GM_xmlhttpRequest({
+      method: method,
+      url: url,
+      data: data,
+      onload: function(response) {
+        resolve(response.responseText);
+      },
+      onerror: function(error) {
+        reject(error);
+      }
+    });
+  });
+}
+endsnippet
