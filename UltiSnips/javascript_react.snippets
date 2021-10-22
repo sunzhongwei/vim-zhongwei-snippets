@@ -16,3 +16,23 @@ snippet react_if "javascript_react" i
 {${1:Condition} &&
 }
 endsnippet
+
+snippet react_get_data "javascript_react" i
+import React, { useState, useEffect } from 'react'
+import { getItems } from '@/services/ant-design-pro/api';
+
+const [data, setData] = useState({});
+
+useEffect(() => {
+  getData()
+  const timer = setInterval(getData, 10000)
+  return () => clearInterval(timer)
+}, [])
+
+function getData() {
+  (async () => {
+    let data = await getItems();
+    setData(data)
+  })();
+}
+endsnippet
