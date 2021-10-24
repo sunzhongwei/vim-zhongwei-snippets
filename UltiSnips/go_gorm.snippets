@@ -73,7 +73,7 @@ snippet gorm_update_using_select "go_gorm 可以更新零值" i
 models.DB.Select("field1", "field2").Updates(${1:object})
 endsnippet
 
-snippet snip_update_by_map "go_gorm" i
+snippet gorm_update_by_map "go_gorm" i
 models.DB.Model(&models.${1:StructName}{}).
     Select("field1", "field2").
     Where("id = ?", ${2:ID}).
