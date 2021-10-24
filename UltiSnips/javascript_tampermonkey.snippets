@@ -95,3 +95,15 @@ function tmHttp(url, method = "GET", data = {}) {
   });
 }
 endsnippet
+
+snippet tm_http_call "javascript_tampermonkey" i
+let apiUrl = server_host + "/api/";
+let data = {
+};
+let rsp = await tmHttp(apiUrl, "POST", data);
+console.log(rsp);
+rsp = JSON.parse(rsp)
+if (rsp.err_code == 0) {
+  // TODO
+}
+endsnippet
