@@ -73,6 +73,13 @@ snippet gorm_update_using_select "go_gorm 可以更新零值" i
 models.DB.Select("field1", "field2").Updates(${1:object})
 endsnippet
 
+snippet snip_update_by_map "go_gorm" i
+models.DB.Model(&models.${1:StructName}{}).
+    Select("field1", "field2").
+    Where("id = ?", ${2:ID}).
+    Updates(map[string]interface{}{"name": "hello", "age": 18, "active": false})
+endsnippet
+
 snippet gorm_delete "go_gorm" i
 models.DB.Delete(&${1:MODEL_OBJECT})
 endsnippet
@@ -81,7 +88,7 @@ snippet gorm_delete_hard "go_gorm" i
 models.DB.Unscoped().Delete(&${1:MODEL_OBJECT})
 endsnippet
 
-snippet gorm_update_by_add "go_gorm" i
+snippet gorm_update_add "go_gorm" i
 models.DB.Model(&models.${1:StructName}{}).
     Where("id = ?", ${2:ID}).
     Update("${3:field}", gorm.Expr("$3 + ?", 1))
