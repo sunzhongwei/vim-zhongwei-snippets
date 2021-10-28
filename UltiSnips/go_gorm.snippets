@@ -149,3 +149,7 @@ models.DB.Exec(`
 `)
 endsnippet
 
+snippet gorm_sum "go_gorm" i
+var sum${2/\w+\s*/\u$0/}s []int64   // slice 的第一个数字就是 sum 值
+models.DB.Model(&models.${1:Item}{}).Select("sum(${2:field}) as all_$2s").Pluck("all_$2s", &sum${2/\w+\s*/\u$0/}s)
+endsnippet
