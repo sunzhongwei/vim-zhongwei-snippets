@@ -479,7 +479,15 @@ endsnippet
 
 snippet antd_pro_download_btn "javascript_antd_pro" i
 import { DownloadOutlined } from '@ant-design/icons';
-import { exportDataAsExcel } from '@/services/ant-design-pro/api';
+import { export${1:Data}AsExcel } from '@/services/ant-design-pro/api';
+
+export async function export$1AsExcel(options?: { [key: string]: any }) {
+  return request('/api/admin/export$1AsExcel', {
+    method: 'POST',
+    data: options,
+    responseType: 'blob',
+  });
+}
 
 const [downloadingExcel, setDownloadingExcel] = useState(false);
 
@@ -509,7 +517,7 @@ search={{
             params.EndTime = params.Time[1];
           }
           try {
-            let res = await exportDataAsExcel(params);
+            let res = await export$1AsExcel(params);
             const blob = new Blob([res]);
             download(blob, "a.xlsx");
           } catch (e) {
