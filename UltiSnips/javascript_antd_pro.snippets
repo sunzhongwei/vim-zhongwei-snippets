@@ -477,3 +477,51 @@ snippet antd_pro_route "javascript_antd_pro" i
 mkdir -p src/pages/$1/components; touch src/pages/$1/index.tsx; touch src/pages/$1/components/CreateForm.tsx; 
 endsnippet
 
+snippet antd_pro_download_btn "javascript_antd_pro" i
+import { DownloadOutlined } from '@ant-design/icons';
+import { exportDataAsExcel } from '@/services/ant-design-pro/api';
+
+const [downloadingExcel, setDownloadingExcel] = useState(false);
+
+function download(blobData: Blob, forDownLoadFileName: string | null): any {
+  const aLink = document.createElement('a');
+  document.body.appendChild(aLink);
+  aLink.style.display = 'none';
+  aLink.href = window.URL.createObjectURL(blobData);
+  aLink.setAttribute('download', forDownLoadFileName);
+  aLink.click();
+  document.body.removeChild(aLink);
+}
+
+search={{
+  labelWidth: 120,
+  optionRender: (searchConfig, formProps, dom) => [
+    ...dom.reverse(),
+    <Button icon={<DownloadOutlined />}
+      loading={downloadingExcel}
+      onClick={(e) => {
+        console.log(formProps);
+        setDownloadingExcel(true);
+        (async () => {
+          let params = formProps.form.getFieldsValue();
+          if (params.Time && params.Time.length == 2) {
+            params.StartTime = params.Time[0];
+            params.EndTime = params.Time[1];
+          }
+          try {
+            let res = await exportDataAsExcel(params);
+            const blob = new Blob([res]);
+            download(blob, "a.xlsx");
+          } catch (e) {
+            message.error('下载失败');
+          } finally {
+            setDownloadingExcel(false);
+          }
+        })();
+      }}
+      >
+      导出 Excel
+    </Button>
+  ],
+}}
+endsnippet
