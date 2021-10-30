@@ -244,7 +244,7 @@ func Export$1AsExcel(c *gin.Context) {
 	}
 
 	// 合并单元格
-	f.MergeCell("Sheet1", "A1", "B1")
+	xlsx.MergeCell("Sheet1", "A1", "B1")
 
 	buf, _ := xlsx.WriteToBuffer()
 	c.Data(http.StatusOK, "application/octet-stream", buf.Bytes())
