@@ -533,3 +533,33 @@ search={{
   ],
 }}
 endsnippet
+
+snippet antd_pro_import_excel "javascript_antd_pro" i
+import { Button, message, Upload } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
+
+const handleExcelChange = ({ file, fileList, event }) => {
+  const { status, response } = file
+  if (status === 'done') {
+    // 上传成功
+    const { data, err_code } = response
+    if (err_code == 0) {
+      message.success("Excel 上传成功")
+      // 刷新列表
+      if (actionRef.current) {
+        actionRef.current.reload();
+      }
+    } else {
+      message.error("Excel 上传失败")
+    }
+  }
+};
+
+<Upload
+  showUploadList={false}
+  action="/api/ImportItemExcel"
+  onChange={handleExcelChange}
+>
+  <Button icon={<UploadOutlined />}>Excel 导入</Button>
+</Upload>,
+endsnippet
