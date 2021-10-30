@@ -522,6 +522,7 @@ search={{
             download(blob, "a.xlsx");
           } catch (e) {
             message.error('下载失败');
+            console.log(e);
           } finally {
             setDownloadingExcel(false);
           }
