@@ -246,6 +246,10 @@ func Export$1AsExcel(c *gin.Context) {
 	// 合并单元格
 	xlsx.MergeCell("Sheet1", "A1", "B1")
 
+	// 设置宽度
+	xlsx.SetColWidth("Sheet1", "B", "B", 25)
+	xlsx.SetColWidth("Sheet1", "E", "H", 15) // 工作表上 E 到 H 列的宽度为 15
+
 	buf, _ := xlsx.WriteToBuffer()
 	c.Data(http.StatusOK, "application/octet-stream", buf.Bytes())
 }
