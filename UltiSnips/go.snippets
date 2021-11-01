@@ -78,6 +78,10 @@ snippet str "go" i
 strconv.Itoa(${1:INT})
 endsnippet
 
+snippet str_from_uint "go" i
+strconv.FormatUint(uint64(${1:UINT}), 10)
+endsnippet
+
 snippet split "go" i
 strings.Split(${1:STRING}, ",")
 endsnippet
@@ -164,4 +168,6 @@ t := time.Now()
 ts := t.Format("20060102_150405")
 endsnippet
 
-
+snippet time_format "go" i
+Format("2006-01-02 15:04:05")
+endsnippet
