@@ -61,7 +61,7 @@ GM_xmlhttpRequest({
 });
 endsnippet
 
-snippet tm_http_sync "javascript_tampermonkey" i
+snippet tm_http_sync_wrap "javascript_tampermonkey" i
 // @grant        GM_xmlhttpRequest
 // @connect      localhost
 // @connect      127.0.0.1
@@ -96,7 +96,7 @@ function tmHttp(url, method = "GET", data = {}) {
 }
 endsnippet
 
-snippet tm_http_call "javascript_tampermonkey" i
+snippet tm_http "javascript_tampermonkey" i
 let apiUrl = server_host + "/api/";
 let data = {
 };
