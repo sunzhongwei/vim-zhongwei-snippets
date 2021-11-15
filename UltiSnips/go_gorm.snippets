@@ -37,6 +37,19 @@ var ${1/\w+\s*/\l$0/}List []models.${1:Model}
 models.DB.Find(&${1/\w+\s*/\l$0/}List)
 endsnippet
 
+snippet gorm_find_all_raw "go_gorm" i
+var ${1/\w+\s*/\l$0/}s []models.${1:Model}
+models.DB.Raw(`
+    SELECT name, latitude, longitude, SQRT(
+        POW(69.1 * (latitude - ?), 2) +
+        POW(69.1 * (? - longitude) * COS(latitude / 57.3), 2)) AS distance
+    FROM TableName 
+    HAVING distance < 200 
+    ORDER BY distance;
+`, lat, lng).
+    Scan(&${1/\w+\s*/\l$0/}s)
+endsnippet
+
 snippet gorm_find_all_pagination "go_gorm" i
 limit, _ := strconv.Atoi(c.Query("size"))
 page, _ := strconv.Atoi(c.Query("page"))
@@ -142,11 +155,11 @@ models.DB.Transaction(func(tx *gorm.DB) error {
 endsnippet
 
 snippet gorm_raw_sql "go_gorm" i
-models.DB.Exec(`
+models.DB.Exec(\`
     UPDATE user 
     SET status = 0
     WHERE status = 1 AND updated_at < NOW() - INTERVAL 21 DAY
-`)
+\`)
 endsnippet
 
 snippet gorm_sum "go_gorm" i
