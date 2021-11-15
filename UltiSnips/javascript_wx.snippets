@@ -242,6 +242,23 @@ wx.openLocation({
 })
 endsnippet
 
+snippet wx_get_location "javascript_wx" i
+// app.json
+"permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息将用于被您老婆随时监控" 
+    }
+}
+wx.getLocation({
+ type: 'gcj02',     // GCJ02 坐标系。即火星坐标系，WGS84坐标系加密后的坐标系；Google国内地图、高德、QQ地图使用
+ success: res => {
+   console.log(res)
+   const lat = res.latitude
+   const lng = res.longitude
+ }
+})
+endsnippet
+
 snippet sub_message "javascript_wx" i
 if (wx.requestSubscribeMessage) {
   wx.requestSubscribeMessage({
