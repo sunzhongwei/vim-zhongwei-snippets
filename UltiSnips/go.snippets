@@ -82,6 +82,10 @@ snippet str_from_uint "go" i
 strconv.FormatUint(uint64(${1:UINT}), 10)
 endsnippet
 
+snippet float64 "go" i
+${2:FLOAT64}, _ := strconv.ParseFloat(${1:STR}, 64)
+endsnippet
+
 snippet split "go" i
 strings.Split(${1:STRING}, ",")
 endsnippet
