@@ -39,14 +39,14 @@ endsnippet
 
 snippet gorm_find_all_raw "go_gorm" i
 var ${1/\w+\s*/\l$0/}s []models.${1:Model}
-models.DB.Raw(`
+models.DB.Raw(\`
     SELECT name, latitude, longitude, SQRT(
         POW(69.1 * (latitude - ?), 2) +
         POW(69.1 * (? - longitude) * COS(latitude / 57.3), 2)) AS distance
     FROM TableName 
     HAVING distance < 200 
     ORDER BY distance;
-`, lat, lng).
+\`, lat, lng).
     Scan(&${1/\w+\s*/\l$0/}s)
 endsnippet
 
