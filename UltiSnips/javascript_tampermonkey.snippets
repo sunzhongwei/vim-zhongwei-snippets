@@ -107,3 +107,11 @@ if (rsp.err_code == 0) {
   // TODO
 }
 endsnippet
+
+snippet tm_page_handler "javascript_tampermonkey" i
+setInterval(() => {
+  (async () => {
+    await wait(500);
+  })();
+}, 10000);
+endsnippet
