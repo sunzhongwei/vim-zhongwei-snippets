@@ -132,10 +132,16 @@ for i, v := range items {
 }
 endsnippet
 
-snippet slice_global "go" i
+snippet global_slice "go" i
 var s = []string{
 	"1",          
 	"2",  
+}
+endsnippet
+
+snippet global_map "go" i
+var ${1:KVs} = map[string]int{
+    'key1': 1,
 }
 endsnippet
 
