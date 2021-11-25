@@ -175,6 +175,21 @@ this.setData({
 })
 endsnippet
 
+snippet wx_scene "javascript_wx" i
+// onLoad
+if (options.scene) {
+  // 示例：qid=999135&uid=12
+  // 测试编译参数：qid%3D999135%26uid%3D12, 通过 encodeURIComponent 得到
+  var scene = decodeURIComponent(options.scene);
+  var arrPara = scene.split("&");
+  var params = {};
+  for (let param in arrPara) {
+    arr = param.split("=");
+    params[arr[0]] = arr[1];
+  }
+}
+endsnippet
+
 snippet require "javascript_wx" i
 const util = require('../../utils/util.js');
 endsnippet
