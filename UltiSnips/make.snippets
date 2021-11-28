@@ -3,3 +3,10 @@ snippet make_go "make" i
 test:
 	go test -v ./...
 endsnippet
+
+snippet make_systemd "make" i
+# systemctl stop go_member
+# systemctl status go_member
+# cp member2 member
+# systemctl start go_member
+endsnippet
