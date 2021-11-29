@@ -12,6 +12,17 @@ with open('strings.json') as f:
     print(d)
 endsnippet
 
+snippet csv "python" i
+import csv
+
+rows = []
+
+with open("student.csv", 'w', newline='') as myfile:
+    wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
+    for row in rows:
+        wr.writerow(row)
+endsnippet
+
 snippet python3 "python" i
 #!/usr/bin/env python3
 
