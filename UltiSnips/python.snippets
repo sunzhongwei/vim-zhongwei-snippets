@@ -4,6 +4,14 @@ with open('${1:FILE}', 'r') as f:
         print line
 endsnippet
 
+snippet open_file_json "python" i
+import json
+
+with open('strings.json') as f:
+    d = json.load(f)
+    print(d)
+endsnippet
+
 snippet python3 "python" i
 #!/usr/bin/env python3
 
