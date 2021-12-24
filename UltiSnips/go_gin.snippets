@@ -59,6 +59,21 @@ if err := c.ShouldBindJSON(&${1:struct}); err != nil {
 endsnippet
 
 snippet gin_crud_for_antdpro "go_gin" i
+/*
+- [] mysql table
+- [] backup sql
+- [] go controller: gorm_crud snip 自带了 model 和 route; 修改可编辑字段
+- [] go model
+- [] go route
+- [] go 编译重启服务 
+- [] antd route
+- [] antd list
+- [] antd create
+- [] antd model
+- [] antd api
+- [] 线上建表
+*/
+
 // TODO: move routes to main.go 
 // $1
 admin.GET("/get$1s", controllers.Get$1s)
@@ -293,3 +308,4 @@ func Import$1Excel(c *gin.Context) {
 	})
 }
 endsnippet
+
