@@ -468,6 +468,10 @@ useEffect(async () => {
   valueEnum: ${1/\w+\s*/\l$0/}s,
   search: false,
 },
+
+if (value.$1 && value.$1.length) {
+    value.$1 = parseInt(value.$1)
+}
 endsnippet
 
 snippet antd_pro_route "javascript_antd_pro" i

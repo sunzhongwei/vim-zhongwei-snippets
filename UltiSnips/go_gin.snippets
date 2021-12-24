@@ -58,7 +58,7 @@ if err := c.ShouldBindJSON(&${1:struct}); err != nil {
 }
 endsnippet
 
-snippet gin_crud_for_antdpro "go_gin" i
+snippet gin_antdpro_crud "go_gin" i
 /*
 - [] mysql table
 - [] backup sql
@@ -309,3 +309,17 @@ func Import$1Excel(c *gin.Context) {
 }
 endsnippet
 
+snippet gin_antdpro_add_category "go_gin" i
+// model
+CategoryId int
+Category   Category
+
+// controller update：添加可以修改项 category_id
+// controller get list：preload
+db := models.DB.Preload("Category")
+
+// 重新编译，重启服务
+
+// antd edit 可以选择分类: antd_pro_select
+// antd 列表显示分类名称: 上一步已自动实现
+endsnippet
