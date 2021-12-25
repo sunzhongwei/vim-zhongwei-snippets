@@ -186,7 +186,7 @@ if (options.scene) {
   var arrPara = scene.split("&");
   var params = {};
   for (let param of arrPara) {
-    arr = param.split("=");
+    let arr = param.split("=");
     params[arr[0]] = arr[1];
   }
 
@@ -275,7 +275,7 @@ wx.chooseAddress({
 })
 endsnippet
 
-snippet title "javascript_wx" i
+snippet wx_set_title "javascript_wx" i
 wx.setNavigationBarTitle({
 	title: ${1:TITLE} 
 })
@@ -340,7 +340,7 @@ if (wx.requestSubscribeMessage) {
 }
 endsnippet
 
-snippet wx_loading "html_wxml" i
+snippet wx_show_loading "html_wxml" i
 wx.showLoading({title:'${1:TITLE}'});
 wx.hideLoading();
 endsnippet
@@ -443,4 +443,23 @@ validate: function() {
 
   return true;
 },
+endsnippet
+
+snippet wx_open_file "javascript_wx" i
+wx.showLoading({title:'下载中'});
+wx.downloadFile({
+  url: this.data.${1:FILE},
+  success: function (res) {
+    const filePath = res.tempFilePath
+    wx.openDocument({
+      filePath: filePath,
+      success: function (res) {
+        console.log('打开文档成功')
+      }
+    })
+  },
+  complete: () => {
+    wx.hideLoading();
+  }
+})
 endsnippet

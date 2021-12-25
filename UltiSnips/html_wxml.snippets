@@ -22,7 +22,7 @@ snippet wx_key_simple "html_wxml" i
 wx:key="*this"
 endsnippet
 
-snippet rich_text "html_wxml" i
+snippet wx_rich_text "html_wxml" i
 <view class="rich_wrap">
     <rich-text nodes="{{ ${1:VALUE} }}"></rich-text>
 </view>
@@ -944,7 +944,7 @@ snippet open_data_nickname "html_wxml" i
 <open-data type="userNickName"></open-data>
 endsnippet
 
-snippet button_contact "html_wxml" i
+snippet wx_button_contact "html_wxml" i
 <!--
 parent
 style="position: relative;"
@@ -952,4 +952,8 @@ style="position: relative;"
 <button open-type="contact" class="reset_btn sky_btn">
     联系客服
 </button>
+endsnippet
+
+snippet wx_click "html_wxml" i
+bindtap="${1:FUNCTION}"
 endsnippet
