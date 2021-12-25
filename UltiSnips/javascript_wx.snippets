@@ -178,8 +178,10 @@ endsnippet
 snippet wx_parse_scene "javascript_wx" i
 // onLoad
 if (options.scene) {
+  // 微信扫码进入
   // 示例：qid=999135&uid=12
-  // 测试编译参数：scene=qid%3D999135%26uid%3D12, 通过 encodeURIComponent 得到
+  // 测试编译参数，通过 encodeURIComponent 得到
+  // scene=qid%3D999135%26uid%3D12
   var scene = decodeURIComponent(options.scene);
   var arrPara = scene.split("&");
   var params = {};
@@ -187,7 +189,54 @@ if (options.scene) {
     arr = param.split("=");
     params[arr[0]] = arr[1];
   }
+
+  this.setData({
+    deviceId: parseInt(params["device_id"])
+  })
+} else {
+  // 小程序内跳转过来
+  let id = options.id;
+  this.setData({
+    deviceId: parseInt(id)
+  })
 }
+
+this.getDeviceInfo();
+endsnippet
+
+snippet wx_scan "javascript_wx" i
+goScan: function() {
+  wx.scanCode({
+    success: res => {
+      console.log(res)
+      let path = res.path;
+      let deviceId = this.parseScanPath(path);
+      // TODO
+      this.getSomething(deviceId);
+    },
+    fail: res => {
+      wx.showToast({
+        title: '无法解析',
+        icon: 'none',  // or 'none'
+        duration: 2000
+      });
+    },
+  })
+},
+
+/**
+ * - iOS表现：path: "pages/share/share?scene=sid%3D19"
+ * - Android表现：path: "pages/share/share?scene=sid=19"
+ **/
+parseScanPath: function(path) {
+  let items = path.split("%3D");
+  if (items.length == 2) {
+    return items[1];
+  } else {
+    let item2s = path.split("=");
+    return item2s[item2s.length - 1];
+  }
+},
 endsnippet
 
 snippet require "javascript_wx" i
