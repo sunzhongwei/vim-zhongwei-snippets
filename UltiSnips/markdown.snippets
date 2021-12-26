@@ -103,6 +103,24 @@ snippet todo "markdown" i
 
 endsnippet
 
+snippet todo_deploy "markdown" i
+## 线上部署
+- [] 微信小程序 app id 使用正式的
+- [] golang gin 后台 app id 替换为正式的
+- [] 线上 mysql 建库
+- [] mysql 导入数据表
+- [] 本地 makefile 实现打包，scp 发布。线上建个项目文件目录
+- [] 注册一个二级域名
+- [] 微信小程序后台，将新的二级域名加到可信域名里。https://repair.sunzhongwei.com
+- [] nginx 配置
+- [] 发布，scp .env 到线上，并修改配置
+- [] 设置 https
+- [] systemd 配置。防止演示时服务挂掉
+- [] 录入测试数据 
+- [] 线上部署步骤，保存为 markdown snippet
+- [] 本地测试，没问题后，再使用体验版测试，然后提交审核
+endsnippet
+
 # 参考：
 # https://github.com/honza/vim-snippets/blob/master/UltiSnips/markdown.snippets
 
