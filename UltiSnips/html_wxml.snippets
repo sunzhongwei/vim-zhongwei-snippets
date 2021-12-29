@@ -10,6 +10,10 @@ snippet image "html_wxml" i
 <image src="/images/${1:IMAGE}" style="width: ${2:30}rpx; height: ${3:30}rpx;"></image>
 endsnippet
 
+snippet wx_if "html_wxml" i
+<block wx:if="{{${1:CONDITION}}}">
+endsnippet
+
 snippet wx_for "html_wxml" i
 wx:for="{{${1:ARRAY}}}" wx:for-index="index" wx:for-item="item" wx:key="${2:id}"
 endsnippet
