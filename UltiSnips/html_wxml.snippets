@@ -961,3 +961,7 @@ endsnippet
 snippet wx_click "html_wxml" i
 bindtap="${1:FUNCTION}"
 endsnippet
+
+snippet wx_navigator_to_app "html_wxml" i
+<navigator target="miniProgram" open-type="navigate" app-id="${1:APPID}" path="" extra-data="" version="release">${1:NAME}</navigator>
+endsnippet
