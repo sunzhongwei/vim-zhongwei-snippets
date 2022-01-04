@@ -136,3 +136,55 @@ Row (
     }
 }
 endsnippet
+
+snippet compose_admob "kotlin_compose" i
+// app/build.gradle
+implementation 'com.google.android.gms:play-services-ads:20.4.0'
+
+// app/src/main/AndroidManifest.xml
+// 与 activity 平级
+<!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
+<meta-data
+    android:name="com.google.android.gms.ads.APPLICATION_ID"
+    android:value="ca-app-pub-3940256099942544~3347511713"/>
+
+// Main Activity
+import com.google.android.gms.ads.MobileAds
+// setContent 下方
+MobileAds.initialize(this) {}
+
+// compose 
+@Composable
+fun AdvertView(modifier: Modifier = Modifier) {
+    val isInEditMode = LocalInspectionMode.current
+    if (isInEditMode) {
+        Text(
+            modifier = modifier
+                .fillMaxWidth()
+                .background(Color.Red)
+                .padding(horizontal = 2.dp, vertical = 6.dp),
+            textAlign = TextAlign.Center,
+            color = Color.White,
+            text = "Advert Here",
+        )
+    } else {
+        AndroidView(
+            modifier = modifier.fillMaxWidth(),
+            factory = { context ->
+                AdView(context).apply {
+                    adSize = AdSize.BANNER
+                    //adUnitId = context.getString(R.string.ad_id_banner)
+                    adUnitId = "ca-app-pub-3940256099942544/6300978111"
+                    loadAd(AdRequest.Builder().build())
+                }
+            }
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun AdvertPreview() {
+    AdvertView()
+}
+endsnippet
