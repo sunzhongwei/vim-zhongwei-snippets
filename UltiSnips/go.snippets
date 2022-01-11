@@ -145,6 +145,18 @@ var ${1:KVs} = map[string]int{
 }
 endsnippet
 
+snippet global_const "go" i
+const (
+	debug = true 
+)
+endsnippet
+
+snippet global_var "go" i
+var (
+	debug = true 
+)
+endsnippet
+
 snippet ensure_dir "go" i
 // ensure dir
 dir := "./public/qrcode/"
@@ -181,3 +193,4 @@ endsnippet
 snippet time_format "go" i
 Format("2006-01-02 15:04:05")
 endsnippet
+
