@@ -10,3 +10,9 @@ snippet make_systemd "make" i
 # cp member2 member
 # systemctl start go_member
 endsnippet
+
+snippet make_fastapi "make" i
+.PHONY: run 
+run:
+	uvicorn main:app --reload
+endsnippet
