@@ -1,4 +1,4 @@
-snippet ` "Description" i
+snippet code "Description" i
 \`\`\`
 ${1:CODE}
 \`\`\`
@@ -6,6 +6,10 @@ endsnippet
 
 snippet link "Description" i
 [${1:NAME}](${2:URL})
+endsnippet
+
+snippet link_out "markdown" i
+<a href="${1:LINK}" rel="nofollow" target="_blank">$1</a>
 endsnippet
 
 snippet api "Description" i
