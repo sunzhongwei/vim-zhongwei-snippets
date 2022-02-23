@@ -45,13 +45,13 @@ snippet global "Description" i
 getApp().globalData.${1:VAR}
 endsnippet
 
-snippet set "Description" i
+snippet wx_set "Description" i
 this.setData({
 	${1:KEY}: this.data.$1 
 })
 endsnippet
 
-snippet modal "Description" i
+snippet wx_modal "Description" i
 wx.showModal({
   title: '提示',
   content: '这是一个模态弹窗',
@@ -90,7 +90,7 @@ bind${1:KEY}Input: function(e) {
 bindinput="bind$1Input"
 endsnippet
 
-snippet toast "javascript_wx" i
+snippet wx_toast "javascript_wx" i
 wx.showToast({
   title: '成功',
   icon: 'success',  // or 'none'
@@ -106,7 +106,7 @@ if (wx.pageScrollTo) {
 }
 endsnippet
 
-snippet http "javascript_wx" i
+snippet wx_http "javascript_wx" i
 let data = {
 };
 app.http({
@@ -118,7 +118,7 @@ app.http({
 });
 endsnippet
 
-snippet navigate "javascript_wx" i
+snippet wx_navigate "javascript_wx" i
 wx.navigateTo({
   url: '/pages/${1:PAGE}/$1'
 })
@@ -142,11 +142,11 @@ snippet e_input_change "javascript_wx" i
 e.detail.value
 endsnippet
 
-snippet app "javascript_wx" i
+snippet wx_app "javascript_wx" i
 const app = getApp()
 endsnippet
 
-snippet share "javascript_wx" i
+snippet wx_share "javascript_wx" i
 return {
   title: '',
   path: '/pages/index/index?id=123',
@@ -168,7 +168,7 @@ onShareTimeline: function () {
 },
 endsnippet
 
-snippet options "javascript_wx" i
+snippet wx_options "javascript_wx" i
 let id = options.id;
 this.setData({
   id: parseInt(id)
@@ -239,7 +239,7 @@ parseScanPath: function(path) {
 },
 endsnippet
 
-snippet require "javascript_wx" i
+snippet wx_require "javascript_wx" i
 const util = require('../../utils/util.js');
 endsnippet
 
@@ -260,7 +260,7 @@ wx.switchTab({
 })
 endsnippet
 
-snippet choose_address "javascript_wx" i
+snippet wx_choose_address "javascript_wx" i
 wx.chooseAddress({
   success (res) {
     console.log(res.userName)
@@ -281,14 +281,14 @@ wx.setNavigationBarTitle({
 })
 endsnippet
 
-snippet last_page_setting "javascript_wx" i
+snippet wx_last_page_setting "javascript_wx" i
 let pages = getCurrentPages();
 let lastPage = pages[pages.length - 2];
 lastPage.setData(data);
 wx.navigateBack();
 endsnippet
 
-snippet setClipboardData "javascript_wx" i
+snippet wx_setClipboardData "javascript_wx" i
 wx.setClipboardData({
   data: 'data',
   success (res) {
@@ -296,7 +296,7 @@ wx.setClipboardData({
 })
 endsnippet
 
-snippet open_location "javascript_wx" i
+snippet wx_open_location "javascript_wx" i
 wx.openLocation({
   latitude: Number(this.data.info.lat),
   longitude: Number(this.data.info.lng),
@@ -323,7 +323,7 @@ wx.getLocation({
 })
 endsnippet
 
-snippet sub_message "javascript_wx" i
+snippet wx_sub_message "javascript_wx" i
 if (wx.requestSubscribeMessage) {
   wx.requestSubscribeMessage({
       tmplIds: [''],
@@ -370,7 +370,7 @@ innerAudioContext.onError((res) => {
 })
 endsnippet
 
-snippet clipboard_set "javascript_wx" i
+snippet wx_clipboard_set "javascript_wx" i
 wx.setClipboardData({
   data: this.data.shareContent,
   success (res) {
@@ -383,11 +383,11 @@ wx.setClipboardData({
 })
 endsnippet
 
-snippet text_selectable "javascript_wx" i
+snippet wx_text_selectable "javascript_wx" i
 <text user-select="{{true}}">{{content}}</text>
 endsnippet
 
-snippet prevent_duplicate_click "javascript_wx" i
+snippet wx_prevent_duplicate_click "javascript_wx" i
 // data
 requesting: false,
 
@@ -405,7 +405,7 @@ this.setData({
 })
 endsnippet
 
-snippet pull_down_refresh "javascript_wx" i
+snippet wx_pull_down_refresh "javascript_wx" i
 // json
 "enablePullDownRefresh": true,
 "backgroundColor": "#fff",
@@ -424,7 +424,7 @@ wx.makePhoneCall({
 })
 endsnippet
 
-snippet submit "javascript_wx" i
+snippet wx_submit "javascript_wx" i
 submit: function() {
   if (!this.validate()) {
     return;
