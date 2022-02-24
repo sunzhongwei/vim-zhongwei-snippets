@@ -463,3 +463,10 @@ wx.downloadFile({
   }
 })
 endsnippet
+
+snippet wx_preview "javascript_wx" i
+wx.previewImage({
+  current: ${1:imageUrl},  // 当前显示图片的 http 链接
+  urls: [imageUrl],  // 需要预览的图片 http 链接列表
+})
+endsnippet
