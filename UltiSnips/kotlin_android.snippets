@@ -122,3 +122,8 @@ endsnippet
 snippet translation "kotlin_android" i
 R.string.${1:NAME}
 endsnippet
+
+snippet android_navigate "kotlin_android" i
+val intent = Intent(this, ${1:NewActivity}::class.java)
+startActivity(intent)
+endsnippet
