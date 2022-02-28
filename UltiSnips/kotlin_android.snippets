@@ -127,3 +127,9 @@ snippet android_navigate "kotlin_android" i
 val intent = Intent(this, ${1:NewActivity}::class.java)
 startActivity(intent)
 endsnippet
+
+snippet android_click "kotlin_android" i
+val $1 = findViewById<Button>(R.id.${1:btn1})
+$1.setOnClickListener {
+}
+endsnippet
