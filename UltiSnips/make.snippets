@@ -1,7 +1,42 @@
 snippet make_go "make" i
+APP_NAME := main
+SERVER_USER := user 
+SERVER_HOST := www.sunzhongwei.com
+SERVER_DIR := ~/$(APP_NAME)
+LOCAL_FRONT_DIR := frontend
+SYSTEMD_SERVICE_NAME := go_$(APP_NAME).service
+
+TEMP_APP_NAME := $(APP_NAME)_NEW
+
+
 .PHONY: test
 test:
 	go test -v ./...
+
+.PHONY: deploy 
+deploy:
+	scp $(APP_NAME) $(SERVER_USER)@$(SERVER_HOST):$(SERVER_DIR)/$(TEMP_APP_NAME)
+	scp Makefile $(SERVER_USER)@$(SERVER_HOST):$(SERVER_DIR)/
+	scp .env $(SERVER_USER)@$(SERVER_HOST):$(SERVER_DIR)/.env.local
+
+.PHONY: deploy_front
+deploy_front:
+	cd $(LOCAL_FRONT_DIR) && tyarn build
+	tar cvzf frontend.tar.gz $(LOCAL_FRONT_DIR)/dist
+	scp frontend.tar.gz $(SERVER_USER)@$(SERVER_HOST):$(SERVER_DIR)/
+
+.PHONY: config_systemd 
+config_systemd:
+	sudo systemctl enable $(SYSTEMD_SERVICE_NAME) 
+	sudo systemctl start $(SYSTEMD_SERVICE_NAME) 
+	sudo systemctl status $(SYSTEMD_SERVICE_NAME) 
+
+.PHONY: reload 
+reload:
+	sudo systemctl stop $(SYSTEMD_SERVICE_NAME) 
+	sudo systemctl status $(SYSTEMD_SERVICE_NAME) 
+	cp $(TEMP_APP_NAME) $(APP_NAME) 
+	sudo systemctl start $(SYSTEMD_SERVICE_NAME) 
 endsnippet
 
 snippet make_systemd "make" i
