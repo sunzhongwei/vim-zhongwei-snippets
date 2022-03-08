@@ -18,6 +18,7 @@ deploy:
 	scp $(APP_NAME) $(SERVER_USER)@$(SERVER_HOST):$(SERVER_DIR)/$(TEMP_APP_NAME)
 	scp Makefile $(SERVER_USER)@$(SERVER_HOST):$(SERVER_DIR)/
 	scp .env $(SERVER_USER)@$(SERVER_HOST):$(SERVER_DIR)/.env.local
+	scp config/$(SYSTEMD_SERVICE_NAME) $(SERVER_USER)@$(SERVER_HOST):$(SERVER_DIR)/
 
 .PHONY: deploy_front
 deploy_front:

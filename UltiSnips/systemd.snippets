@@ -1,5 +1,8 @@
+snippet init "systemd" i
 # config file path:
-# /etc/systemd/system/go_member.service
+# - /etc/systemd/system/go_$2.service
+# - local backup: config dir
+# - file name: go_$2.service
 
 [Unit]
 Description=$2
@@ -21,3 +24,4 @@ StandardError=append:$1/log/err.log
 
 [Install]
 RequiredBy=multi-user.target
+endsnippet
