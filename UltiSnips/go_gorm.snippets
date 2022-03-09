@@ -178,3 +178,11 @@ models.DB.Model(&models.${1:Item}{}).
     Group("item").
     Scan(&results)
 endsnippet
+
+snippet gorm_many2many "go_gorm" i
+$1s []${1:Item} \`gorm:"many2many:${2:relationship_table_name};"\`
+endsnippet
+
+snippet gorm_ignore_field "go_gorm" i
+\`gorm:"-"\`
+endsnippet
