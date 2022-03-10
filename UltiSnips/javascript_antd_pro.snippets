@@ -355,7 +355,36 @@ renderText: (text, record) => {
 }
 endsnippet
 
-snippet antd_pro_datetime "javascript_antd_pro" i
+snippet antd_pro_field_date "javascript_antd_pro" i
+{
+  title: "日期",
+  dataIndex: "Date",
+  valueType: 'date',
+  search: false,
+},
+
+import moment from "moment";
+
+// 在 CreateForm 的 onFinish 里加上
+// 组件返回的日期格式
+if (value.Date) {
+  value.Date = moment(value.Date).format('YYYY-MM-DD');
+}
+
+// 编辑按钮的点击事件里，setCurrentRow 之前加上
+// 服务器返回日期字符串的解析
+if (record.Date) {
+  record.Date = moment(record.Date, 'YYYY-MM-DD');
+}
+
+// create form
+import {DatePicker} from 'antd';
+<Form.Item name="Date" label="日期">
+  <DatePicker format="YYYY-MM-DD" />
+</Form.Item>
+endsnippet
+
+snippet antd_pro_field_datetime "javascript_antd_pro" i
 import DatePicker2 from '@/components/DatePicker2';
 
 <Form.Item name="CreatedAt" label="日期时间" rules={[{ required: true }]}>
