@@ -186,3 +186,11 @@ endsnippet
 snippet gorm_ignore_field "go_gorm" i
 \`gorm:"-"\`
 endsnippet
+
+snippet gorm_between "go_gorm" i
+StartDate := c.DefaultQuery("StartDate", "")
+EndDate := c.DefaultQuery("EndDate", "")
+if StartDate != "" && EndDate != "" {
+	db = db.Where("`date` BETWEEN ? AND ?", StartDate, EndDate)
+}
+endsnippet
