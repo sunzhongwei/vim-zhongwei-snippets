@@ -362,6 +362,20 @@ snippet antd_pro_field_date "javascript_antd_pro" i
   valueType: 'date',
   search: false,
 },
+{
+  title: "日期区间",
+  dataIndex: 'Date',
+  valueType: 'dateRange',
+  search: {
+    transform: (value) => ({
+      // 转化值的 key, 一般用于事件区间的转化
+      // 如果不转换，就会变成 Time=1&Time=2
+      StartDate: value[0],
+      EndDate: value[1],
+    }),
+  },
+  hideInTable: true,
+},
 
 import moment from "moment";
 
