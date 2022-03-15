@@ -38,6 +38,10 @@ reload:
 	sudo systemctl status $(SYSTEMD_SERVICE_NAME) 
 	cp $(TEMP_APP_NAME) $(APP_NAME) 
 	sudo systemctl start $(SYSTEMD_SERVICE_NAME) 
+
+.PHONY: mysqldump 
+mysqldump:
+	mysqldump -u$(DB_USERNAME) -p$(DB_PASSWORD) $(DB_DATABASE) > database/sql/data.sql 
 endsnippet
 
 snippet make_systemd "make" i
