@@ -636,3 +636,37 @@ snippet antd_pro_link "javascript_antd_pro" i
   下载导入模板
 </Button>
 endsnippet
+
+snippet antd_pro_list_sum "javascript_antd_pro" i
+import { Card, Descriptions } from 'antd';
+
+const [count, setCount] = useState(0);
+
+request={async (
+  // 第一个参数 params 查询表单和 params 参数的结合
+  // 第一个参数中一定会有 pageSize 和  current ，这两个参数是 antd 的规范
+  params: T & {
+    pageSize: number;
+    current: number;
+  },
+  sort,
+  filter,
+) => {
+  // 这里需要返回一个 Promise,在返回之前你可以进行数据转化
+  // 如果需要转化参数可以在这里进行修改
+  const msg = await getItems(params);
+  setCount(msg.total);
+  return {
+    data: msg.data,
+    success: msg.success,
+    total: msg.total,
+  };
+}}
+tableExtraRender={(_, data) => (
+  <Card>
+    <Descriptions size="small" column={3}>
+      <Descriptions.Item label="总次数">{count} 次</Descriptions.Item>
+    </Descriptions>
+  </Card>
+)}
+endsnippet

@@ -168,7 +168,9 @@ type ${1/\w+\s*/\u$0/}Sum struct {
 }
 
 var total ${1/\w+\s*/\u$0/}Sum
-db.Select("sum(${1:field}) as total").Scan(&total)
+models.DB.Model(&models.Model{}).
+    Select("sum(${1:field}) as total").
+    Scan(&total)
 endsnippet
 
 snippet gorm_group_by "go_gorm" i
