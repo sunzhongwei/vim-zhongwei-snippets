@@ -141,7 +141,7 @@ func Get$1s(c *gin.Context) {
 	status, _ := strconv.Atoi(c.DefaultQuery("status", "0"))
 	name := c.DefaultQuery("name", "")
 	var items []models.$1
-	db := models.DB
+	db := models.DB.Model(&models.$1{})
 
 	if limit > 100 {
 		limit = 100
@@ -166,7 +166,7 @@ func Get$1s(c *gin.Context) {
 		Find(&items)
 
 	var count int64 = 0
-	models.DB.Model(&models.$1{}).Count(&count)
+	db.Count(&count)
 
 	c.JSON(http.StatusOK, gin.H{
 		"success": true,
