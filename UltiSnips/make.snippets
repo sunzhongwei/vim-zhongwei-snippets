@@ -37,7 +37,9 @@ config_systemd:
 .PHONY: reload 
 reload:
 	sudo systemctl stop $(SYSTEMD_SERVICE_NAME) 
+	sleep 3
 	sudo systemctl status $(SYSTEMD_SERVICE_NAME) 
+	sleep 3
 	cp $(TEMP_APP_NAME) $(APP_NAME) 
 	sudo systemctl start $(SYSTEMD_SERVICE_NAME) 
 
