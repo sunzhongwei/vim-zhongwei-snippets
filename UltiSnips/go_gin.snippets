@@ -164,7 +164,8 @@ func Get$1s(c *gin.Context) {
 	var count int64 = 0
 	db.Count(&count)
 
-	db.Order("id desc").
+	db.Select("*").
+		Order("id desc").
 		Limit(limit).
 		Offset((page - 1) * limit).
 		Find(&items)
