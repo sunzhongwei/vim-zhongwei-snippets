@@ -160,13 +160,14 @@ func Get$1s(c *gin.Context) {
 		db = db.Where("title LIKE ?", fmt.Sprintf("%%%s%%", keyword))
 	}
 
+	// count 提取执行，防止 offset 的干扰
+	var count int64 = 0
+	db.Count(&count)
+
 	db.Order("id desc").
 		Limit(limit).
 		Offset((page - 1) * limit).
 		Find(&items)
-
-	var count int64 = 0
-	db.Count(&count)
 
 	c.JSON(http.StatusOK, gin.H{
 		"success": true,
