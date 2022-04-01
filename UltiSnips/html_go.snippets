@@ -1,9 +1,25 @@
-snippet include "html_go" i
-{{ template "${1:FILE}.html" }}
+snippet go_include "html_go" i
+{{ template "${1:FILE}.html" . }}
 endsnippet
 
-snippet if_go "html_go" i
+snippet go_if "html_go" i
 {{ if .${1:CONDITION} }}
 {{ else }}
+{{ end }}
+endsnippet
+
+snippet go_layout "html_go" i
+{{ template "header.html" . }}
+${1:VALUE}
+{{ template "footer.html" . }}
+endsnippet
+
+snippet go_var "html_go" i
+{{ .${1:VAR} }}
+endsnippet
+
+snippet go_loop_slice "html_go" i
+{{ range $index, $${1:item} := .$1s }} 
+    {{ $$1 }} 
 {{ end }}
 endsnippet
