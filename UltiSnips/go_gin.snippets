@@ -7,6 +7,10 @@ c.Param("${1:ARG}")     // /api/:arg
 c.DefaultQuery("${2:ARG}", "")      // /api?arg=N
 endsnippet
 
+snippet gin_router_arg "go_gin" i
+:id
+endsnippet
+
 snippet gin_func_api "go_gin" i
 func ${1:NAME}(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
