@@ -46,6 +46,10 @@ reload:
 .PHONY: mysqldump 
 mysqldump:
 	mysqldump -u$(DB_USERNAME) -p$(DB_PASSWORD) $(DB_DATABASE) > database/sql/data.sql 
+
+.PHONY: mysqlimport
+mysqlimport:
+	mysql -u$(DB_USERNAME) -p$(DB_PASSWORD) $(DB_DATABASE) < database/sql/data.sql 
 endsnippet
 
 snippet make_systemd "make" i
