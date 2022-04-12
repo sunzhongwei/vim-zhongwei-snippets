@@ -37,6 +37,11 @@ var ${1/\w+\s*/\l$0/}List []models.${1:Model}
 models.DB.Find(&${1/\w+\s*/\l$0/}List)
 endsnippet
 
+snippet gorm_pluck "go_gorm" i
+var $1s []int
+models.DB.Model(&models.${2:Model}{}).Pluck("${1:field}", &$1s)
+endsnippet
+
 snippet gorm_find_all_raw "go_gorm" i
 var ${1/\w+\s*/\l$0/}s []models.${1:Model}
 models.DB.Raw(\`
