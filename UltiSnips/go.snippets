@@ -30,6 +30,12 @@ snippet log_detail "go" i
 log.Printf("%+v\n", ${1:VAR})
 endsnippet
 
+snippet log_debug "go" i
+log.Println("---------------- debug start ------------------")
+log.Println(${1:VAR})
+log.Println("---------------- debug end ------------------")
+endsnippet
+
 snippet for "go" i
 for i := 0; i < 10; i++ {
 }
