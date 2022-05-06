@@ -106,10 +106,18 @@ snippet gorm_delete_hard "go_gorm" i
 models.DB.Unscoped().Delete(&${1:MODEL_OBJECT})
 endsnippet
 
-snippet gorm_update_add "go_gorm" i
+snippet gorm_update_increment "go_gorm 缺点：会更新 updated_at" i
 models.DB.Model(&models.${1:StructName}{}).
     Where("id = ?", ${2:ID}).
     Update("${3:field}", gorm.Expr("$3 + ?", 1))
+endsnippet
+
+snippet gorm_update_increment_raw "go_gorm" i
+models.DB.Exec(`
+    UPDATE product 
+    SET view_count = view_count + 1
+    WHERE id = ? 
+`, id)
 endsnippet
 
 snippet struct_with_gorm_model "go_gorm" i
