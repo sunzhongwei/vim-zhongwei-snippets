@@ -8,6 +8,12 @@ snippet go_if "html_go" i
 {{ end }}
 endsnippet
 
+snippet go_if_eq "html_go" i
+{{ if eq .${1:VAR} "string" }}
+{{ else }}
+{{ end }}
+endsnippet
+
 snippet go_layout "html_go" i
 {{ template "header.html" . }}
 ${1:VALUE}
@@ -26,4 +32,8 @@ endsnippet
 
 snippet go_datetime_format "html_go" i
 Format "2006-01-02 15:04:05"
+endsnippet
+
+snippet go_localize "html_go" i
+{{ Localize "${1:TEXT}" }}
 endsnippet

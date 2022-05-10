@@ -36,6 +36,13 @@ log.Println(${1:VAR})
 log.Println("---------------- debug end ------------------")
 endsnippet
 
+snippet log_type "go" i
+log.Println("---------------- debug start ------------------")
+log.Println(reflect.TypeOf(${1:VAR}))  // language.Tag
+log.Println(reflect.TypeOf($1).Kind())  // struct
+log.Println("---------------- debug end ------------------")
+endsnippet
+
 snippet for "go" i
 for i := 0; i < 10; i++ {
 }
