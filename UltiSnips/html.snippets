@@ -140,3 +140,16 @@ endsnippet
 snippet favicon "html" i
 <link rel="icon" href="/public/images/favicon.ico">
 endsnippet
+
+snippet video "html" i
+<video width="100%" controls="controls" preload="metadata" id="${1:el}">
+    <source src="/test.mp4#t=9">
+</video>
+
+<script>
+    var $1 = document.getElementById('$1');
+    $1.addEventListener('play', () => {
+        $1.currentTime = 0;     // reset time. t=1.75
+    }, { once: true });
+</script>
+endsnippet
