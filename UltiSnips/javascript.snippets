@@ -514,6 +514,11 @@ function argOfUrl(url, name) {
 }
 endsnippet
 
+snippet url_param "javascript" i
+const urlParams = new URLSearchParams(window.location.search);
+const myParam = urlParams.get('myParam');
+endsnippet
+
 snippet input_radio_checked "javascript" i
 document.querySelector("input[name='year'][value='2021']").checked = true;
 endsnippet
