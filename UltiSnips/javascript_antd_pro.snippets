@@ -243,7 +243,9 @@ const CreateForm: React.FC<CreateFormProps> = (props) => {
             <Form
                 layout="vertical"
                 preserve={false}
-                initialValues={props.values}
+                initialValues={
+                    props.values.ID ? props.values : Object.assign(props.values, {})
+                }
                 onFinish={props.onFinish}
             >
                 <Form.Item name="ID" hidden={true}>
@@ -428,7 +430,7 @@ snippet antd_pro_field_number "javascript_antd_pro" i
   search: false,
 },
 <Form.Item name="$1" label="$2" tooltip="" rules={[{ required: true }]}>
-    <Input defaultValue="0" type="number" />
+    <Input type="number" />
 </Form.Item>
 
 if (value.$1 && value.$1.length) {
@@ -456,7 +458,7 @@ const options = [
   { label: "$5", value: 3, },
 ];
 <Form.Item name="$2" label="$1">
-  <Select options={options} defaultValue={0}>
+  <Select options={options}>
   </Select>
 </Form.Item>
 endsnippet
@@ -669,4 +671,8 @@ tableExtraRender={(_, data) => (
     </Descriptions>
   </Card>
 )}
+endsnippet
+
+snippet antd_form_default "javascript_antd_pro" i
+props.values.ID ? props.values : Object.assign(props.values, {${1:Var}: "zh"})
 endsnippet
