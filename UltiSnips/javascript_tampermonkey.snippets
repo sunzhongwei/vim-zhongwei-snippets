@@ -23,8 +23,14 @@ snippet tm_display "javascript_tampermonkey" i
 style.display   // != "none"
 endsnippet
 
-snippet tm_location_change "javascript_tampermonkey" i
+snippet tm_redirect "javascript_tampermonkey" i
 window.location.href = ${1:NEW_URL};
+throw new Error("Stopped JavaScript.");
+endsnippet
+
+snippet tm_redirect_hash "javascript_tampermonkey" i
+unsafeWindow.location.href = "${1:NEW_URL}";
+window.location.reload(true)
 throw new Error("Stopped JavaScript.");
 endsnippet
 
