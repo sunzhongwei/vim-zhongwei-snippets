@@ -92,7 +92,7 @@ until ${2:[[ ${1:condition} ]]}; do
 done
 endsnippet
 
-snippet while "while ... (done)"
+snippet sh_while "while ... (done)"
 while ${2:[[ ${1:condition} ]]}; do
 	${0:#statements}
 done
@@ -102,18 +102,18 @@ snippet update "Description" b
 cd /etc/apt/sources.list.d
 endsnippet
 
-snippet rsync "Description" i
+snippet sh_rsync "Description" i
 rsync --verbose  --progress --stats --compress \
       --recursive --times --perms --links --delete \
       --exclude "*.bak" --exclude "*~" --exclude "*.swp" --exclude='.git/' \
       /source_dir/ username@domain.com:/target_dir
 endsnippet
 
-snippet find "Description" i
-find ${1:DIR} -name ${2:FILE_NAME} 
+snippet sh_find "Description" i
+find ${1:DIR} -name ${2:FILE_NAME}
 endsnippet
 
-snippet loop_files "Description" i
+snippet sh_loop_files "Description" i
 FILES=*.txt
 for f in $FILES
 do
@@ -122,8 +122,13 @@ do
 done
 endsnippet
 
-snippet sed "sh" i
+snippet sh_sed "sh" i
 sed -i 's/0900_ai/general/g' database/sql/data.sql
+endsnippet
+
+snippet sh_var "sh" i
+NAME="Zara Ali"
+echo $NAME
 endsnippet
 
 # vim:ft=snippets:
