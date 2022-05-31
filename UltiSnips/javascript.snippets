@@ -358,7 +358,7 @@ ${1:items}[Math.floor(Math.random() * $1.length)]
 endsnippet
 
 # -----------------------------------------------------------
-# object 
+# object
 # -----------------------------------------------------------
 snippet object_keys_loop "javascript" i
 for (const [key, value] of Object.entries(${1:object})) {
@@ -434,7 +434,7 @@ Swal.fire(
 endsnippet
 
 snippet sweet_input "javascript" i
-// https://cdn.staticfile.org/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js 
+// https://cdn.staticfile.org/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js
 const {value: input_value} = await Swal.fire({
   title: '快递单号',
   input: 'text',
@@ -523,5 +523,8 @@ snippet input_radio_checked "javascript" i
 document.querySelector("input[name='year'][value='2021']").checked = true;
 endsnippet
 
-# vim:ft=snippets:
+snippet import "javascript" i
+import ${1/\w+\s*/\u$0/} from './${1:module}.js';
+endsnippet
 
+# vim:ft=snippets:
