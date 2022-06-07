@@ -69,7 +69,7 @@ snippet gin_antdpro_crud "go_gin" i
 - [] go controller: gorm_crud snip 自带了 model 和 route; 修改可编辑字段
 - [] go model
 - [] go route
-- [] go 编译重启服务 
+- [] go 编译重启服务
 - [] antd route
 - [] antd list
 - [] antd create
@@ -78,7 +78,7 @@ snippet gin_antdpro_crud "go_gin" i
 - [] 线上建表
 */
 
-// TODO: move routes to main.go 
+// TODO: move routes to main.go
 // $1
 admin.GET("/get$1s", controllers.Get$1s)
 admin.POST("/add$1", controllers.Add$1)
@@ -91,7 +91,7 @@ import "gorm.io/gorm"
 
 type $1 struct {
 	gorm.Model
-	Name string 
+	Name string
 }
 
 func ($1) TableName() string {
@@ -164,15 +164,21 @@ func Get$1s(c *gin.Context) {
 		db = db.Where("title LIKE ?", fmt.Sprintf("%%%s%%", keyword))
 	}
 
-	// count 提取执行，防止 offset 的干扰
-	var count int64 = 0
-	db.Count(&count)
+	// After a Chain method, Finisher Method, GORM returns an initialized
+	// *gorm.DB instance, which is NOT safe to reuse anymore, or new generated
+	// SQL might be polluted by the previous conditions.
+	// In order to reuse a initialized *gorm.DB instance, you can use a
+	// New Session Method to create a shareable *gorm.DB
+	db = db.Session(&gorm.Session{})
 
 	db.Select("*").
 		Order("id desc").
 		Limit(limit).
 		Offset((page - 1) * limit).
 		Find(&items)
+
+	var count int64 = 0
+	db.Count(&count)
 
 	c.JSON(http.StatusOK, gin.H{
 		"success": true,
@@ -338,7 +344,7 @@ snippet gin_antdpro_crud_package "go_gin" i
 - [] go controller: gorm_crud snip 自带了 model 和 route; 修改可编辑字段
 - [] go model
 - [] go route
-- [] go 编译重启服务 
+- [] go 编译重启服务
 - [] antd route
 - [] antd list
 - [] antd create
@@ -354,7 +360,7 @@ import "gorm.io/gorm"
 
 type $1 struct {
 	gorm.Model
-	Name string 
+	Name string
 }
 
 func ($1) TableName() string {
@@ -362,7 +368,7 @@ func ($1) TableName() string {
 }
 
 
-// TODO: move routes to main.go 
+// TODO: move routes to main.go
 ${1/\w+\s*/\l$0/}.RegisterAdminRouter(admin)
 ${1/\w+\s*/\l$0/}.RegisterWebRouter(web)
 
@@ -443,15 +449,21 @@ func Get$1s(c *gin.Context) {
 		db = db.Where("title LIKE ?", fmt.Sprintf("%%%s%%", keyword))
 	}
 
-	// count 提取执行，防止 offset 的干扰
-	var count int64 = 0
-	db.Count(&count)
+	// After a Chain method, Finisher Method, GORM returns an initialized
+	// *gorm.DB instance, which is NOT safe to reuse anymore, or new generated
+	// SQL might be polluted by the previous conditions.
+	// In order to reuse a initialized *gorm.DB instance, you can use a
+	// New Session Method to create a shareable *gorm.DB
+	db = db.Session(&gorm.Session{})
 
 	db.Select("*").
 		Order("id desc").
 		Limit(limit).
 		Offset((page - 1) * limit).
 		Find(&items)
+
+	var count int64 = 0
+	db.Count(&count)
 
 	c.JSON(http.StatusOK, gin.H{
 		"success": true,
@@ -478,4 +490,8 @@ func Remove$1(c *gin.Context) {
 		"err_msg":  "OK",
 	})
 }
+endsnippet
+
+snippet gorm_session "go_gin" i
+db = db.Session(&gorm.Session{})
 endsnippet

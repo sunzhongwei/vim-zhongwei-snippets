@@ -527,4 +527,11 @@ snippet import "javascript" i
 import ${1/\w+\s*/\u$0/} from './${1:module}.js';
 endsnippet
 
+snippet map_reduce "javascript" i
+const maxWidth = $1s.reduce(
+	(previousValue, ${1:item}) => Math.max(previousValue, $1.width),
+	0
+);
+endsnippet
+
 # vim:ft=snippets:
