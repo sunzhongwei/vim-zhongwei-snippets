@@ -382,18 +382,20 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// RegisterAdminRouter ...
 func RegisterAdminRouter(router *gin.RouterGroup) {
-	router.GET("/get$1s", Get$1s)
-	router.POST("/add$1", Add$1)
-	router.POST("/update$1", Update$1)
-	router.POST("/remove$1", Remove$1)
+	router.GET("/get$1s", get$1s)
+	router.POST("/add$1", add$1)
+	router.POST("/update$1", update$1)
+	router.POST("/remove$1", remove$1)
 }
 
+// RegisterWebRouter ...
 func RegisterWebRouter(router *gin.RouterGroup) {
 	router.GET("/${1/\w+\s*/\l$0/}/:id", Web$1Detail)
 }
 
-func Add${1:Item}(c *gin.Context) {
+func add${1:Item}(c *gin.Context) {
 	var item $1
 	if err := c.ShouldBindJSON(&item); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -407,7 +409,7 @@ func Add${1:Item}(c *gin.Context) {
 	})
 }
 
-func Update$1(c *gin.Context) {
+func update$1(c *gin.Context) {
 	var item $1
 	if err := c.ShouldBindJSON(&item); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -424,7 +426,7 @@ func Update$1(c *gin.Context) {
 	})
 }
 
-func Get$1s(c *gin.Context) {
+func get$1s(c *gin.Context) {
 	limit, _ := strconv.Atoi(c.Query("pageSize"))
 	page, _ := strconv.Atoi(c.Query("current"))
 	status, _ := strconv.Atoi(c.DefaultQuery("status", "0"))
@@ -476,7 +478,7 @@ type Remove$1Request struct {
 	Ids []int `json:"ids"`
 }
 
-func Remove$1(c *gin.Context) {
+func remove$1(c *gin.Context) {
 	var remove$1Request Remove$1Request
 	if err := c.ShouldBindJSON(&remove$1Request); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
