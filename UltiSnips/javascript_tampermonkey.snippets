@@ -114,7 +114,7 @@ if (rsp.err_code == 0) {
 }
 endsnippet
 
-snippet tm_page_handler_interval "javascript_tampermonkey" i
+snippet tm_handler_interval "javascript_tampermonkey" i
 setInterval(() => {
   (async () => {
     await wait(500);
@@ -122,10 +122,22 @@ setInterval(() => {
 }, 10000);
 endsnippet
 
-snippet tm_page_handler_while "javascript_tampermonkey" i
+snippet tm_handler_while "javascript_tampermonkey" i
 (async () => {
-    while (true) {
-        await wait(1000);
-    }
+  while (true) {
+    await wait(3000);
+  }
 })();
+endsnippet
+
+snippet tm_disable_alert "javascript_tampermonkey" i
+function disableAlert() {
+  unsafeWindow.alert = function(){return false};
+  window.alert = function(){return false};
+  Window.prototype.alert = function(){return false};
+
+  unsafeWindow.confirm = function(){return true};
+  window.confirm = function(){return true};
+  Window.prototype.confirm = function(){return true};
+}
 endsnippet
