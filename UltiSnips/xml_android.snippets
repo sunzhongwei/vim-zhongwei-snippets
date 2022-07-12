@@ -27,7 +27,7 @@ snippet android_text_view "xml_android" i
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
-	android:text="@string/${1:TEXT}" 
+	android:text="@string/${1:TEXT}"
     android:textSize="30sp"
     />
 endsnippet
@@ -37,7 +37,7 @@ snippet android_button "xml_android" i
     android:id="@+id/btn_${1:ID}"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="@string/${1:TEXT}" 
+    android:text="@string/${1:TEXT}"
     android:textSize="30sp"
     />
 endsnippet
@@ -56,7 +56,7 @@ snippet anroid_image "xml_android" i
    android:layout_width="wrap_content"
    android:layout_height="wrap_content"
    android:layout_gravity="center_horizontal"
-   android:src="@drawable/${1:FILE_NAME}" 
+   android:src="@drawable/${1:FILE_NAME}"
    />
 endsnippet
 
@@ -110,4 +110,13 @@ endsnippet
 snippet -- "xml_android" i
 <!--
 -->
+endsnippet
+
+snippet android_layout_weight1 "xml_android" i
+// 外层，例如 LinearLayout
+android:layout_height="match_parent"
+
+// 组件，例如 RecyclerView
+android:layout_weight="1"
+android:layout_height="0dp"
 endsnippet
