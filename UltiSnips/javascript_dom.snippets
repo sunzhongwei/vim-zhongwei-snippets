@@ -1,0 +1,9 @@
+snippet iframe_child "javascript_dom" i
+const iframe = document.querySelector('iframe');
+const iDoc = iframe.contentWindow.document;
+iDoc.querySelector('#text')
+endsnippet
+
+snippet iframe_parent "javascript_dom" i
+window.parent.document.querySelector("#text")
+endsnippet
