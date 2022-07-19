@@ -15,7 +15,7 @@ fmt.Println(${1:VAR})
 endsnippet
 
 snippet print_format "go" i
-fmt.Printf("%d", s) 
+fmt.Printf("%d", s)
 endsnippet
 
 snippet string_format "go" i
@@ -83,7 +83,7 @@ endsnippet
 
 snippet func "go" i
 func ${1:name}(${2:var} string) {
-    ${3://TODO}	
+    ${3://TODO}
 }
 endsnippet
 
@@ -155,8 +155,8 @@ endsnippet
 
 snippet global_slice "go" i
 var s = []string{
-	"1",          
-	"2",  
+	"1",
+	"2",
 }
 endsnippet
 
@@ -168,13 +168,13 @@ endsnippet
 
 snippet global_const "go" i
 const (
-	debug = true 
+	debug = true
 )
 endsnippet
 
 snippet global_var "go" i
 var (
-	debug = true 
+	debug = true
 )
 endsnippet
 
@@ -215,3 +215,11 @@ snippet datetime_format "go" i
 Format("2006-01-02 15:04:05")
 endsnippet
 
+snippet switch "go" i
+switch ${1:var} {
+    case 1:
+        fmt.Println("one")
+    default:
+        fmt.Println("default")
+    }
+endsnippet
