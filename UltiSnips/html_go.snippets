@@ -25,8 +25,8 @@ snippet go_var "html_go" i
 endsnippet
 
 snippet go_for "html_go" i
-{{ range $index, $${1:item} := .$1s }} 
-    {{ $$1 }} 
+{{ range $index, $${1:item} := .$1s }}
+    {{ $$1 }}
 {{ end }}
 endsnippet
 
@@ -36,4 +36,8 @@ endsnippet
 
 snippet go_localize "html_go" i
 {{ Localize "${1:TEXT}" }}
+endsnippet
+
+snippet go_comment "html_go" i
+{{/* ${1:a comment} */}}
 endsnippet
