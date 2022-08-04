@@ -220,6 +220,9 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import './CreateForm.css';
 
+const defaultValue = {
+};
+
 type CreateFormProps = {
     values: API.${1:Item};
     createFormVisible: boolean;
@@ -244,7 +247,7 @@ const CreateForm: React.FC<CreateFormProps> = (props) => {
                 layout="vertical"
                 preserve={false}
                 initialValues={
-                    props.values.ID ? props.values : Object.assign(props.values, {})
+                    props.values.ID ? props.values : Object.assign(props.values, defaultValue)
                 }
                 onFinish={props.onFinish}
             >
