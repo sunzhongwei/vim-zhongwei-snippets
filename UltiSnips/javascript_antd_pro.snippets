@@ -175,7 +175,7 @@ const $1s: React.FC = () => {
         createFormVisible={createFormVisible}
         values={currentRow || {}}
         onFinish={async (value) => {
-          // TODO: 
+          // TODO:
           // convert string to number
           if (value.Status.length) {
             value.Status = parseInt(value.Status);
@@ -270,9 +270,9 @@ endsnippet
 
 snippet antd_pro_api "javascript_antd_pro" i
   // TODO: typings.d.ts
-  // ----------------------------- 
-  // ${1:Item} 
-  // ----------------------------- 
+  // -----------------------------
+  // ${1:Item}
+  // -----------------------------
   type $1 = {
     ID?: string;
     CreatedAt?: string;
@@ -284,9 +284,9 @@ snippet antd_pro_api "javascript_antd_pro" i
     success?: boolean;
   }
 
-// ----------------------------- 
-// $1 
-// ----------------------------- 
+// -----------------------------
+// $1
+// -----------------------------
 export async function get$1s(
   params: {
     current?: number;
@@ -467,22 +467,25 @@ snippet antd_pro_field_select_async "javascript_antd_pro" i
 import React, {useState, useEffect} from 'react';
 import {get$1s} from '@/services/ant-design-pro/api';
 
-const [${1/\w+\s*/\l$0/}s, set${1:Item}s] = useState([]);
+const [${1/\w+\s*/\l$0/}s, set${1:Item}s] = useState<API.Option[]>([]);
 
-useEffect(async () => {
-  let data = await get$1s({current: 1, pageSize: 65535});
-  if (!data.success) {
-    return;
-  }
-  let options = data.data.map(item => ({
-    value: item.ID,
-    label: item.Name, 
-  }));
-  options.push({
-    value: 0,
-    label: "无",
-  });
-  set$1s(options);
+useEffect(() => {
+    async function fetchData() {
+        const data = await get$1s({current: 1, pageSize: 65535});
+        if (!data.success) {
+            return;
+        }
+        const ${1/\w+\s*/\l$0/}Options: API.Option[] = data.data!.map(item => ({
+            value: item.ID!,
+            label: item.Name,
+        }));
+        ${1/\w+\s*/\l$0/}Options.push({
+            value: 0,
+            label: "无",
+        });
+        set$1s(${1/\w+\s*/\l$0/}Options);
+    }
+    fetchData();
 }, []); // mount 和 unmount 时执行
 
 <Form.Item name="$1Id" label="$1">
@@ -491,7 +494,7 @@ useEffect(async () => {
 	showSearch
 	optionFilterProp="label"
 	filterOption={(input, option) =>
-		option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
+		option!.label.toLowerCase().indexOf(input.toLowerCase()) >= 0
 	}
   >
   </Select>
@@ -538,7 +541,7 @@ snippet antd_pro_route "javascript_antd_pro" i
 },
 
 // F12 in Vim
-mkdir -p src/pages/$1/components; touch src/pages/$1/index.tsx; touch src/pages/$1/components/CreateForm.tsx; 
+mkdir -p src/pages/$1/components; touch src/pages/$1/index.tsx; touch src/pages/$1/components/CreateForm.tsx;
 endsnippet
 
 snippet antd_pro_export_excel "javascript_antd_pro" i
