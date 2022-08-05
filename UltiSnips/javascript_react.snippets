@@ -39,5 +39,18 @@ endsnippet
 
 snippet react_comment "javascript_react" i
 {/*
-*/}  
+*/}
+endsnippet
+
+snippet react_click "javascript_react" i
+onClick={${1:click}Handler}
+
+function $1Handler() {
+}
+endsnippet
+
+snippet react_ref "javascript_react" i
+ref={${1:someRef}}
+
+const $1Ref = React.createRef<FormInstance<API.${2:User}>>();
 endsnippet
