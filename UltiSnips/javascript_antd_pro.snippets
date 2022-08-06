@@ -175,12 +175,6 @@ const $1s: React.FC = () => {
         createFormVisible={createFormVisible}
         values={currentRow || {}}
         onFinish={async (value) => {
-          // TODO:
-          // convert string to number
-          if (value.Status.length) {
-            value.Status = parseInt(value.Status);
-          }
-
           if (value.ID) {
             const success = await handleUpdate(value as API.$1);
             if (success) {
