@@ -370,11 +370,13 @@ package ${1/\w+\s*/\l$0/}
 
 import "gorm.io/gorm"
 
+// $1 ...
 type $1 struct {
 	gorm.Model
 	Name string
 }
 
+// TableName ...
 func ($1) TableName() string {
 	return "${1/\w+\s*/\l$0/}"
 }
@@ -404,7 +406,7 @@ func RegisterAdminRouter(router *gin.RouterGroup) {
 
 // RegisterWebRouter ...
 func RegisterWebRouter(router *gin.RouterGroup) {
-	router.GET("/${1/\w+\s*/\l$0/}/:id", Web$1Detail)
+	//router.GET("/${1/\w+\s*/\l$0/}/:id", Web$1Detail)
 }
 
 func add${1:Item}(c *gin.Context) {
@@ -486,6 +488,7 @@ func get$1s(c *gin.Context) {
 	})
 }
 
+// Remove$1Request ...
 type Remove$1Request struct {
 	Ids []int `json:"ids"`
 }
