@@ -48,8 +48,8 @@ models.DB.Raw(\`
     SELECT name, latitude, longitude, SQRT(
         POW(69.1 * (latitude - ?), 2) +
         POW(69.1 * (? - longitude) * COS(latitude / 57.3), 2)) AS distance
-    FROM TableName 
-    HAVING distance < 200 
+    FROM TableName
+    HAVING distance < 200
     ORDER BY distance;
 \`, lat, lng).
     Scan(&${1/\w+\s*/\l$0/}s)
@@ -114,9 +114,9 @@ endsnippet
 
 snippet gorm_update_increment_raw "go_gorm" i
 models.DB.Exec(`
-    UPDATE product 
+    UPDATE product
     SET view_count = view_count + 1
-    WHERE id = ? 
+    WHERE id = ?
 `, id)
 endsnippet
 
@@ -169,7 +169,7 @@ endsnippet
 
 snippet gorm_raw_sql "go_gorm" i
 models.DB.Exec(\`
-    UPDATE user 
+    UPDATE user
     SET status = 0
     WHERE status = 1 AND updated_at < NOW() - INTERVAL 21 DAY
 \`)
@@ -188,7 +188,7 @@ endsnippet
 
 snippet gorm_group_by "go_gorm" i
 type Result struct {
-  Item int  
+  Item int
   Total int64
 }
 var results []Result
@@ -212,4 +212,10 @@ EndDate := c.DefaultQuery("EndDate", "")
 if StartDate != "" && EndDate != "" {
 	db = db.Where("`date` BETWEEN ? AND ?", StartDate, EndDate)
 }
+endsnippet
+
+snippet gorm_time "go_gorm" i
+ID        uint
+CreatedAt time.Time
+UpdatedAt time.Time
 endsnippet
