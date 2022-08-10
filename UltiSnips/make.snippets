@@ -2,7 +2,7 @@ snippet make_go "make" i
 include .env
 
 APP_NAME := main
-SERVER_USER := user 
+SERVER_USER := user
 SERVER_HOST := www.sunzhongwei.com
 SERVER_DIR := ~/$(APP_NAME)
 LOCAL_FRONT_DIR := frontend
@@ -13,9 +13,9 @@ TEMP_APP_NAME := $(APP_NAME)_NEW
 
 .PHONY: test
 test:
-	go test -v ./...
+	go test -v ./... -cover
 
-.PHONY: deploy 
+.PHONY: deploy
 deploy:
 	scp $(APP_NAME) $(SERVER_USER)@$(SERVER_HOST):$(SERVER_DIR)/$(TEMP_APP_NAME)
 	scp Makefile $(SERVER_USER)@$(SERVER_HOST):$(SERVER_DIR)/
@@ -28,28 +28,28 @@ deploy_front:
 	tar cvzf frontend.tar.gz $(LOCAL_FRONT_DIR)/dist
 	scp frontend.tar.gz $(SERVER_USER)@$(SERVER_HOST):$(SERVER_DIR)/
 
-.PHONY: config_systemd 
+.PHONY: config_systemd
 config_systemd:
-	sudo systemctl enable $(SYSTEMD_SERVICE_NAME) 
-	sudo systemctl start $(SYSTEMD_SERVICE_NAME) 
-	sudo systemctl status $(SYSTEMD_SERVICE_NAME) 
+	sudo systemctl enable $(SYSTEMD_SERVICE_NAME)
+	sudo systemctl start $(SYSTEMD_SERVICE_NAME)
+	sudo systemctl status $(SYSTEMD_SERVICE_NAME)
 
-.PHONY: reload 
+.PHONY: reload
 reload:
-	sudo systemctl stop $(SYSTEMD_SERVICE_NAME) 
+	sudo systemctl stop $(SYSTEMD_SERVICE_NAME)
 	sleep 3
-	cp $(TEMP_APP_NAME) $(APP_NAME) 
-	sudo systemctl start $(SYSTEMD_SERVICE_NAME) 
+	cp $(TEMP_APP_NAME) $(APP_NAME)
+	sudo systemctl start $(SYSTEMD_SERVICE_NAME)
 	sleep 3
-	sudo systemctl status $(SYSTEMD_SERVICE_NAME) 
+	sudo systemctl status $(SYSTEMD_SERVICE_NAME)
 
-.PHONY: mysqldump 
+.PHONY: mysqldump
 mysqldump:
-	mysqldump -u$(DB_USERNAME) -p$(DB_PASSWORD) $(DB_DATABASE) > database/sql/data.sql 
+	mysqldump -u$(DB_USERNAME) -p$(DB_PASSWORD) $(DB_DATABASE) > database/sql/data.sql
 
 .PHONY: mysqlimport
 mysqlimport:
-	mysql -u$(DB_USERNAME) -p$(DB_PASSWORD) $(DB_DATABASE) < database/sql/data.sql 
+	mysql -u$(DB_USERNAME) -p$(DB_PASSWORD) $(DB_DATABASE) < database/sql/data.sql
 endsnippet
 
 snippet make_systemd "make" i
@@ -60,7 +60,7 @@ snippet make_systemd "make" i
 endsnippet
 
 snippet make_fastapi "make" i
-.PHONY: run 
+.PHONY: run
 run:
 	uvicorn server:app --reload
 endsnippet
