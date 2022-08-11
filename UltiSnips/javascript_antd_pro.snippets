@@ -541,7 +541,7 @@ snippet antd_pro_route "javascript_antd_pro" i
 mkdir -p src/pages/$1/components; touch src/pages/$1/index.tsx; touch src/pages/$1/components/CreateForm.tsx;
 endsnippet
 
-snippet antd_pro_export_excel "javascript_antd_pro" i
+snippet antd_pro_excel_export "javascript_antd_pro" i
 import { DownloadOutlined } from '@ant-design/icons';
 import { export${1:Data}AsExcel } from '@/services/ant-design-pro/api';
 
@@ -575,8 +575,8 @@ search={{
         console.log(formProps);
         setDownloadingExcel(true);
         (async () => {
-          let params = formProps.form.getFieldsValue();
-          if (params.Time && params.Time.length == 2) {
+          let params = formProps!.form!.getFieldsValue();
+          if (params.Time && params.Time.length === 2) {
             params.StartTime = params.Time[0];
             params.EndTime = params.Time[1];
           }
@@ -599,7 +599,7 @@ search={{
 }}
 endsnippet
 
-snippet antd_pro_import_excel "javascript_antd_pro" i
+snippet antd_pro_excel_import "javascript_antd_pro" i
 import { Button, message, Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 

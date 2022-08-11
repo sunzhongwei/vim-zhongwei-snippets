@@ -235,15 +235,27 @@ excelize "github.com/xuri/excelize/v2"
 
 admin.POST("/export$1AsExcel", controllers.Export$1AsExcel)
 
+type export$1Request struct {
+	StartTime string
+	EndTime   string
+	ID  string
+}
+
 func Export$1AsExcel(c *gin.Context) {
 	var items []models.${1:Item}
 	db := models.DB
 
-	if agentId := c.DefaultQuery("AgentId", ""); agentId != "" {
-		db = db.Where("agent_id", agentId)
+    var request export$1Request
+	if err := c.ShouldBindJSON(&request); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
 	}
-	startTime := c.DefaultQuery("StartTime", "")
-	endTime := c.DefaultQuery("EndTime", "")
+
+	if id := request.ID; id != "" {
+		db = db.Where("id", id)
+	}
+	startTime := request.StartTime
+	endTime := request.EndTime
 	if startTime != "" && endTime != "" {
 		db = db.Where("created_at BETWEEN ? AND ?", startTime, endTime)
 	}
