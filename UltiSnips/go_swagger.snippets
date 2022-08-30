@@ -5,6 +5,7 @@ snippet swag_doc_api "go_swagger" i
 // @Tags         tag
 // @Accept       json
 // @Produce      json
+// @Security     ApiKeyAuth
 // @Param        pageSize query int true "分页 limit, 单页显示数据条数。例如 20 条。"
 // @Param        current query int true "分页页数，第 N 页。默认从 1 开始。"
 // @Router       /api/someAPI [get]
@@ -20,5 +21,7 @@ snippet swag_doc_main "go_swagger" i
 // @contact.email   zhongwei.sun2008@gmail.com
 // @host            api.sunzhongwei.com
 // @BasePath        /
-// @securityDefinitions.basic  BasicAuth
+// @securityDefinitions.apikey ApiKeyAuth
+// @in header
+// @name Authorization
 endsnippet
