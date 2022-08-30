@@ -220,7 +220,8 @@ func Remove$1(c *gin.Context) {
 endsnippet
 
 snippet gin_uid "go_gin" i
-uid, _ := c.Get("uid")
+uidStr, _ := c.Get("uid")
+uid := uidStr.(uint)
 role, _ := c.Get("role")
 endsnippet
 
