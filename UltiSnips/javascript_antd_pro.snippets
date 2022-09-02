@@ -338,12 +338,12 @@ endsnippet
 
 snippet antd_pro_field_text "javascript_antd_pro" i
 {
-  title: "${2:Title}",
+  title: "$1",
   dataIndex: "${1:Var}",
   valueType: 'text',
   search: false,
 },
-<Form.Item name="$1" label="$2" rules={[{ required: true }]}>
+<Form.Item name="$1" label="$1" rules={[{ required: true }]}>
     <Input />
 </Form.Item>
 endsnippet
