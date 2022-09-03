@@ -354,6 +354,14 @@ renderText: (text, record) => {
 }
 endsnippet
 
+snippet antd_pro_field_render_html "javascript_antd_pro" i
+renderText: (text, record, index, action) => (
+  <a href={'/' + record.ArticleSlug} target="_blank" rel="noreferrer">
+    {record.ArticleSlug}
+  </a>
+)
+endsnippet
+
 snippet antd_pro_field_date "javascript_antd_pro" i
 {
   title: "日期",
