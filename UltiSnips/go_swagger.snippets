@@ -3,13 +3,14 @@ snippet swag_doc_api "go_swagger" i
 // @Description  first line
 // @Description  second line
 // @Tags         tag
-// @Accept       json
-// @Produce      json
+// @Accept       json | plain | x-www-form-urlencoded | mpfd
+// @Produce      json | xml | plain | html
 // @Security     ApiKeyAuth
 // @Param        pageSize query int true "分页 limit, 单页显示数据条数。例如 20 条。"
 // @Param        current query int true "分页页数，第 N 页。默认从 1 开始。"
 // @Router       /api/someAPI [get]
 // @success      200 {object} utils.AntdResult{data=[]any}
+// @Success      200 {string} string "ok"
 endsnippet
 
 snippet swag_doc_main "go_swagger" i
