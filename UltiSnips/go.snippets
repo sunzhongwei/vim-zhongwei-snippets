@@ -77,6 +77,16 @@ snippet assert "go" i
 assert.Equal(t, ${1:VALUE1}, ${2:VALUE2})
 endsnippet
 
+snippet assert_nil "go" i
+assert.Nil(t, ${1:VALUE})
+endsnippet
+
+snippet assert_not_nil "go" i
+if assert.NotNil(t, ${1:VALUE}) {
+    assert.Equal(t, "Something", $1.Error())
+}
+endsnippet
+
 snippet trim "go" i
 strings.TrimSpace(${1:VAR});
 endsnippet
