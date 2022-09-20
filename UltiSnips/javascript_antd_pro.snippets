@@ -435,12 +435,8 @@ snippet antd_pro_field_number "javascript_antd_pro" i
   search: false,
 },
 <Form.Item name="$1" label="$2" tooltip="" rules={[{ required: true }]}>
-    <InputNumber />
+    <InputNumber min={1} max={10} />
 </Form.Item>
-
-if (value.$1 && value.$1.length) {
-  value.$1 = parseInt(value.$1)
-}
 endsnippet
 
 snippet antd_pro_field_select "javascript_antd_pro" i
