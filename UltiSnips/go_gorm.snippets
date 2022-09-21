@@ -113,11 +113,11 @@ models.DB.Model(&models.${1:StructName}{}).
 endsnippet
 
 snippet gorm_update_increment_raw "go_gorm" i
-models.DB.Exec(`
+models.DB.Exec(\`
     UPDATE product
     SET view_count = view_count + 1
     WHERE id = ?
-`, id)
+\`, id)
 endsnippet
 
 snippet struct_with_gorm_model "go_gorm" i
@@ -218,4 +218,13 @@ snippet gorm_time "go_gorm" i
 ID        uint
 CreatedAt time.Time
 UpdatedAt time.Time
+endsnippet
+
+snippet gorm_null_time_now "go_gorm" i
+utils.NullTime{
+    NullTime: sql.NullTime{
+        Valid: true,
+        Time: time.Now()
+    }
+}
 endsnippet
