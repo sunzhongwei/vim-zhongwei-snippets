@@ -170,9 +170,9 @@ endsnippet
 snippet gorm_raw_sql "go_gorm" i
 models.DB.Exec(\`
     UPDATE user
-    SET status = 0
-    WHERE status = 1 AND updated_at < NOW() - INTERVAL 21 DAY
-\`)
+    SET status = 0, num = 2
+    WHERE status = ? AND updated_at < NOW() - INTERVAL 21 DAY
+\`, 1)
 endsnippet
 
 snippet gorm_sum "go_gorm" i
