@@ -534,4 +534,17 @@ const maxWidth = $1s.reduce(
 );
 endsnippet
 
+snippet http_await "javascript" i
+try {
+  const rsp = await someAPI({ ID: record.ID });
+  if (rsp.err_code === 0) {
+    message.success('请求成功');
+  } else {
+    message.error(`请求失败：${rsp.err_msg}`);
+  }
+} catch (error) {
+  message.error('请求失败请重试！');
+}
+endsnippet
+
 # vim:ft=snippets:
