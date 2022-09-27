@@ -59,6 +59,7 @@ snippet react_component "javascript_react" i
 import { Upload, Button, message } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import type { UploadProps } from 'antd';
+import { useState, useEffect } from 'react';
 
 /**
  * 使用方法
@@ -68,6 +69,7 @@ import UploadFile from '@/components/UploadFile';
 </Form.Item>
  * */
 function UploadFile(props: any) {
+  const [fileList, setFileList] = useState([]);
   const uploadProps: UploadProps = {
     action: props.action || '/api/uploadFile',
     maxCount: props.maxCount || 1,
@@ -87,8 +89,21 @@ function UploadFile(props: any) {
     },
   };
 
+  useEffect(() => {
+    const file = props.value;
+    const files = [];
+    files.push({
+      name: file,
+      status: 'done',
+    });
+    setFileList(files);
+
+    // componentWillUnmount
+    return () => {};
+  }, []); // mount 时执行
+
   return (
-    <Upload {...uploadProps}>
+    <Upload {...uploadProps} fileList={fileList}>
       <Button icon={<UploadOutlined />}>点击上传文件</Button>
     </Upload>
   );
