@@ -54,3 +54,45 @@ ref={${1:someRef}}
 
 const $1Ref = React.createRef<FormInstance<API.${2:User}>>();
 endsnippet
+
+snippet react_component "javascript_react" i
+import { Upload, Button, message } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
+import type { UploadProps } from 'antd';
+
+/**
+ * 使用方法
+import UploadFile from '@/components/UploadFile';
+<Form.Item name="KeyFile" label="apiclient_key.pem">
+  <UploadFile />
+</Form.Item>
+ * */
+function UploadFile(props: any) {
+  const uploadProps: UploadProps = {
+    action: props.action || '/api/uploadFile',
+    maxCount: props.maxCount || 1,
+    onChange(info) {
+      if (info.file.status === 'done') {
+        const rsp = info.file.response;
+        if (rsp.err_code === 0) {
+          message.success(`${info.file.name} 文件上传成功`);
+          // 调用父组件 onChange 方法, 将新值传递回去
+          props.onChange(rsp.data);
+        } else {
+          message.error(`${info.file.name} 文件上传失败`);
+        }
+      } else if (info.file.status === 'error') {
+        message.error(`${info.file.name} 文件上传失败`);
+      }
+    },
+  };
+
+  return (
+    <Upload {...uploadProps}>
+      <Button icon={<UploadOutlined />}>点击上传文件</Button>
+    </Upload>
+  );
+}
+
+export default UploadFile;
+endsnippet
