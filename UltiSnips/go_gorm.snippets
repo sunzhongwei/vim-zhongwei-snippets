@@ -228,3 +228,9 @@ utils.NullTime{
     }
 }
 endsnippet
+
+snippet gorm_session "go_gin" i
+db := models.DB.Model(&models.User{})
+db = db.Session(&gorm.Session{})
+db.Count(&count)
+endsnippet

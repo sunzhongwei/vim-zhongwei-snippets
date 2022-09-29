@@ -535,6 +535,7 @@ const maxWidth = $1s.reduce(
 endsnippet
 
 snippet http_await "javascript" i
+message.info("处理中 ...");
 try {
   const rsp = await someAPI({ ID: record.ID });
   if (rsp.err_code === 0) {
