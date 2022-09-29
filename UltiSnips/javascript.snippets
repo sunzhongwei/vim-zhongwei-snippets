@@ -540,7 +540,7 @@ try {
   if (rsp.err_code === 0) {
     message.success('请求成功');
   } else {
-    message.error(`请求失败：${rsp.err_msg}`);
+    message.error(\`请求失败：${rsp.err_msg}\`);
   }
 } catch (error) {
   message.error('请求失败请重试！');
