@@ -529,3 +529,7 @@ c.JSON(http.StatusOK, gin.H{
 })
 return
 endsnippet
+
+snippet gin_log "go_gin" i
+fmt.Fprintf(gin.DefaultWriter, "${1:hello world!}")
+endsnippet
