@@ -538,3 +538,23 @@ snippet gin_404 "go_gin" i
 WebNotFound(c)
 return
 endsnippet
+
+snippet gin_tool "go_gin" i
+func ${1:tool}(c *gin.Context) {
+	title, _ := ginI18n.GetMessage("${1/\w+\s*/\u$0/}Title")
+	description, _ := ginI18n.GetMessage("${1/\w+\s*/\u$0/}ShortDescription")
+	content, _ := ginI18n.GetMessage("${1/\w+\s*/\u$0/}Description")
+	lang := c.DefaultQuery("lang", "zh")
+
+	c.HTML(http.StatusOK, "$1.html", gin.H{
+		"title":       title,
+		"description": description,
+		"content":     utils.ConvertMarkdownToHTML(content),
+		"lang":        lang,
+		"curLangName": i18n.Langs[lang],
+		"supportedLangs": i18n.GetSupportedLangs([]string{
+			"zh", "en", "ja", "ko",
+		}),
+	})
+}
+endsnippet
