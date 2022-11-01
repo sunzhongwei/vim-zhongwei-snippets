@@ -143,6 +143,7 @@ func Update$1(c *gin.Context) {
 
 	models.DB.
 		Select("status", "updated_at").
+		Omit("some_field").
 		Updates(item)
 	//models.DB.Model(&item).Updates(item)
 
