@@ -234,3 +234,9 @@ db := models.DB.Model(&models.User{})
 db = db.Session(&gorm.Session{})
 db.Count(&count)
 endsnippet
+
+snippet gorm_preload_many2many "go_gorm" i
+Preload("Tags", func(tx *gorm.DB) *gorm.DB {
+    return tx.Select("Name")
+}).
+endsnippet
