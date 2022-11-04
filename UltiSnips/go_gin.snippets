@@ -20,40 +20,6 @@ func ${1:NAME}(c *gin.Context) {
 }
 endsnippet
 
-snippet gin_func_api_antd_table "go_gin" i
-func ${1:Name}(c *gin.Context) {
-	limit, _ := strconv.Atoi(c.Query("pageSize"))
-	page, _ := strconv.Atoi(c.Query("current"))
-	deviceId := c.DefaultQuery("DeviceId", "")
-	var items []models.${2:Model}
-	db := models.DB
-
-	if limit > 100 {
-		limit = 100
-	}
-	if page < 1 {
-		page = 1
-	}
-	if deviceId != "" {
-		db = db.Where("device_id", deviceId)
-	}
-
-	db.Order("id desc").
-		Limit(limit).
-		Offset((page - 1) * limit).
-		Find(&items)
-
-	var count int64 = 0
-	db.Model(&models.$2{}).Count(&count)
-
-	c.JSON(http.StatusOK, gin.H{
-		"success": true,
-		"total":   count,
-		"data":    items,
-	})
-}
-endsnippet
-
 snippet gin_parse_request "go_gin" i
 var $1 models.${1/\w+\s*/\u$0/}
 if err := c.ShouldBindJSON(&${1:struct}); err != nil {
@@ -75,21 +41,6 @@ if err := c.ShouldBindJSON(&request); err != nil {
 endsnippet
 
 snippet gin_antdpro_crud "go_gin" i
-/*
-- [] mysql table
-- [] backup sql
-- [] go controller: gorm_crud snip 自带了 model 和 route; 修改可编辑字段
-- [] go model
-- [] go route
-- [] go 编译重启服务
-- [] antd route
-- [] antd list
-- [] antd create
-- [] antd model
-- [] antd api
-- [] 线上建表
-*/
-
 // TODO: move routes to main.go
 // $1
 admin.GET("/get$1s", controllers.Get$1s)
@@ -97,19 +48,7 @@ admin.POST("/add$1", controllers.Add$1)
 admin.POST("/update$1", controllers.Update$1)
 admin.POST("/remove$1", controllers.Remove$1)
 
-
-// TODO: move model
-import "gorm.io/gorm"
-
-type $1 struct {
-	gorm.Model
-	Name string
-}
-
-func ($1) TableName() string {
-	return "${1/\w+\s*/\l$0/}"
-}
-
+package controllers
 
 import (
 	"fmt"
@@ -120,6 +59,15 @@ import (
 )
 
 
+// @Summary      添加${2:SomeName}
+// @Description  first line
+// @Tags         ${3:SomeTag}
+// @Accept       json
+// @Produce      json
+// @Param        request body models.$1Info true "query params"
+// @Security     ApiKeyAuth
+// @Router       /api/admin/add$1 [post]
+// @success      200 {object} utils.AntdResult{data=[]any}
 func Add${1:Item}(c *gin.Context) {
 	var item models.$1
 	if err := c.ShouldBindJSON(&item); err != nil {
@@ -128,12 +76,26 @@ func Add${1:Item}(c *gin.Context) {
 	}
 	if result := models.DB.Create(&item); result.Error != nil {
 		// Error 1062: Duplicate entry
+		c.JSON(http.StatusOK, gin.H{
+			"success": false,
+			"err_msg": result.Error,
+		})
+		return
 	}
 	c.JSON(http.StatusOK, gin.H{
 		"success": true,
 	})
 }
 
+// @Summary      修改$2
+// @Description
+// @Tags         $3
+// @Accept       json
+// @Produce      json
+// @Param        request body models.$1Info true "query params"
+// @Security     ApiKeyAuth
+// @Router       /api/admin/update$1 [post]
+// @success      200 {object} utils.AntdResult{data=[]any}
 func Update$1(c *gin.Context) {
 	var item models.$1
 	if err := c.ShouldBindJSON(&item); err != nil {
@@ -141,17 +103,35 @@ func Update$1(c *gin.Context) {
 		return
 	}
 
-	models.DB.
+	result := models.DB.
 		Select("status", "updated_at").
 		Omit("some_field").
 		Updates(item)
 	//models.DB.Model(&item).Updates(item)
+	if result.Error != nil {
+		// Error 1062: Duplicate entry
+		c.JSON(http.StatusOK, gin.H{
+			"success": false,
+			"err_msg": result.Error,
+		})
+		return
+	}
 
 	c.JSON(http.StatusOK, gin.H{
 		"success": true,
 	})
 }
 
+// @Summary      查询$2
+// @Description
+// @Tags         $3
+// @Accept       json
+// @Produce      json
+// @Param        pageSize query int true "分页 limit"
+// @Param        current query int true "分页页数。默认从 1 开始"
+// @Security     ApiKeyAuth
+// @Router       /api/admin/get$1s [get]
+// @success      200 {object} utils.AntdResult{data=[]any}
 func Get$1s(c *gin.Context) {
 	limit, _ := strconv.Atoi(c.Query("pageSize"))
 	page, _ := strconv.Atoi(c.Query("current"))
@@ -204,6 +184,16 @@ type Remove$1Request struct {
 	Ids []int `json:"ids"`
 }
 
+// @Summary      删除$2
+// @Description  可以同时删除多个。post 参数中，ids 是个数组，每个 item 是一个 id。
+// @Description  例如：ids: [1, 2, 3]
+// @Tags         $3
+// @Accept       json
+// @Produce      json
+// @Param        request body Remove$1Request true "query params"
+// @Security     ApiKeyAuth
+// @Router       /api/admin/remove$1 [post]
+// @success      200 {object} utils.AntdResult{data=[]any}
 func Remove$1(c *gin.Context) {
 	var remove$1Request Remove$1Request
 	if err := c.ShouldBindJSON(&remove$1Request); err != nil {
