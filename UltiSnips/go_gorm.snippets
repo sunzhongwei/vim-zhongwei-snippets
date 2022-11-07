@@ -140,9 +140,9 @@ func ($1) TableName() string {
 CREATE TABLE ${1/\w+\s*/\l$0/} (
   \`id\` int NOT NULL AUTO_INCREMENT,
   name varchar(255) DEFAULT NULL,
-  deleted_at datetime DEFAULT NULL,
   created_at datetime DEFAULT NULL,
   updated_at datetime DEFAULT NULL,
+  deleted_at int unsigned DEFAULT '0',
   PRIMARY KEY (\`id\`),
   KEY \`ix_del\` (\`deleted_at\`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
