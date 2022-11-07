@@ -123,11 +123,14 @@ endsnippet
 snippet gorm_struct "go_gorm" i
 package models
 
-import "gorm.io/gorm"
+import "gorm.io/plugin/soft_delete"
 
 type ${1:NAME} struct {
-    gorm.Model
-	Name    string `json:"name"`
+    ID        uint
+    CreatedAt time.Time
+    UpdatedAt time.Time
+    DeletedAt soft_delete.DeletedAt
+    Name    string `json:"name"`
 }
 
 func ($1) TableName() string {
