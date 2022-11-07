@@ -123,7 +123,10 @@ endsnippet
 snippet gorm_struct "go_gorm" i
 package models
 
-import "gorm.io/plugin/soft_delete"
+import (
+	"time"
+	"gorm.io/plugin/soft_delete"
+)
 
 type ${1:NAME} struct {
     ID        uint
