@@ -121,10 +121,6 @@ snippet split "go" i
 strings.Split(${1:STRING}, ",")
 endsnippet
 
-snippet join "go" i
-strings.Join(${1:slice}, ",")
-endsnippet
-
 snippet string_replace "go" i
 strings.ReplaceAll(${1:STRING}, ${2:OLD}, ${3:NEW})
 endsnippet
@@ -165,18 +161,29 @@ if err != nil {
 defer file.Close()
 endsnippet
 
-snippet loop_slice "go" i
+# slice
+snippet slice_loop "go" i
 for i, v := range items {
 	fmt.Printf("%d %s\n", i, v)
 }
 endsnippet
 
-snippet global_slice "go" i
+snippet slice_global "go" i
 var s = []string{
 	"1",
 	"2",
 }
 endsnippet
+
+snippet slice_join "go" i
+strings.Join(${1:slice}, ",")
+endsnippet
+
+snippet slice_contain "go" i
+"golang.org/x/exp/slices"
+slices.Contains($1s, ${1:item})
+endsnippet
+
 
 snippet global_map "go" i
 var ${1:KVs} = map[string]int{
