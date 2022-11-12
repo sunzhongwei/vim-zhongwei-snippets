@@ -101,6 +101,99 @@ private class $2DiffCallback : DiffUtil.ItemCallback<$2>() {
 endsnippet
 
 
+snippet recycler_view "kotlin_android" i
+// onViewCreated in Activity / Fragment
+val recyclerView: RecyclerView = binding.itemList
+
+recyclerView.layoutManager =
+    LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+val adapter = ${1:Item}sAdapter()
+recyclerView.adapter = adapter
+
+viewModel.${1/\w+\s*/\l$0/}s.observe(
+    viewLifecycleOwner, Observer {
+        it?.let {
+            // ListAdapter doesn’t work with mutable lists.
+            // You must use a copy even the very first time you pass the List
+            // so it is never referring to your mutable List.
+            adapter.submitList(it.toList())
+        }
+    }
+)
+
+// new Class File: $1sAdapter
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
+
+class $1sAdapter :
+    ListAdapter<$1, $1sAdapter.ViewHolder>($1DiffCallback) {
+
+    // Create new views (invoked by the layout manager)
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
+        // Create a new view, which defines the UI of the list item
+        val view = LayoutInflater.from(viewGroup.context)
+            .inflate(R.layout.${1/\w+\s*/\l$0/}s_row_item, viewGroup, false)
+        return ViewHolder(view)
+    }
+
+    // Replace the contents of a view (invoked by the layout manager)
+    // 每个 item 被滚动到屏幕内时执行
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
+        // Get element from your dataset at this position and replace the
+        // contents of the view with that element
+        viewHolder.bind(getItem(position))
+    }
+
+    /**
+     * Provide a reference to the type of views that you are using
+     * (custom ViewHolder).
+     */
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private val name = view.findViewById<TextView>(R.id.name)
+
+        fun bind(item: $1) {
+            name.text = item.name ?: "N/A"
+
+            name.setOnClickListener {
+                // ...
+            }
+        }
+    }
+}
+
+object $1DiffCallback : DiffUtil.ItemCallback<$1>() {
+    // Determine structural changes between old and new list (additions/removals/position changes)
+    override fun areItemsTheSame(oldItem: $1, newItem: $1): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    // Determines if particular item was updated.
+    // If objects in your list are immutable, just return true.
+    override fun areContentsTheSame(oldItem: $1, newItem: $1): Boolean {
+        return oldItem == newItem
+    }
+}
+
+// ViewModel Class
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+
+class MainViewModel : ViewModel() {
+    val ${1/\w+\s*/\l$0/}s = MutableLiveData<MutableList<$1>>()
+
+    init {
+        // 如果不初始化， ${1/\w+\s*/\l$0/}s.value? 永远是 null
+        ${1/\w+\s*/\l$0/}s.value = mutableListOf()
+    }
+}
+endsnippet
+
+
 snippet application "kotlin_android" i
 package com.sunzhongwei.${1:APP}
 
