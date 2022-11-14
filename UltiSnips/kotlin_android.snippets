@@ -48,58 +48,6 @@ val view = binding.root
 setContentView(view)
 endsnippet
 
-snippet recycler_view_adapter "kotlin_android" i
-package com.sunzhongwei.${1:APP}.adapters
-
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
-import com.sunzhongwei.$1.data.${2:Item}
-import com.sunzhongwei.$1.databinding.${3:BINDING}
-
-
-class $2Adapter : ListAdapter<$2, $2Adapter.$2ViewHolder>($2DiffCallback()) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): $2ViewHolder {
-        return $2ViewHolder(
-            $3.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
-    }
-
-    override fun onBindViewHolder(holder: $2ViewHolder, position: Int) {
-        val ${2/\w+\s*/\l$0/} = getItem(position)
-        holder.bind(${2/\w+\s*/\l$0/})
-    }
-
-    class $2ViewHolder(
-        private val binding: $3
-    ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: $2) {
-            binding.apply {
-                ${2/\w+\s*/\l$0/} = item
-                executePendingBindings()
-            }
-        }
-    }
-}
-
-
-private class $2DiffCallback : DiffUtil.ItemCallback<$2>() {
-    override fun areItemsTheSame(oldItem: $2, newItem: $2): Boolean {
-        return oldItem.id == newItem.id
-    }
-
-    override fun areContentsTheSame(oldItem: $2, newItem: $2): Boolean {
-        return oldItem == newItem
-    }
-}
-endsnippet
-
 
 snippet recycler_view "kotlin_android" i
 // onViewCreated in Activity / Fragment
@@ -134,11 +82,11 @@ class $1sAdapter :
     ListAdapter<$1, $1sAdapter.ViewHolder>($1DiffCallback) {
 
     // Create new views (invoked by the layout manager)
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // Create a new view, which defines the UI of the list item
-        val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.${1/\w+\s*/\l$0/}s_row_item, viewGroup, false)
-        return ViewHolder(view)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = $1sRowItemBinding.inflate(layoutInflater, parent, false)
+        return ViewHolder(binding)
     }
 
     // Replace the contents of a view (invoked by the layout manager)
@@ -153,13 +101,13 @@ class $1sAdapter :
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder).
      */
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val name = view.findViewById<TextView>(R.id.name)
+    class ViewHolder(private val binding: $1sRowItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: $1) {
-            name.text = item.name ?: "N/A"
+            binding.name.text = item.name ?: "N/A"
 
-            name.setOnClickListener {
+            binding.name.setOnClickListener {
                 // ...
             }
         }
