@@ -1,5 +1,7 @@
 snippet gorm_insert "go_gorm" i
-$1 := models.${1/\w+\s*/\u$0/}
+$1 := models.${1/\w+\s*/\u$0/} {
+    Key: Value,
+}
 if result := models.DB.Create(&${1:item}); result.Error != nil {
     // Error 1062: Duplicate entry
 }
