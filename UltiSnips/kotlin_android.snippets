@@ -203,5 +203,14 @@ override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 endsnippet
 
 snippet livedata "kotlin_android" i
-val name = MutableLiveData<String>()
+val status = MutableLiveData<String>("Not Connected")
+
+// onViewCreated
+viewModel.status.observe(
+	viewLifecycleOwner, Observer {
+		it?.let {
+			binding.status?.text = it
+		}
+	}
+)
 endsnippet
