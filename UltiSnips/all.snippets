@@ -74,9 +74,13 @@ endsnippet
 
 #########
 # DATES #
+#`!v strftime("%F %a AM")`
 #########
 snippet date "YYYY-MM-DD" w
-`!v strftime("%F %a AM")`
+`!p
+from datetime import datetime
+snip.rv = datetime.today().strftime('%Y-%m-%d %a %p')
+`
 endsnippet
 
 snippet ddate "Month DD, YYYY" w
