@@ -3,22 +3,26 @@ findViewById(R.id.${1:ID});
 endsnippet
 
 snippet onclick "java_android" i
-public void ${1:NAME}(View view) 
-{ 
-    // Do something in response to button click 
-} 
+public void ${1:NAME}(View view)
+{
+    // Do something in response to button click
+}
 
 android:onClick="$1"
 endsnippet
 
-snippet if "java_android" i
-if (${1:CONDITION}) {
-}
-endsnippet
 
 snippet toast "java_android" i
 Toast.makeText(
-    ${1:CLASS}.this, 
-    ${2:TEXT}, 
+    ${1:CLASS}.this,
+    ${2:TEXT},
     Toast.LENGTH_SHORT).show();
+endsnippet
+
+snippet const "java_android" i
+private static final int ${1:NAME} = ${2:1};
+endsnippet
+
+snippet const_tag "java_android" i
+private static final String TAG = "`!p snip.rv = snip.basename`";
 endsnippet
