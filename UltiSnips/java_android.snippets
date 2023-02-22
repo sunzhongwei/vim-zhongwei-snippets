@@ -3,12 +3,18 @@ findViewById(R.id.${1:ID});
 endsnippet
 
 snippet onclick "java_android" i
-public void ${1:NAME}(View view)
-{
-    // Do something in response to button click
-}
+private Button ${1:btn};
 
-android:onClick="$1"
+// onCreate
+$1 = findViewById(R.id.$1);
+$1.setOnClickListener($1OnClickListener);
+
+private View.OnClickListener $1OnClickListener = new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        // TODO
+    }
+};
 endsnippet
 
 
@@ -25,4 +31,12 @@ endsnippet
 
 snippet const_tag "java_android" i
 private static final String TAG = "`!p snip.rv = snip.basename`";
+endsnippet
+
+snippet storage_set "java_android" i
+Context context = getActivity();
+SharedPreferences pref = context.getSharedPreferences(context.getPackageName() + "_ble", Context.MODE_PRIVATE);
+SharedPreferences.Editor editor = pref.edit();
+editor.putString("key", "string value");
+editor.apply();
 endsnippet
