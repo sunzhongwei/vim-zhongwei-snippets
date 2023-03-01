@@ -40,3 +40,8 @@ SharedPreferences.Editor editor = pref.edit();
 editor.putString("key", "string value");
 editor.apply();
 endsnippet
+
+snippet storage_get "java_android" i
+SharedPreferences pref = getSharedPreferences(getPackageName() + "_ble", Context.MODE_PRIVATE);
+String value = pref.getString("key", "default_value");
+endsnippet
