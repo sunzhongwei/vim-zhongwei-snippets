@@ -79,7 +79,8 @@ endsnippet
 snippet date "YYYY-MM-DD" w
 `!p
 from datetime import datetime
-snip.rv = datetime.today().strftime('%Y-%m-%d %a %p')
+#snip.rv = datetime.today().strftime('%Y-%m-%d %a %p')
+snip.rv = datetime.today().strftime('%Y-%m-%d')
 `
 endsnippet
 
