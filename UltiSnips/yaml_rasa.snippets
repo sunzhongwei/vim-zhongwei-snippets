@@ -1,0 +1,18 @@
+snippet rasa_rule "yaml_rasa" i
+# data/rules.yml
+- rule: rule_description
+  steps:
+  - intent: ${1:intent_name}
+  - action: utter_$1
+
+# data/nlu.yml
+- intent: $1
+  examples: |
+    - example_1
+    - example_2
+    - example_3
+
+# domain.yml 别忘了加入 intents 列表
+  utter_$1:
+    - text: "response_text"
+endsnippet
