@@ -15,4 +15,17 @@ snippet rasa_rule "yaml_rasa" i
 # domain.yml 别忘了加入 intents 列表
   utter_$1:
     - text: "response_text"
+
+# test_stories.yml
+  - user: |
+      example_1
+    intent: $1
+  - action: utter_$1
+endsnippet
+
+snippet rasa_test "yaml_rasa" i
+- user: |
+    $1
+  intent: ${1:intent_name}
+- action: utter_$1
 endsnippet
