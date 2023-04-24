@@ -79,8 +79,20 @@ endsnippet
 snippet date "YYYY-MM-DD" w
 `!p
 from datetime import datetime
-#snip.rv = datetime.today().strftime('%Y-%m-%d %a %p')
-snip.rv = datetime.today().strftime('%Y-%m-%d')
+
+weekday_dict = {
+    0: "星期一",
+    1: "星期二",
+    2: "星期三",
+    3: "星期四",
+    4: "星期五",
+    5: "星期六",
+    6: "星期日"
+}
+today_weekday = datetime.today().weekday()
+chinese_weekday = weekday_dict[today_weekday]
+
+snip.rv = datetime.today().strftime('%Y-%m-%d') + " " + chinese_weekday
 `
 endsnippet
 
