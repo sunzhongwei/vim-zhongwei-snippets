@@ -1,5 +1,6 @@
 snippet swag_doc_api "go_swagger" i
 // @Summary      summary
+// @Router       /api/someAPI [get]
 // @Description  first line
 // @Description  second line
 // @Tags         tag
@@ -8,9 +9,21 @@ snippet swag_doc_api "go_swagger" i
 // @Security     ApiKeyAuth
 // @Param        pageSize query int true "分页 limit, 单页显示数据条数。例如 20 条。"
 // @Param        current query int true "分页页数，第 N 页。默认从 1 开始。"
-// @Router       /api/someAPI [get]
 // @success      200 {object} utils.AntdResult{data=[]any}
 // @Success      200 {string} string "ok"
+endsnippet
+
+snippet swag_doc_api_post "go_swagger" i
+// @Summary      ${1:TITLE}
+// @Router       /api/some_api [post]
+// @Description  $1
+// @Description  line2
+// @Tags         tag
+// @Accept       json
+// @Produce      json
+// @Param        request body models.${2:SomeModel} true "query params"
+// @Security     ApiKeyAuth
+// @success      200 {object} utils.AntdResult/CommonResponse{data=[]any}
 endsnippet
 
 snippet swag_doc_main "go_swagger" i
@@ -33,4 +46,50 @@ snippet swag_description "go_swagger" i
 // @description
 // @description
 // @description
+endsnippet
+
+snippet swag_crud "go_swagger" i
+// @Summary      添加${1:Item}
+// @Description  first line
+// @Tags         $1管理
+// @Accept       json
+// @Produce      json
+// @Param        request body models.${2:ItemModel} true "query params"
+// @Security     ApiKeyAuth
+// @Router       /api/admin/add$2 [post]
+// @success      200 {object} utils.AntdResult{data=[]any}
+
+// @Summary      修改$1信息
+// @Description
+// @Tags         $1管理
+// @Accept       json
+// @Produce      json
+// @Param        request body models.$2 true "query params"
+// @Security     ApiKeyAuth
+// @Router       /api/admin/update$2 [post]
+// @success      200 {object} utils.AntdResult{data=[]any}
+
+// @Summary      查询$1列表
+// @Description  功能：
+// @Description  - 输入省份查询。Province
+// @Description  - 输入城市查询。City
+// @Tags         $1管理
+// @Accept       json
+// @Produce      json
+// @Param        pageSize query int true "分页 limit"
+// @Param        current query int true "分页页数。默认从 1 开始"
+// @Security     ApiKeyAuth
+// @Router       /api/admin/get$2s [get]
+// @success      200 {object} utils.AntdResult{data=[]models.Device}
+
+// @Summary      删除$1
+// @Description  可以同时删除多个。post 参数中，ids 是个数组，每个 item 是一个 id。
+// @Description  例如：ids: [1, 2, 3]
+// @Tags         $1管理
+// @Accept       json
+// @Produce      json
+// @Param        request body Remove$2Request true "query params"
+// @Security     ApiKeyAuth
+// @Router       /api/admin/remove$2 [post]
+// @success      200 {object} utils.AntdResult{data=[]any}
 endsnippet

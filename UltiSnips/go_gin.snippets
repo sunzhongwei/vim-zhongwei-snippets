@@ -556,9 +556,13 @@ func ${1:tool}(c *gin.Context) {
 	})
 }
 
-# i18n tools: ${1/\w+\s*/\u$0/}
-${1/\w+\s*/\u$0/}Title = ""
-${1/\w+\s*/\u$0/}ShortDescription = ""
+# tools: ${1/\w+\s*/\u$0/}
+${1/\w+\s*/\u$0/}Title = "Title"
+${1/\w+\s*/\u$0/}ShortDescription = "Short Description"
 ${1/\w+\s*/\u$0/}Description = '''
+Long Description.
 '''
+
+// F12 in Vim
+touch templates/$1.html;
 endsnippet
