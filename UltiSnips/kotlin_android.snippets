@@ -1,12 +1,9 @@
-snippet log "kotlin_android" i
+snippet android_log "kotlin_android" i
 Log.d(_logTag, ${1:VALUE});
+private val _logTag = "${2:MyActivity}"
 endsnippet
 
-snippet log_tag "kotlin_android" i
-private val _logTag = "${1:MyActivity}"
-endsnippet
-
-snippet view_binding_in_fragment "kotlin_android" i
+snippet android_view_binding_in_fragment "kotlin_android" i
 // Module build.gradle 的 android section 中添加, 然后 Sync
 buildFeatures {
 	viewBinding = true
@@ -28,7 +25,7 @@ override fun onDestroyView() {
 }
 endsnippet
 
-snippet view_binding_in_activity "kotlin_android" i
+snippet android_view_binding_in_activity "kotlin_android" i
 // Module build.gradle 的 android section 中添加, 然后 Sync
 // app/build.gradle
 buildFeatures {
@@ -49,7 +46,7 @@ setContentView(view)
 endsnippet
 
 
-snippet recycler_view "kotlin_android" i
+snippet android_recycler_view "kotlin_android" i
 // onViewCreated in Activity / Fragment
 val recyclerView: RecyclerView = binding.itemList
 
@@ -142,7 +139,7 @@ class MainViewModel : ViewModel() {
 endsnippet
 
 
-snippet application "kotlin_android" i
+snippet android_application "kotlin_android" i
 package com.sunzhongwei.${1:APP}
 
 import android.app.Application
@@ -152,15 +149,15 @@ import dagger.hilt.android.HiltAndroidApp
 class MainApplication: Application()
 endsnippet
 
-snippet index "kotlin_android" i
+snippet android_index "kotlin_android" i
 indices = arrayOf(Index(value = ["last_name", "address"]))
 endsnippet
 
-snippet view_unused "kotlin_android" i
+snippet android_view_unused "kotlin_android" i
 @Suppress("UNUSED_PARAMETER")
 endsnippet
 
-snippet translation "kotlin_android" i
+snippet android_translation "kotlin_android" i
 R.string.${1:NAME}
 endsnippet
 
@@ -175,13 +172,13 @@ $1.setOnClickListener {
 }
 endsnippet
 
-snippet view_model "kotlin_android" i
+snippet android_view_model "kotlin_android" i
 class $1ViewModel : ViewModel() {
     val ${1/\w+\s*/\l$0/} = MutableLiveData<${1:Item}>()
 }
 endsnippet
 
-snippet view_model_in_activity "kotlin_android" i
+snippet android_view_model_in_activity "kotlin_android" i
 private val viewModel: ${1:Item}ViewModel by viewModels()
 
 override fun onCreate(savedInstanceState: Bundle?) {
@@ -192,7 +189,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
 }
 endsnippet
 
-snippet view_model_in_fragment "kotlin_android" i
+snippet android_view_model_in_fragment "kotlin_android" i
 val viewModel: ${1:Item}ViewModel by activityViewModels()
 
 override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -202,7 +199,7 @@ override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 }
 endsnippet
 
-snippet livedata "kotlin_android" i
+snippet android_livedata "kotlin_android" i
 val status = MutableLiveData<String>("Not Connected")
 
 // onViewCreated
