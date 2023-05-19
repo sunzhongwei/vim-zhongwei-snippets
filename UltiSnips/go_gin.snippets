@@ -1,0 +1,568 @@
+snippet gin "go_gin" i
+"github.com/gin-gonic/gin"
+endsnippet
+
+snippet gin_arg "go_gin" i
+c.Param("${1:ARG}")     // /api/:arg
+c.DefaultQuery("${2:ARG}", "")      // /api?arg=N
+endsnippet
+
+snippet gin_router_arg "go_gin" i
+:id
+endsnippet
+
+snippet gin_func_api "go_gin" i
+func ${1:NAME}(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{
+		"err_code": 0,
+		"err_msg": "OK",
+	})
+}
+endsnippet
+
+snippet gin_parse_request "go_gin" i
+var $1 models.${1/\w+\s*/\u$0/}
+if err := c.ShouldBindJSON(&${1:struct}); err != nil {
+    c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+    return
+}
+endsnippet
+
+snippet gin_parse_request_post "go_gin" i
+type ${1:post}Request struct {
+	Content string
+}
+
+var request $1Request
+if err := c.ShouldBindJSON(&request); err != nil {
+    c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+    return
+}
+endsnippet
+
+snippet gin_antdpro_crud "go_gin" i
+// TODO: move routes to main.go
+// $1
+admin.GET("/get$1s", controllers.Get$1s)
+admin.POST("/add$1", controllers.Add$1)
+admin.POST("/update$1", controllers.Update$1)
+admin.POST("/remove$1", controllers.Remove$1)
+
+package controllers
+
+import (
+	"fmt"
+	"net/http"
+	"strconv"
+
+	"github.com/gin-gonic/gin"
+)
+
+
+// @Summary      添加${2:SomeName}
+// @Description  first line
+// @Tags         ${3:SomeTag}
+// @Accept       json
+// @Produce      json
+// @Param        request body models.$1Info true "query params"
+// @Security     ApiKeyAuth
+// @Router       /api/admin/add$1 [post]
+// @success      200 {object} utils.AntdResult{data=[]any}
+func Add${1:Item}(c *gin.Context) {
+	var item models.$1
+	if err := c.ShouldBindJSON(&item); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	if result := models.DB.Create(&item); result.Error != nil {
+		// Error 1062: Duplicate entry
+		c.JSON(http.StatusOK, gin.H{
+			"success": false,
+			"err_msg": result.Error,
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"success": true,
+	})
+}
+
+// @Summary      修改$2
+// @Description
+// @Tags         $3
+// @Accept       json
+// @Produce      json
+// @Param        request body models.$1Info true "query params"
+// @Security     ApiKeyAuth
+// @Router       /api/admin/update$1 [post]
+// @success      200 {object} utils.AntdResult{data=[]any}
+func Update$1(c *gin.Context) {
+	var item models.$1
+	if err := c.ShouldBindJSON(&item); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	result := models.DB.
+		Select("status", "updated_at").
+		Omit("some_field").
+		Updates(item)
+	//models.DB.Model(&item).Updates(item)  // 潜在bug是，为0为空的不更新
+	if result.Error != nil {
+		// Error 1062: Duplicate entry
+		c.JSON(http.StatusOK, gin.H{
+			"success": false,
+			"err_msg": result.Error,
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"success": true,
+	})
+}
+
+// @Summary      查询$2
+// @Description
+// @Tags         $3
+// @Accept       json
+// @Produce      json
+// @Param        pageSize query int true "分页 limit"
+// @Param        current query int true "分页页数。默认从 1 开始"
+// @Security     ApiKeyAuth
+// @Router       /api/admin/get$1s [get]
+// @success      200 {object} utils.AntdResult{data=[]any}
+func Get$1s(c *gin.Context) {
+	limit, _ := strconv.Atoi(c.Query("pageSize"))
+	page, _ := strconv.Atoi(c.Query("current"))
+	status, _ := strconv.Atoi(c.DefaultQuery("status", "0"))
+	name := c.DefaultQuery("name", "")
+	var items []models.$1
+	db := models.DB.Model(&models.$1{})
+
+	if limit > 100 {
+		limit = 100
+	}
+	if page < 1 {
+		page = 1
+	}
+	if status > 0 {
+		db = db.Where("status", status)
+	}
+	if name != "" {
+		db = db.Where("name", name)
+	}
+
+	if keyword, isExist := c.GetQuery("title"); isExist {
+		db = db.Where("title LIKE ?", fmt.Sprintf("%%%s%%", keyword))
+	}
+
+	// After a Chain method, Finisher Method, GORM returns an initialized
+	// *gorm.DB instance, which is NOT safe to reuse anymore, or new generated
+	// SQL might be polluted by the previous conditions.
+	// In order to reuse a initialized *gorm.DB instance, you can use a
+	// New Session Method to create a shareable *gorm.DB
+	db = db.Session(&gorm.Session{})
+
+	db.Select("*").
+		Order("id desc").
+		Limit(limit).
+		Offset((page - 1) * limit).
+		Find(&items)
+
+	var count int64 = 0
+	db.Count(&count)
+
+	c.JSON(http.StatusOK, gin.H{
+		"success": true,
+		"data":    items,
+		"total":   count,
+	})
+}
+
+type Remove$1Request struct {
+	Ids []int `json:"ids"`
+}
+
+// @Summary      删除$2
+// @Description  可以同时删除多个。post 参数中，ids 是个数组，每个 item 是一个 id。
+// @Description  例如：ids: [1, 2, 3]
+// @Tags         $3
+// @Accept       json
+// @Produce      json
+// @Param        request body Remove$1Request true "query params"
+// @Security     ApiKeyAuth
+// @Router       /api/admin/remove$1 [post]
+// @success      200 {object} utils.AntdResult{data=[]any}
+func Remove$1(c *gin.Context) {
+	var remove$1Request Remove$1Request
+	if err := c.ShouldBindJSON(&remove$1Request); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	// 需判断 Ids 是否为空，否则会删全表
+	if len(remove$1Request.Ids) != 0 {
+		models.DB.Delete(&models.$1{}, remove$1Request.Ids)
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"err_code": 0,
+		"err_msg":  "OK",
+	})
+}
+endsnippet
+
+snippet gin_uid "go_gin" i
+uidStr, _ := c.Get("uid")
+uid := uidStr.(uint)
+role, _ := c.Get("role")
+endsnippet
+
+snippet gin_search_filter "go_gorm" i
+if ${1:param} := c.DefaultQuery("${1/\w+\s*/\u$0/}", ""); $1 != "" {
+    db = db.Where("$1", $1)
+}
+endsnippet
+
+snippet gin_export_excel "go_gin" i
+excelize "github.com/xuri/excelize/v2"
+
+admin.POST("/export$1AsExcel", controllers.Export$1AsExcel)
+
+type export$1Request struct {
+	StartTime string
+	EndTime   string
+	ID  string
+}
+
+func Export$1AsExcel(c *gin.Context) {
+	var items []models.${1:Item}
+	db := models.DB
+
+    var request export$1Request
+	if err := c.ShouldBindJSON(&request); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	if id := request.ID; id != "" {
+		db = db.Where("id", id)
+	}
+	startTime := request.StartTime
+	endTime := request.EndTime
+	if startTime != "" && endTime != "" {
+		db = db.Where("created_at BETWEEN ? AND ?", startTime, endTime)
+	}
+
+	db.Order("id desc").
+		Find(&items)
+
+	var count int64 = 0
+	db.Model(&models.$1{}).Count(&count)
+
+	values := map[string]string{
+		"A1": "",
+		"C1": fmt.Sprintf("总次数：%d", count),
+
+		"A2": "序号",
+		"B2": "Name",
+		"C2": "更新时间",
+	}
+
+	rowNo := 0 // excel 行号
+	for i, v := range items {
+		rowNo = i + 3
+		values[fmt.Sprintf("A%d", rowNo)] = fmt.Sprintf("%d", i+1)
+		values[fmt.Sprintf("C%d", rowNo)] = v.Name
+		values[fmt.Sprintf("F%d", rowNo)] = v.UpdatedAt.FormatValue()
+	}
+
+	xlsx := excelize.NewFile()
+
+	// Set value of cells
+	for k, v := range values {
+		xlsx.SetCellValue("Sheet1", k, v)
+	}
+
+	// 合并单元格
+	xlsx.MergeCell("Sheet1", "A1", "B1")
+
+	// 设置宽度
+	xlsx.SetColWidth("Sheet1", "B", "B", 25)
+	xlsx.SetColWidth("Sheet1", "E", "H", 15) // 工作表上 E 到 H 列的宽度为 15
+
+	buf, _ := xlsx.WriteToBuffer()
+	c.Data(http.StatusOK, "application/octet-stream", buf.Bytes())
+}
+endsnippet
+
+snippet gin_import_excel "go_gin" i
+excelize "github.com/xuri/excelize/v2"
+
+v1.POST("/Import$1Excel", controllers.Import$1Excel)
+
+func Import$1Excel(c *gin.Context) {
+	file, _ := c.FormFile("file")
+	reader, _ := file.Open()
+
+	// 既有 OpenReader, 也有 OpenFile
+	// https://github.com/qax-os/excelize/blob/master/excelize.go#L116
+	xlsx, _ := excelize.OpenReader(r)
+
+	// Get all the rows in the Sheet1.
+	rows, err := xlsx.GetRows("Sheet1") // 返回类型 [][]string
+
+	if err != nil {
+		log.Println(err)
+		c.JSON(http.StatusOK, gin.H{
+			"err_code": 1,
+			"err_msg":  "invalid excel",
+		})
+		return
+	}
+
+	for _, row := range rows[1:] {
+		// 略过首行 title
+		item := models.${1:Item}{
+			Name:   strings.TrimSpace(row[0]),
+		}
+		if result := models.DB.Create(&item); result.Error != nil {
+			// Error 1062: Duplicate entry
+			log.Println("Duplicate entry, ignore")
+		}
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"err_code": 0,
+		"err_msg":  "OK",
+	})
+}
+endsnippet
+
+snippet gin_antdpro_add_category "go_gin" i
+// model
+CategoryId int
+Category   Category
+
+// controller update：添加可以修改项 category_id
+// controller get list：preload
+db := models.DB.Preload("Category")
+
+// 重新编译，重启服务
+
+// antd edit 可以选择分类: antd_pro_select
+// antd 列表显示分类名称: 上一步已自动实现
+endsnippet
+
+snippet gin_antdpro_crud_package "go_gin" i
+/*
+## TODO
+- [] mysql table
+- [] backup sql
+- [] go controller: gorm_crud snip 自带了 model 和 route; 修改可编辑字段
+- [] go model
+- [] go route
+- [] go 编译重启服务
+- [] antd route
+- [] antd list
+- [] antd create
+- [] antd model
+- [] antd api
+- [] 线上建表
+*/
+
+// TODO: move model
+package ${1/\w+\s*/\l$0/}
+
+import "gorm.io/gorm"
+
+// $1 ...
+type $1 struct {
+	gorm.Model
+	Name string
+}
+
+// TableName ...
+func ($1) TableName() string {
+	return "${1/\w+\s*/\l$0/}"
+}
+
+
+// TODO: move routes to main.go
+${1/\w+\s*/\l$0/}.RegisterAdminRouter(admin)
+${1/\w+\s*/\l$0/}.RegisterWebRouter(web)
+
+package ${1/\w+\s*/\l$0/}
+
+import (
+	"fmt"
+	"net/http"
+	"strconv"
+
+	"github.com/gin-gonic/gin"
+)
+
+// RegisterAdminRouter ...
+func RegisterAdminRouter(router *gin.RouterGroup) {
+	router.GET("/get$1s", get$1s)
+	router.POST("/add$1", add$1)
+	router.POST("/update$1", update$1)
+	router.POST("/remove$1", remove$1)
+}
+
+// RegisterWebRouter ...
+func RegisterWebRouter(router *gin.RouterGroup) {
+	//router.GET("/${1/\w+\s*/\l$0/}/:id", Web$1Detail)
+}
+
+func add${1:Item}(c *gin.Context) {
+	var item $1
+	if err := c.ShouldBindJSON(&item); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	if result := models.DB.Create(&item); result.Error != nil {
+		// Error 1062: Duplicate entry
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"success": true,
+	})
+}
+
+func update$1(c *gin.Context) {
+	var item $1
+	if err := c.ShouldBindJSON(&item); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	models.DB.
+		Select("status", "updated_at").
+		Omit("some_field").
+		Updates(item)
+	//models.DB.Model(&item).Updates(item)  // 潜在bug是，为0为空的不更新
+
+	c.JSON(http.StatusOK, gin.H{
+		"success": true,
+	})
+}
+
+func get$1s(c *gin.Context) {
+	limit, _ := strconv.Atoi(c.Query("pageSize"))
+	page, _ := strconv.Atoi(c.Query("current"))
+	status, _ := strconv.Atoi(c.DefaultQuery("status", "0"))
+	name := c.DefaultQuery("name", "")
+	var items []$1
+	db := models.DB.Model(&$1{})
+
+	if limit > 100 {
+		limit = 100
+	}
+	if page < 1 {
+		page = 1
+	}
+	if status > 0 {
+		db = db.Where("status", status)
+	}
+	if name != "" {
+		db = db.Where("name", name)
+	}
+
+	if keyword, isExist := c.GetQuery("title"); isExist {
+		db = db.Where("title LIKE ?", fmt.Sprintf("%%%s%%", keyword))
+	}
+
+	// After a Chain method, Finisher Method, GORM returns an initialized
+	// *gorm.DB instance, which is NOT safe to reuse anymore, or new generated
+	// SQL might be polluted by the previous conditions.
+	// In order to reuse a initialized *gorm.DB instance, you can use a
+	// New Session Method to create a shareable *gorm.DB
+	db = db.Session(&gorm.Session{})
+
+	db.Select("*").
+		Order("id desc").
+		Limit(limit).
+		Offset((page - 1) * limit).
+		Find(&items)
+
+	var count int64 = 0
+	db.Count(&count)
+
+	c.JSON(http.StatusOK, gin.H{
+		"success": true,
+		"data":    items,
+		"total":   count,
+	})
+}
+
+// Remove$1Request ...
+type Remove$1Request struct {
+	Ids []int `json:"ids"`
+}
+
+func remove$1(c *gin.Context) {
+	var remove$1Request Remove$1Request
+	if err := c.ShouldBindJSON(&remove$1Request); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	// 需判断 Ids 是否为空，否则会删全表
+	if len(remove$1Request.Ids) != 0 {
+		models.DB.Delete(&models.$1{}, remove$1Request.Ids)
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"err_code": 0,
+		"err_msg":  "OK",
+	})
+}
+endsnippet
+
+snippet gin_return_error "go_gin" i
+c.JSON(http.StatusOK, gin.H{
+	"err_code": 1,
+	"err_msg":  "some_err_msg",
+})
+return
+endsnippet
+
+snippet gin_log "go_gin" i
+utils.Log("${1:hello}")
+endsnippet
+
+snippet gin_404 "go_gin" i
+WebNotFound(c)
+return
+endsnippet
+
+snippet gin_tool "go_gin" i
+func ${1:tool}(c *gin.Context) {
+	title, _ := ginI18n.GetMessage("${1/\w+\s*/\u$0/}Title")
+	description, _ := ginI18n.GetMessage("${1/\w+\s*/\u$0/}ShortDescription")
+	content, _ := ginI18n.GetMessage("${1/\w+\s*/\u$0/}Description")
+	lang := c.DefaultQuery("lang", "zh")
+
+	c.HTML(http.StatusOK, "$1.html", gin.H{
+		"title":       title,
+		"description": description,
+		"content":     utils.ConvertMarkdownToHTML(content),
+		"lang":        lang,
+		"curLangName": i18n.Langs[lang],
+		"supportedLangs": i18n.GetSupportedLangs([]string{
+			"zh", "en", "ja", "ko",
+		}),
+	})
+}
+
+# tools: ${1/\w+\s*/\u$0/}
+${1/\w+\s*/\u$0/}Title = "Title"
+${1/\w+\s*/\u$0/}ShortDescription = "Short Description"
+${1/\w+\s*/\u$0/}Description = '''
+Long Description.
+'''
+
+// F12 in Vim
+touch templates/$1.html;
+endsnippet
