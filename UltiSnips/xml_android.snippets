@@ -76,8 +76,9 @@ snippet edit_text "xml_android" i
     android:textSize="36sp" />
 endsnippet
 
-snippet recycler_view "xml_android" i
-<android.support.v7.widget.RecyclerView
+snippet android_recycler_view "xml_android" i
+implementation 'androidx.recyclerview:recyclerview:1.2.1'
+<androidx.recyclerview.widget.RecyclerView
     android:id="@+id/recyclerView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
