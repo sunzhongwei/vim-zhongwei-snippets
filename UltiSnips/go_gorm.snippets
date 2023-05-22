@@ -257,8 +257,9 @@ db = db.Session(&gorm.Session{})
 db.Count(&count)
 endsnippet
 
-snippet gorm_preload_many2many "go_gorm" i
+snippet gorm_preload_filter_field "go_gorm" i
 Preload("Tags", func(tx *gorm.DB) *gorm.DB {
     return tx.Select("Name")
+    return tx.Omit("Name")
 }).
 endsnippet
