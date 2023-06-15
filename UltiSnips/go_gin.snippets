@@ -129,6 +129,7 @@ func Update$1(c *gin.Context) {
 // @Produce      json
 // @Param        pageSize query int true "分页 limit"
 // @Param        current query int true "分页页数。默认从 1 开始"
+// @Param        name query string false "名称查询"
 // @Security     ApiKeyAuth
 // @Router       /api/admin/get$1s [get]
 // @success      200 {object} utils.AntdResult{data=[]any}
@@ -137,6 +138,7 @@ func Get$1s(c *gin.Context) {
 	page, _ := strconv.Atoi(c.Query("current"))
 	status, _ := strconv.Atoi(c.DefaultQuery("status", "0"))
 	name := c.DefaultQuery("name", "")
+	name = strings.TrimSpace(name)
 	var items []models.$1
 	db := models.DB.Model(&models.$1{})
 
@@ -150,7 +152,7 @@ func Get$1s(c *gin.Context) {
 		db = db.Where("status", status)
 	}
 	if name != "" {
-		db = db.Where("name", name)
+        db = db.Where("name LIKE ?", fmt.Sprintf("%%%s%%", name))
 	}
 
 	if keyword, isExist := c.GetQuery("title"); isExist {
