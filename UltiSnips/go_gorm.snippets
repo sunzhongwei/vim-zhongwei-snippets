@@ -42,6 +42,7 @@ endsnippet
 snippet gorm_pluck "go_gorm" i
 var $1s []int
 models.DB.Model(&models.${2:Model}{}).Pluck("${1:field}", &$1s)
+//db.Where("id IN (?)", ids).Find(&users)
 endsnippet
 
 snippet gorm_find_all_raw "go_gorm" i
@@ -259,7 +260,7 @@ endsnippet
 
 snippet gorm_preload_filter_field "go_gorm" i
 Preload("Tags", func(tx *gorm.DB) *gorm.DB {
-    return tx.Select("Name")
+    return tx.Select("id", "name")
     return tx.Omit("Name")
 }).
 endsnippet
