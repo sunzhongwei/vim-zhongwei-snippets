@@ -126,6 +126,30 @@ endsnippet
 snippet gorm_struct "go_gorm" i
 package models
 
+type ${1:NAME} struct {
+    gorm.Model
+    Name    string `json:"name"`
+    Money   float64
+}
+
+func ($1) TableName() string {
+	return "${1/\w+\s*/\l$0/}"
+}
+
+CREATE TABLE ${1/\w+\s*/\l$0/} (
+  \`id\` int NOT NULL AUTO_INCREMENT,
+  name varchar(255) DEFAULT NULL,
+  created_at datetime DEFAULT NULL,
+  updated_at datetime DEFAULT NULL,
+  deleted_at datetime DEFAULT NULL,
+  PRIMARY KEY (\`id\`),
+  KEY \`ix_del\` (\`deleted_at\`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+endsnippet
+
+snippet gorm_struct2 "go_gorm" i
+package models
+
 import (
 	"time"
 	"gorm.io/plugin/soft_delete"
