@@ -105,9 +105,9 @@ func Update$1(c *gin.Context) {
 
 	result := models.DB.
 		Select("status", "updated_at").
-		Omit("some_field").
+		Omit("some_field").   // Omit 同样有 0 值不更新的问题
 		Updates(item)
-	//models.DB.Model(&item).Updates(item)  // 潜在bug是，为0为空的不更新
+	//models.DB.Model(&item).Updates(item)  // 潜在bug是，为0为空的不更新。Save 无此问题
 	if result.Error != nil {
 		// Error 1062: Duplicate entry
 		c.JSON(http.StatusOK, gin.H{
