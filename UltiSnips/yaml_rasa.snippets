@@ -29,3 +29,10 @@ snippet rasa_test "yaml_rasa" i
   intent: ${1:intent_name}
 - action: utter_$1
 endsnippet
+
+snippet rasa_story_utter "yaml_rasa" i
+- story: $1
+  steps:
+  - intent: ${1:INTENT}
+  - action: utter_$1
+endsnippet
