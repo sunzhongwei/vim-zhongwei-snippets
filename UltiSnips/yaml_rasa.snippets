@@ -36,3 +36,19 @@ snippet rasa_story_utter "yaml_rasa" i
   - intent: ${1:INTENT}
   - action: utter_$1
 endsnippet
+
+snippet rasa_story_action_form "yaml_rasa" i
+- action: ${1:some}_form
+- active_loop: $1_form
+
+# data/rules.yml
+- rule: $1_form
+  condition:
+  - active_loop: $1_form
+  steps:
+  - action: $1_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_$1_form_submit
+endsnippet
