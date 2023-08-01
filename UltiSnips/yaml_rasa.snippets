@@ -52,3 +52,11 @@ snippet rasa_story_action_form "yaml_rasa" i
     - requested_slot: null
   - action: action_$1_form_submit
 endsnippet
+
+snippet rasa_nlu "yaml_rasa" i
+- intent: ${1:intent_name}
+  examples: |
+    - hey
+    - hello
+    - hi
+endsnippet
