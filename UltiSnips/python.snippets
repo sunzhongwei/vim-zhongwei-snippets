@@ -95,10 +95,10 @@ response = requests.get(url)
 if response.status_code == 200:
     data = response.json()
     print(data)
-    if data.code == 100:
+    if data['code'] == 100:
         pass
     else:
-        print(f"Error code: {data.code}; Error message: {data.msg}")
+        print(f"Error code: {data['code']}; Error message: {data['msg']}")
 else:
     # 如果响应状态码不是200，则输出错误信息
     print("Error: ", response.status_code)
