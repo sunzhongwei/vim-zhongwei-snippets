@@ -104,6 +104,28 @@ else:
     print("Error: ", response.status_code)
 endsnippet
 
+snippet request_post "python" i
+url = ""
+
+data = {
+    "name": "Alice",
+    "age": 20,
+}
+
+response = requests.post(url, json=data)
+
+if response.status_code == 200:
+    data = response.json()
+    print(data)
+    if data['code'] == 100:
+        pass
+    else:
+        print(f"Error code: {data['code']}; Error message: {data['msg']}")
+else:
+    # 如果响应状态码不是200，则输出错误信息
+    print("Error: ", response.status_code)
+endsnippet
+
 snippet format "python" i
 f"{name}"
 endsnippet
