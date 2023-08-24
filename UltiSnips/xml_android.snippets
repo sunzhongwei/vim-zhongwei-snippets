@@ -1,4 +1,4 @@
-snippet grid_layout "xml_android" i
+snippet android_grid_layout "xml_android" i
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/grid_layout"
     android:layout_width="match_parent"
@@ -42,11 +42,11 @@ snippet android_button "xml_android" i
     />
 endsnippet
 
-snippet button_style_secondary "xml_android" i
+snippet android_button_style_secondary "xml_android" i
 style="?attr/materialButtonOutlinedStyle"
 endsnippet
 
-snippet id "xml_android" i
+snippet android_id "xml_android" i
 android:id="@+id/${1:ID}"
 endsnippet
 
@@ -64,7 +64,7 @@ snippet --- "xml_android" i
 <!-- ${1:} -->
 endsnippet
 
-snippet edit_text "xml_android" i
+snippet android_edit_text "xml_android" i
 <EditText
     android:id="@+id/input"
     android:layout_width="match_parent"
@@ -85,17 +85,17 @@ implementation 'androidx.recyclerview:recyclerview:1.2.1'
     android:scrollbars="vertical"/>
 endsnippet
 
-snippet recycler_view_layout_manager "xml_android" i
+snippet android_recycler_view_layout_manager "xml_android" i
 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 endsnippet
 
-snippet var "xml_android" i
+snippet android_var "xml_android" i
 <variable
     name="${1:VAR}"
     type="com.sunzhongwei.app.data.$1"/>
 endsnippet
 
-snippet style "xml_android" i
+snippet android_style "xml_android" i
 style="@style/${1:StyleName}"
 
 // res/values/styles.xml
