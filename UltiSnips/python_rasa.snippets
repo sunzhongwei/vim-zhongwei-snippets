@@ -1,3 +1,17 @@
-snippet rasa_utter "python_rasa" i
-dispatcher.utter_message(template="utter_${1:VALUE}")
+snippet rasa_utter_template "python_rasa" i
+dispatcher.utter_message(
+    template="utter_${1:VALUE}",
+    buttons=buttons,
+    )
+endsnippet
+
+snippet rasa_utter_text "python_rasa" i
+dispatcher.utter_message(text=msg)
+endsnippet
+
+snippet rasa_entity "python_rasa" i
+${1:entityName} = ""
+for item in tracker.latest_message["entities"]:
+    if item["entity"] == "$1":
+        $1 = item["value"]
 endsnippet
