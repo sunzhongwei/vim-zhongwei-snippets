@@ -10,8 +10,5 @@ dispatcher.utter_message(text=msg)
 endsnippet
 
 snippet rasa_entity "python_rasa" i
-${1:entityName} = ""
-for item in tracker.latest_message["entities"]:
-    if item["entity"] == "$1":
-        $1 = item["value"]
+${1:entity} = next(tracker.get_latest_entity_values("$1"), None)
 endsnippet
