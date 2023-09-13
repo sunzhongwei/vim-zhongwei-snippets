@@ -1,0 +1,7 @@
+snippet dategreeting "Gives you the current date!"
+Hello from your hsnip at ``rv = new Date().toDateString()``!
+endsnippet
+
+snippet filename "Current Filename"
+``rv = require('path').basename(path)``
+endsnippet
